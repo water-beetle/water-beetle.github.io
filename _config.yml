@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "mint" # "air", "aqua", "contrast", "dark", "dirt", "
 locale                   : "ko-KR"
 title                    : "물방개"
 title_separator          : "|"
-subtitle                 : "퇴근후 취미 생활"
+subtitle                 : "퇴근 후 취미 생활"
 name                     : "waterbeetle"
 description              : ""
 url                      : "https://water-beetle.github.io"
@@ -269,6 +269,11 @@ defaults:
       share: true
       related: true
       show_date: true
+      toc: true
+      toc_sticky: true
+      toc_label: 목차
+      typora-root-url: ../
+      
 
 
 date_format: "%Y-%m-%d"
