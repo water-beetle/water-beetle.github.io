@@ -22,7 +22,7 @@ Prompt: Use case: stylized-concept. Asset type: standalone full-page website bac
 
 ## Foliage and minimap posts — 2026-09-06
 
-- `public/media/2026-09-06/foliage.jpg`: real Unreal PCG/voxel validation capture, catalog preview. 679 instances were reported by the preview. The terrain uses a temporary plain material to inspect placement. This is a test scene, not the final environment or a manual gameplay capture. Latest available-mesh remapping is a separate ongoing task.
+- `public/media/2026-09-06/foliage-avoria.jpg`: new Unreal capture of Avoria’s actual voxel terrain and 657 PCG instances. The saved `MI_Planet_Avoria` material and `DA_Foliage_Avoria` profile are retained. Captured on 2026-09-07 in Unlit mode with sRGB output to inspect the material colors and placement; no terrain or foliage material was replaced. This is an isolated render of project assets, not a manual gameplay capture. The previous plain-material image has been removed.
 - `public/media/2026-09-06/hud-overview.png`: saved UMG HUD rendered by the Unreal validation helper using an actual generated planet and test inputs, from the successful auto-fit validation. It is a HUD preview rather than a direct PIE screenshot. Oxygen and money values are test data.
 - `public/media/2026-09-06/minimap-front.png` and `minimap-facing-right.png`: unaltered pixel crops of the corresponding 1600×900 HUD validation frames; crop rectangle x=1200, y=20, width=380, height=440. No labels or markers were added. The second frame turns the view by 90 degrees.
-- All source captures were produced on 2026-09-06. No image AI was used for these assets.
+- The original post captures were produced on 2026-09-06; the Avoria replacement was captured on 2026-09-07. No image AI was used for these assets.
