@@ -96,3 +96,6 @@ body{background-color:#08121b;background-image:linear-gradient(rgba(6,15,22,.08)
 @media(max-width:760px){.log-gallery{grid-template-columns:1fr;gap:24px}.log-body{padding-top:30px}.log-body h3{font-size:19px}}
 
 .featured-media .media-trigger img{object-fit:contain;background:#08121b}
+
+.log-body+.log-body{border-top:1px solid var(--border)}
+.log-gallery img[src*="minimap-"]{max-height:520px;width:auto;max-width:100%;margin-inline:auto}

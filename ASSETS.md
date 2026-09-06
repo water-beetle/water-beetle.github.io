@@ -19,3 +19,10 @@ Project path: public/images/starfield.jpg
 Generated with the built-in image_gen tool at the user's request for a starry space background.
 
 Prompt: Use case: stylized-concept. Asset type: standalone full-page website background bitmap for a Korean indie space life simulator DevLog. Primary request: A quiet realistic dark navy and teal deep-space starfield photograph-like texture, wide 16:9 landscape, ideally 2048x1152. Scene/backdrop: Star-filled outer space with many restrained tiny white stars, natural irregular distribution and subtle variation in star sizes. Composition/framing: The center is mostly very dark negative space for readable page text; tiny stars remain visible throughout. Barely visible wispy cool-blue interstellar dust rests at the edges. Lighting/mood: Quiet, restrained, low contrast, believable distant starlight. Clearly recognizable as outer space while calm enough behind website content. Constraints: Exactly one standalone background image. No planets, no spacecraft, no typography, no interface, no logos, no watermark, no dramatic colorful nebula, no large bright glow.
+
+## Foliage and minimap posts — 2026-09-06
+
+- `public/media/2026-09-06/foliage.jpg`: real Unreal PCG/voxel validation capture, catalog preview. 679 instances were reported by the preview. The terrain uses a temporary plain material to inspect placement. This is a test scene, not the final environment or a manual gameplay capture. Latest available-mesh remapping is a separate ongoing task.
+- `public/media/2026-09-06/hud-overview.png`: saved UMG HUD rendered by the Unreal validation helper using an actual generated planet and test inputs, from the successful auto-fit validation. It is a HUD preview rather than a direct PIE screenshot. Oxygen and money values are test data.
+- `public/media/2026-09-06/minimap-front.png` and `minimap-facing-right.png`: unaltered pixel crops of the corresponding 1600×900 HUD validation frames; crop rectangle x=1200, y=20, width=380, height=440. No labels or markers were added. The second frame turns the view by 90 degrees.
+- All source captures were produced on 2026-09-06. No image AI was used for these assets.
