@@ -15,8 +15,10 @@ for (const asset of assets) {
   if (asset === '/') continue;
   assert.ok(existsSync(join(root, decodeURIComponent(asset))), 'Missing public asset: ' + asset);
 }
-for (const filename of ['cabin.jpg', 'station.jpg', 'starfield.jpg']) {
+for (const filename of ['starfield.jpg']) {
   assert.ok(existsSync(join(root, 'images', filename)), 'Missing image: ' + filename);
 }
+assert.ok(!/예시 기록|예시 콘텐츠|예시 컨셉 이미지|예시 글/.test(html), 'Sample posts must not appear in the published page.');
+assert.ok(!existsSync(join(root, 'images', 'cabin.jpg')) && !existsSync(join(root, 'images', 'station.jpg')), 'Sample images must not be published.');
 assert.ok(!html.includes('localhost:'), 'Public HTML must not reference a local server.');
 console.log('Static page, Korean content, starfield, and ' + assets.size + ' asset references verified.');

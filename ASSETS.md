@@ -1,16 +1,18 @@
-# Example concept art provenance
+# Media provenance
 
-Generated with the built-in image_gen tool. These are illustrative concept images, not screenshots from the user's game. They are explicitly labeled on the site. Original dimensions: 1672 × 941. Web copies are JPEG.
+## Weekly DevLog — 2026-09-06
 
-## Cabin
-Project path: public/images/cabin.jpg
+These are captures of the user’s Comet / Orbital Days Unreal Engine project. No game screenshot was generated with image AI. PNG originals are kept locally; public JPEGs preserve the original composition.
 
-Prompt: Use case: stylized-concept. Asset type: standalone landscape concept art for a Korean indie space life simulator development blog; an illustrative concept, not actual gameplay. Primary request: A polished, original cozy indie 3D space life simulator scene showing a cutaway isometric compact, lived-in spaceship cabin. Scene/backdrop: Desaturated navy and teal outer space; a large cabin window overlooks a ringed planet. Subject: A small comfortably inhabited spaceship cabin with a tiny kitchen, indoor plants and hydroponic greens, a bed/sofa and a useful workbench. One tiny suited resident quietly inhabits the space. Style/medium: Tactile stylized 3D diorama with credible game-render materials, tasteful detailed modeling and a warm sense of everyday life. Composition/framing: Wide 16:9 landscape, ideally 2048x1152. The complete cutaway cabin is the central readable subject. Screenshot-like visual composition with no interface. Lighting/mood: Warm amber practical cabin lights contrast against cool teal and navy space; cozy, calm and inviting. Materials/textures: Softly worn metal, fabric cushions, believable compact fixtures, lively green leaves. Constraints: No UI, no text, no letters, no logos, no watermark. One standalone image only.
+| Public file | Source and capture context |
+| --- | --- |
+| public/media/2026-09-06/cockpit.jpg | Actual PIE cockpit test capture, 2026-09-06. Central lower camera shows a test floor and marker. Resource data is not yet connected. |
+| public/media/2026-09-06/eldara.jpg | Fresh Unreal SceneCapture2D render of saved Eldara terrain, 2026-09-06. Isolated asset inspection scene, not gameplay. |
+| public/media/2026-09-06/cryon.jpg | Fresh Unreal SceneCapture2D render of saved Cryon terrain, 2026-09-06. Same inspection lighting/camera proportions as Eldara. |
 
-## Station
-Project path: public/images/station.jpg
+The terrain renders use the saved voxel/noise/material values with a temporary LOD setting for capture. No level or asset was saved. These captures do not demonstrate in-flight performance or LOD transitions.
 
-Prompt: Use case: stylized-concept. Asset type: standalone landscape concept art for a Korean indie space life simulator development blog; an illustrative concept, not actual gameplay. Primary request: A polished, original cozy indie 3D space life simulator exterior scene of a compact, lived-in exploration craft approaching a small modular orbital station. Scene/backdrop: A huge pale muted-blue planet behind a small orbital station in deep desaturated navy and teal space. Subject: A compact practical exploration craft and a small modular station with warmly glowing inhabited windows and greenhouse modules with visible green plants. Style/medium: Tactile stylized 3D game-render concept art, tastefully detailed believable craft, friendly indie simulation game scale. Composition/framing: Wide 16:9 landscape, ideally 2048x1152. Cinematic balanced three-quarter exterior view, the exploration craft in the foreground approaching the station, enormous planet establishing scale. Readable screenshot-like composition. Lighting/mood: Calm welcoming exploration; teal and navy shadows with warm amber inhabited windows, soft reflected planetary light. Materials/textures: Slightly worn painted metal hulls, practical station modules, translucent greenhouse glass. Constraints: No UI, no text, no letters, no logos, no watermark. One standalone image only.
+## Decorative background
 
 ## Starfield background
 Project path: public/images/starfield.jpg
