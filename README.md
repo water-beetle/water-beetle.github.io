@@ -47,4 +47,15 @@ media: {
 - `public/images/station.jpg`: 푸른 행성 앞의 작은 거주 정거장과 탐사선.
 - 생성 프롬프트: `ASSETS.md`.
 
-사이트는 최초 게시 시 소유자만 볼 수 있는 비공개 상태입니다.
+기존 Sites 미리보기는 비공개입니다. GitHub Pages 블로그는 공개 사이트로 배포합니다.
+
+## GitHub Pages 배포
+대상 저장소는 `water-beetle/water-beetle.github.io`, 사이트 주소는 `https://water-beetle.github.io/`입니다. GitHub Pages용으로 서버 없이 실행되는 HTML/CSS/JavaScript를 만듭니다.
+
+- 공개 저장소의 **Settings → Pages → Build and deployment → Source**를 **GitHub Actions**로 설정합니다.
+- `main` 브랜치에 push하면 `.github/workflows/pages.yml`이 검사, 정적 빌드, 배포를 실행합니다.
+- 확인 명령: `npm run build:pages`, `npm run check:pages`.
+- 공개되는 파일: `dist/client/`. 생성된 파일을 직접 편집하지 마세요.
+- 이 설정은 사용자 블로그의 루트 주소용입니다. 저장소 하위 경로 인자는 받지 않습니다.
+- 소스와 사이트가 공개되므로 예시를 실제 콘텐츠로 교체할 때 공개할 수 있는 자료를 사용하세요.
+- 기존 Sites 미리보기는 별도로 배포되어 있으며 GitHub Pages 설정만으로 삭제되거나 변경되지 않습니다.

@@ -83,7 +83,7 @@ h1{font-size:clamp(30px,3.25vw,47px);font-weight:570;line-height:1.45;letter-spa
 @media(max-width:1050px){.card-foot span+span{display:none}}
 @media(max-width:760px){.brand strong{font-size:19px}.brand small{font-size:12px;letter-spacing:.1px}.intro .eyebrow{font-size:12px;letter-spacing:.7px}.intro h1{font-size:30px}.featured h3{max-width:none;text-wrap:initial}.featured-media img{aspect-ratio:16/9}.featured-media .media-trigger{height:auto}.archive-media .media-trigger img{height:auto}.card-foot span+span{display:none}.full-logs{grid-template-columns:1fr;gap:0}.lightbox[data-slot="dialog-content"]{padding:12px}.lightbox>img{max-height:65dvh}nav{gap:14px}nav a{font-size:14px}}
 
-body{background-color:#08121b;background-image:linear-gradient(rgba(6,15,22,.08),rgba(6,15,22,.12)),url('/images/starfield.jpg');background-size:cover;background-position:center top;background-attachment:fixed}
+body{background-color:#08121b;background-image:linear-gradient(rgba(6,15,22,.08),rgba(6,15,22,.12)),var(--space-background);background-size:cover;background-position:center top;background-attachment:fixed}
 .site-header,.site-footer{border-color:#6f879044}
 .featured{background:#17262ef2;border-color:#5c768855;box-shadow:0 18px 55px #0003}
 .full-logs{padding:0 24px;border-radius:8px;background:#101d27c9;border:1px solid #47627433}

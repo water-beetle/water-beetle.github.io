@@ -2,6 +2,8 @@ import { ArrowDown, ArrowUpRight, Orbit, Sparkles } from 'lucide-react';
 import { LogMedia } from '@/components/log-media';
 import { devlogs, type Devlog } from '@/lib/devlog';
 
+export const dynamic = 'force-static';
+
 function PostMeta({ post }: { post: Devlog }) {
   return <p className="post-meta"><span>LOG {post.number}</span><span>{post.example ? '예시 기록' : post.date || '개발 기록'}</span></p>;
 }
