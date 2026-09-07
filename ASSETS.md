@@ -1,5 +1,20 @@
 # Media provenance
 
+## Solar-system map, cheese moon, and warm sun posts — 2026-09-08
+
+Six existing Unreal renders were copied byte-for-byte into `public/media/2026-09-08/`. No crop, recoloring, labels, or image generation was applied to these captures for the blog. Originals remain in the Comet project.
+
+| Public file | Source and capture context |
+| --- | --- |
+| solar-map.png | `G:/UnrealProjects/Comet/outputs/solar-map-restyle/map-3d-1600x900.png`, captured 2026-09-08. Actual map UI rendered during automated runtime validation in the game world. Planets, materials, positions and orbits come from the project; the starfield is a decorative generated image already used by the UI. This is not a hand-played screenshot or an image-generated UI mockup. |
+| solar-map-rotated.png | Same directory, `map-3d-rotated.png`. Same runtime validation after rotating the map camera; no blog-side modification. |
+| cheese-moon.png | `G:/UnrealProjects/Comet/Source/Comet/outputs/cheese-moon/CheeseMoon_Orbit.png`, captured 2026-09-07. Actual saved cheese-moon voxel preset and material rendered in an isolated Unreal scene with inspection lighting and temporary LOD step 2. |
+| cheese-moon-surface.png | Same directory, `CheeseMoon_Surface.png`. Close view of an already generated cavity, not a player-dug hole or evidence of food rewards. |
+| warm-sun.png | `G:/UnrealProjects/Comet/Source/Comet/outputs/warm-sun/WarmSun_Orbit.png`, captured 2026-09-07. Actual saved sun assets rendered by `EditorScripts/PreviewWarmSun.py` in an isolated scene at preview time 12 seconds, with fixed manual exposure and bloom. |
+| warm-sun-time32.png | Same directory, `WarmSun_Time32.png`. Same camera and exposure, preview time 32 seconds. Two still renders compare material animation states; they are not a recorded gameplay sequence. |
+
+Implementation and verification sources: `solar-map-restyle/final-validation.json`; `cheese-moon/assets.json` and `preview.json`; `warm-sun/assets.json`, `preview.json` and `runtime.json`; `solar-lighting/visual-qa.json`; `solar-lighting-occlusion/final-validation.json`, plus the associated current C++ and editor scripts. These reports were read on 2026-09-08; no new Unreal build, capture, or playtest was run for these posts. Long-duration flight performance and packaging are not established by the screenshots.
+
 ## Weekly DevLog — 2026-09-06
 
 These are captures of the user’s Comet / Orbital Days Unreal Engine project. No game screenshot was generated with image AI. PNG originals are kept locally; public JPEGs preserve the original composition.
