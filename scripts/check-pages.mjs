@@ -21,6 +21,8 @@ for (const filename of ['starfield.jpg']) {
 assert.ok(!/예시 기록|예시 콘텐츠|예시 컨셉 이미지|예시 글/.test(html), 'Sample posts must not appear in the published page.');
 assert.ok(!existsSync(join(root, 'images', 'cabin.jpg')) && !existsSync(join(root, 'images', 'station.jpg')), 'Sample images must not be published.');
 assert.ok(!html.includes('localhost:'), 'Public HTML must not reference a local server.');
+assert.equal([...html.matchAll(/id="comments-[^"]+"/g)].length, 6, 'Each journal article needs its own comment thread.');
+assert.equal([...html.matchAll(/data-analytics-article="journal\//g)].length, 6, 'Inline journal article tracking is missing.');
 
 const series = readFileSync(join(root, 'optimization', 'index.html'), 'utf8');
 const articlePaths = [...new Set([...series.matchAll(/href="(\/optimization\/[^"/#]+\/)"/g)].map(match => match[1]))];
@@ -34,10 +36,14 @@ for (const [path, content] of pages) {
   idsByPage.set(path, new Set(ids));
   assert.equal([...content.matchAll(/<h1(?:\s|>)/g)].length, 1, 'Exactly one page heading on ' + path);
   assert.match(content, /lang="ko"/);
+  assert.equal([...content.matchAll(/src="\/site-analytics\.js"/g)].length, 1, 'One analytics loader per page: ' + path);
+  assert.match(content, /data-measurement-id="G-[A-Z0-9]+"/);
   assert.ok(!/[A-Z]:[\\/](?:Users|UnrealProjects)/i.test(content), 'Private local path in ' + path);
   if (articlePaths.includes(path)) {
     assert.match(content, /id="article-content"/);
     assert.match(content, /코드와 확인 자료/);
+    assert.equal([...content.matchAll(/id="comments-[^"]+"/g)].length, 1, 'One comment thread per optimization article.');
+    assert.match(content, /data-analytics-article="optimization\//);
     assert.ok([...content.matchAll(/<section id="/g)].length >= 7, 'Missing detailed sections on ' + path);
   }
 }

@@ -30,6 +30,8 @@ jobs:
         run: npm ci
       - name: Check types
         run: npx tsc --noEmit
+      - name: Verify analytics behavior
+        run: npm run test:analytics
       - name: Build static blog
         run: npm run build:pages
       - name: Verify public page and assets
