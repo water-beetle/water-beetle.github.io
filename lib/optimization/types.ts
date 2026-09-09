@@ -11,6 +11,7 @@ export type OptimizationPost = {
   number: string;
   title: string;
   summary: string;
+  updatedDate?: string;
   topic: string;
   startingPoint: string;
   result: string;

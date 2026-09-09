@@ -1,0 +1,432 @@
+{
+  "title": "행성은 고정됐는데, 물리는 같은 운동을 하고 있을까 — 확인 자료",
+  "reviewed_on": "2026-09-09",
+  "original_run_date": "2026-09-08",
+  "note": "기존 full06 기록과 확인 시점의 코드를 구분해 발췌합니다. 이 글 작성 중 Unreal 빌드·물리 검사를 다시 수행하지 않았습니다. source는 Comet 소스 모듈 상대 경로이며 SHA-256은 원본 파일 전체를 기준으로 합니다. 소스 해시는 열람한 파일의 식별자이며 과거 실행 바이너리와 일치한다는 증명은 아닙니다.",
+  "log": {
+    "source": "outputs/planet-reference-frame-followup/Tests-full06.log",
+    "sha256": "f094f613894e42d48f5fce5176bf628dd38c416ddf58803547c71bcaf28e908b"
+  },
+  "run_summary": {
+    "source": "outputs/planet-reference-frame-followup/tests-full06-process.json",
+    "sha256": "072079e5d6bee9c9f0980b73e438b0a534eb59a987d5d7049d6d8289002063e3",
+    "exit_code": 0,
+    "passed": 78,
+    "passed_with_warnings": 12,
+    "failed": 0,
+    "not_run": 0,
+    "in_process": 0
+  },
+  "clock_fixture": {
+    "world_tick_seconds": 1,
+    "celestial_time_scale": 1,
+    "single_step_max_seconds": 0.03333333333333333,
+    "substep_max_seconds": 0.008333333333333333,
+    "max_substeps": 8,
+    "observations": [
+      {
+        "state": "ON Space before entry",
+        "solar_seconds": 0.033333335,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "ON Planet",
+        "solar_seconds": 0.033333335,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 1,
+        "synchronized": true
+      },
+      {
+        "state": "ON Space after return",
+        "solar_seconds": 0.033333335,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "OFF Space retains legacy raw delta",
+        "solar_seconds": 1,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 0,
+        "synchronized": false
+      },
+      {
+        "state": "Console opt-in Space",
+        "solar_seconds": 0.033333335,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "Gate zero Space retains raw delta",
+        "solar_seconds": 1,
+        "chaos_seconds": 0.033333335,
+        "steps": 1,
+        "callback_substeps": 0,
+        "synchronized": false
+      },
+      {
+        "state": "ON Space before entry",
+        "solar_seconds": 0.06666667,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "ON Planet",
+        "solar_seconds": 0.06666667,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 8,
+        "synchronized": true
+      },
+      {
+        "state": "ON Space after return",
+        "solar_seconds": 0.06666667,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "OFF Space retains legacy raw delta",
+        "solar_seconds": 1,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 0,
+        "synchronized": false
+      },
+      {
+        "state": "Console opt-in Space",
+        "solar_seconds": 0.06666667,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 0,
+        "synchronized": true
+      },
+      {
+        "state": "Gate zero Space retains raw delta",
+        "solar_seconds": 1,
+        "chaos_seconds": 0.06666667,
+        "steps": 8,
+        "callback_substeps": 0,
+        "synchronized": false
+      }
+    ]
+  },
+  "completed_reference_frame_tests": [
+    {
+      "result": "Success",
+      "name": "120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeContact60Seconds.120"
+    },
+    {
+      "result": "Success",
+      "name": "30",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeContact60Seconds.30"
+    },
+    {
+      "result": "Success",
+      "name": "30_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeContact60Seconds.30_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeContact60Seconds.60"
+    },
+    {
+      "result": "Success",
+      "name": "120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEccentricImpulse.120"
+    },
+    {
+      "result": "Success",
+      "name": "30",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEccentricImpulse.30"
+    },
+    {
+      "result": "Success",
+      "name": "30_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEccentricImpulse.30_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEccentricImpulse.60"
+    },
+    {
+      "result": "Success",
+      "name": "30_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEllipticalInterval.30_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeEllipticalInterval.60"
+    },
+    {
+      "result": "Success",
+      "name": "120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeForcedCOM.120"
+    },
+    {
+      "result": "Success",
+      "name": "30",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeForcedCOM.30"
+    },
+    {
+      "result": "Success",
+      "name": "30_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeForcedCOM.30_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeForcedCOM.60"
+    },
+    {
+      "result": "Success",
+      "name": "120FPS",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeFreeCOM.120FPS"
+    },
+    {
+      "result": "Success",
+      "name": "30FPS",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeFreeCOM.30FPS"
+    },
+    {
+      "result": "Success",
+      "name": "30FPS_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeFreeCOM.30FPS_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60FPS",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeFreeCOM.60FPS"
+    },
+    {
+      "result": "Success",
+      "name": "120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeHitchClock.120"
+    },
+    {
+      "result": "Success",
+      "name": "30",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeHitchClock.30"
+    },
+    {
+      "result": "Success",
+      "name": "30_Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeHitchClock.30_Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "60",
+      "path": "Comet.SolarSystem.ReferenceFrame.RuntimeHitchClock.60"
+    },
+    {
+      "result": "Success",
+      "name": "SingleStep",
+      "path": "Comet.SolarSystem.ReferenceFrame.SynchronizedClock.SingleStep"
+    },
+    {
+      "result": "Success",
+      "name": "Substeps120",
+      "path": "Comet.SolarSystem.ReferenceFrame.SynchronizedClock.Substeps120"
+    },
+    {
+      "result": "Success",
+      "name": "AngularDerivatives",
+      "path": "Comet.SolarSystem.ReferenceFrame.AngularDerivatives"
+    },
+    {
+      "result": "Success",
+      "name": "AuthoredShipWeld",
+      "path": "Comet.SolarSystem.ReferenceFrame.AuthoredShipWeld"
+    },
+    {
+      "result": "Success",
+      "name": "BodySupport",
+      "path": "Comet.SolarSystem.ReferenceFrame.BodySupport"
+    },
+    {
+      "result": "Success",
+      "name": "DebugDrawRegistration",
+      "path": "Comet.SolarSystem.ReferenceFrame.DebugDrawRegistration"
+    },
+    {
+      "result": "Success",
+      "name": "ExternalConstraint",
+      "path": "Comet.SolarSystem.ReferenceFrame.ExternalConstraint"
+    },
+    {
+      "result": "Success",
+      "name": "FreeMotion",
+      "path": "Comet.SolarSystem.ReferenceFrame.FreeMotion"
+    },
+    {
+      "result": "Success",
+      "name": "Identity",
+      "path": "Comet.SolarSystem.ReferenceFrame.Identity"
+    },
+    {
+      "result": "Success",
+      "name": "Interval",
+      "path": "Comet.SolarSystem.ReferenceFrame.Interval"
+    },
+    {
+      "result": "Success",
+      "name": "LinearDerivatives",
+      "path": "Comet.SolarSystem.ReferenceFrame.LinearDerivatives"
+    },
+    {
+      "result": "Success",
+      "name": "LogicalBodyState",
+      "path": "Comet.SolarSystem.ReferenceFrame.LogicalBodyState"
+    },
+    {
+      "result": "Success",
+      "name": "MassPointInheritance",
+      "path": "Comet.SolarSystem.ReferenceFrame.MassPointInheritance"
+    },
+    {
+      "result": "Success",
+      "name": "NativeCapsuleTouch",
+      "path": "Comet.SolarSystem.ReferenceFrame.NativeCapsuleTouch"
+    },
+    {
+      "result": "Success",
+      "name": "PhysicsTimeBudget",
+      "path": "Comet.SolarSystem.ReferenceFrame.PhysicsTimeBudget"
+    },
+    {
+      "result": "Success",
+      "name": "PlacedPlanet",
+      "path": "Comet.SolarSystem.ReferenceFrame.PlacedPlanet"
+    },
+    {
+      "result": "Success",
+      "name": "PlanetStepPoses",
+      "path": "Comet.SolarSystem.ReferenceFrame.PlanetStepPoses"
+    },
+    {
+      "result": "Success",
+      "name": "PropInterestBounds",
+      "path": "Comet.SolarSystem.ReferenceFrame.PropInterestBounds"
+    },
+    {
+      "result": "Success",
+      "name": "RegistrationChanges",
+      "path": "Comet.SolarSystem.ReferenceFrame.RegistrationChanges"
+    },
+    {
+      "result": "Success",
+      "name": "RoundTrip",
+      "path": "Comet.SolarSystem.ReferenceFrame.RoundTrip"
+    },
+    {
+      "result": "Success",
+      "name": "SeatedLandingSelection",
+      "path": "Comet.SolarSystem.ReferenceFrame.SeatedLandingSelection"
+    },
+    {
+      "result": "Success",
+      "name": "ShipSupportBounds",
+      "path": "Comet.SolarSystem.ReferenceFrame.ShipSupportBounds"
+    },
+    {
+      "result": "Success",
+      "name": "SolarInterval",
+      "path": "Comet.SolarSystem.ReferenceFrame.SolarInterval"
+    },
+    {
+      "result": "Success",
+      "name": "SurfaceKinematics",
+      "path": "Comet.SolarSystem.ReferenceFrame.SurfaceKinematics"
+    },
+    {
+      "result": "Success",
+      "name": "SystemReleaseSafety",
+      "path": "Comet.SolarSystem.ReferenceFrame.SystemReleaseSafety"
+    },
+    {
+      "result": "Success",
+      "name": "Transaction",
+      "path": "Comet.SolarSystem.ReferenceFrame.Transaction"
+    },
+    {
+      "result": "Success",
+      "name": "WaitVelocity",
+      "path": "Comet.SolarSystem.ReferenceFrame.WaitVelocity"
+    },
+    {
+      "result": "Success",
+      "name": "WeldClassification",
+      "path": "Comet.SolarSystem.ReferenceFrame.WeldClassification"
+    }
+  ],
+  "reviewed_sources": [
+    {
+      "source": "SolarSystem/SolarSystem.cpp",
+      "sha256": "2b794d1c5c679c0a5da1f1163917abff0265c8d1e62529a7f57303e5482cc6b0"
+    },
+    {
+      "source": "SolarSystem/ReferenceFrameTypes.h",
+      "sha256": "7f7ec11f88744dbb588774a9c4aeb11ba64bc2cffce4f801dd66c403abc1ba35"
+    },
+    {
+      "source": "SolarSystem/ReferenceFrameTypes.cpp",
+      "sha256": "6c4739c799e6a6b1d8459208f508aa01e600310f846b7ccb87dbd373421a2e67"
+    },
+    {
+      "source": "SolarSystem/ReferenceFramePhysicsAdapter.cpp",
+      "sha256": "fb99f34c01f70a2ea4ba8a044ca1cc1fe73325b045b25408dc992542773f06c9"
+    },
+    {
+      "source": "SolarSystem/PlanetReferenceFrameSubsystem.cpp",
+      "sha256": "d5f05d0413b613030d37a9dd97c421273899e2d8714ab77d675a9756eb907dc2"
+    },
+    {
+      "source": "Spaceship/SpaceshipFlight.cpp",
+      "sha256": "0624e59d9c505244f24ecf7e09876476c9cc698a21dfa124e59f52e794842e8a"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFrameMassPointTests.cpp",
+      "sha256": "016c775b519387e883cdf9f35f340a54590acac7c981b15aee7954456dbcf681"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp",
+      "sha256": "4a315a84d679a8a9b500a171a4967fb74bde90a98f44b252d7ffd5a332fbd552"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFrameClockTests.cpp",
+      "sha256": "a910aa3575c917733468e62da6e944e9939bb6d5fffb6ced4b62b48b1a83f2b3"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFrameIntervalTests.cpp",
+      "sha256": "7a91ecbdeb488c65fc5f33755d9e6dce399b1c36c27ddd2eb2a542245821298e"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp",
+      "sha256": "65d74ccec790a101a70d831a7f977255122f26a15c075a8ab6b4d96422ff2826"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFramePhysicsTests.cpp",
+      "sha256": "b0b4569c8343f3ee8733ea03958980f905f334fcd939513e0ab7caaf4fe11a45"
+    },
+    {
+      "source": "SolarSystem/Tests/ReferenceFrameWeldTests.cpp",
+      "sha256": "b243319d0f94a25fff08a120c61c01aa15a3bae253d043196e1f759eaf720aec"
+    }
+  ],
+  "source_snapshot_utc": "2026-09-09T06:27:54.981Z"
+}
