@@ -15,6 +15,10 @@ Six existing Unreal renders were copied byte-for-byte into `public/media/2026-09
 
 Implementation and verification sources: `solar-map-restyle/final-validation.json`; `cheese-moon/assets.json` and `preview.json`; `warm-sun/assets.json`, `preview.json` and `runtime.json`; `solar-lighting/visual-qa.json`; `solar-lighting-occlusion/final-validation.json`, plus the associated current C++ and editor scripts. These reports were read on 2026-09-08; no new Unreal build, capture, or playtest was run for these posts. Long-duration flight performance and packaging are not established by the screenshots.
 
+## Shared play tests — 2026-09-09
+
+`public/media/2026-09-09/roundtrip-after-course.png` is copied byte-for-byte from Comet project-relative `outputs/comet-tests/shared-suite-01/roundtrip/comet-roundtrip-environment-shared-suite-01-after-course.png`. It is an actual Unreal Editor PIE render captured after the roundtrip CSV measurement ended on 2026-09-09. The requested editor window was 1280×720; the observed play viewport and PNG are 910×349. The frame shows the ship cabin after the course, not continuous visual coverage of the flight or evidence of the high-speed target being met. No generation, cropping, color adjustment, or overlays were applied.
+
 ## Weekly DevLog — 2026-09-06
 
 These are captures of the user’s Comet / Orbital Days Unreal Engine project. No game screenshot was generated with image AI. PNG originals are kept locally; public JPEGs preserve the original composition.

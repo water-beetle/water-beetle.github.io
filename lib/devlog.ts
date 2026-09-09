@@ -1,3 +1,5 @@
+import { testingDevlog } from './testing-devlog';
+
 export type LogMedia =
   | { kind: 'image'; src: string; alt: string; caption: string; width: number; height: number }
   | { kind: 'video'; src: string; poster: string; alt: string; caption: string; captions?: string };
@@ -11,7 +13,14 @@ export type Devlog = {
   date: string;
   period?: string;
   media: LogMedia;
-  sections: { title: string; text: string; media?: LogMedia[] }[];
+  sections: {
+    title: string;
+    text: string;
+    media?: LogMedia[];
+    table?: { caption: string; columns: string[]; rows: string[][] };
+    code?: { caption: string; value: string };
+  }[];
+  sources?: { label: string; detail: string; href?: string }[];
 };
 
 const solarMapMedia: LogMedia = {
@@ -53,6 +62,7 @@ const warmSunLaterMedia: LogMedia = {
 
 // Newest first. Screenshots and videos live in public/media/.
 export const devlogs: Devlog[] = [
+  testingDevlog,
   {
     id: 'solar-map-2026-09-08',
     number: '006',

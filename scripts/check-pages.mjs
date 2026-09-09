@@ -21,8 +21,12 @@ for (const filename of ['starfield.jpg']) {
 assert.ok(!/예시 기록|예시 콘텐츠|예시 컨셉 이미지|예시 글/.test(html), 'Sample posts must not appear in the published page.');
 assert.ok(!existsSync(join(root, 'images', 'cabin.jpg')) && !existsSync(join(root, 'images', 'station.jpg')), 'Sample images must not be published.');
 assert.ok(!html.includes('localhost:'), 'Public HTML must not reference a local server.');
-assert.equal([...html.matchAll(/id="comments-[^"]+"/g)].length, 6, 'Each journal article needs its own comment thread.');
-assert.equal([...html.matchAll(/data-analytics-article="journal\//g)].length, 6, 'Inline journal article tracking is missing.');
+const journalIds = [...html.matchAll(/data-analytics-article="journal\/([^\"]+)"/g)].map(match => match[1]);
+assert.ok(journalIds.includes('comet-tests-2026-09-09'), 'The shared play testing journal must be exported.');
+assert.equal([...html.matchAll(/id="comments-[^"]+"/g)].length, journalIds.length, 'Each journal article needs its own comment thread.');
+for (const id of journalIds) {
+  assert.ok(html.includes('id="comments-' + id + '"'), 'Missing journal comment thread: ' + id);
+}
 
 const series = readFileSync(join(root, 'optimization', 'index.html'), 'utf8');
 const articlePaths = [...new Set([...series.matchAll(/href="(\/optimization\/[^"/#]+\/)"/g)].map(match => match[1]))];

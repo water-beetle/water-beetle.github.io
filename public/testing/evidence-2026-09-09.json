@@ -1,0 +1,722 @@
+{
+  "title": "Comet 공용 플레이 테스트 — 2026.09.09 확인 자료",
+  "reviewed_on": "2026-09-09",
+  "note": "기존 실행 보고서를 발췌했습니다. 블로그 작성 중 Unreal 테스트를 새로 실행하지 않았습니다. 원본 전체의 SHA-256과 프로젝트 상대 경로를 기록하며, 로컬 계정·호스트·실행 명령의 절대 경로는 제외했습니다. 기본 검사는 최종 코드로 재실행했고, 도보·저공·왕복은 공용화 실행 기록을 분석 보완 후 다시 요약한 결과입니다. 서로 다른 코스의 수치를 최적화 전후 비교로 사용하지 않습니다.",
+  "sources": [
+    {
+      "source": "Source/Comet/Tests/README.md",
+      "sha256": "e970261e5b67503d57ac1ca0a5e5c18e2b276b6dedc13ba2113deb7413755e55"
+    },
+    {
+      "source": "Source/Comet/Tests/Run-CometTests.ps1",
+      "sha256": "e67b87198778e4fe7f74399307dd93e7bc0a9ad48d2225691a6818569a21e02f"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/scenarios.json",
+      "sha256": "4272c0a251e7f9d2b8d28f6a634ae42d0dd22cf01157320384bd53b83b97b2ec"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/course.py",
+      "sha256": "bdc90c5c0f405fdb76a1d65df8b840cac65f2084eed15a8c1ec6e48c75f7e64b"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/metrics.py",
+      "sha256": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/analyze.py",
+      "sha256": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/test_metrics.py",
+      "sha256": "d4c159101c165b5977949146e8d3e41b2a5f93ddd6528ebf16c4b84592a49e5d"
+    },
+    {
+      "source": "Source/Comet/Tests/Runtime/test_analyze.py",
+      "sha256": "32600d695fc99a05e8ea4774b11c32a67445090e38c16de44199fb74ff831005"
+    },
+    {
+      "source": "outputs/common-tests-20260909/validation.md",
+      "sha256": "e7fa1adc3c369ae7cd423e6a95bcd44f8e44d1f82537ebe05c0461b645ed9754"
+    },
+    {
+      "source": "outputs/common-tests-20260909/unit-tests.txt",
+      "sha256": "b6ce9a3360716843ce54ffa8b04ee0e1d3b9295c2b8df8b2368f5e04f780b3a2"
+    }
+  ],
+  "unit_tests": {
+    "count": 8,
+    "status": "passed",
+    "source": "outputs/common-tests-20260909/unit-tests.txt",
+    "rerun_for_blog": false
+  },
+  "records": [
+    {
+      "run": "shared-final-smoke/smoke",
+      "source": "outputs/comet-tests/shared-final-smoke/smoke/summary.json",
+      "sha256": "d9a1eb6e743deada8f37a67bac59e5954df7c8987b8725649be6d29bb4ae6b13",
+      "report_source": "outputs/comet-tests/shared-final-smoke/smoke/report.json",
+      "report_sha256": "94a131e982875fd41da13eaa1dbefd6c5f529372997381e938db65af1097766b",
+      "started_utc": "2026-09-09T04:46:08.5867185Z",
+      "profile": "smoke",
+      "status": "passed",
+      "functional_status": "passed",
+      "checks": {
+        "test_provenance": true,
+        "process": true,
+        "functional": true,
+        "shutdown": true,
+        "collector": true,
+        "screenshot": true,
+        "target_speed": true,
+        "analysis": true
+      },
+      "process": {
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "scope": "저장 맵 생성, 플레이어 지지, 착륙 상태, CSV와 스크린샷 수집",
+      "mode": "environment",
+      "map": "/Game/Comet",
+      "requested_viewport": [
+        1280,
+        720
+      ],
+      "observed_viewport": [
+        910,
+        349
+      ],
+      "observed_tsr_dimensions": [
+        910,
+        349,
+        910,
+        349
+      ],
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "driver": "591.86",
+      "fps_cap": 60,
+      "startup_commands": "t.MaxFPS 60,r.VSync 0,r.GPUCsvStatsEnabled 1,csv.CompressionMode 0,csv.BlockOnCaptureEnd 1,Comet.ReferenceFrame.AllowExperimentalPhysics 1,Comet.ReferenceFrame.Enable 1,Comet.ReferenceFrame.EnvironmentDormancy 1",
+      "tested_source_hashes": {
+        "Source/Comet/Character/Tests/BuildingGravityTests.cpp": "22F647F4908C7BDE81EF1ECE0512E0D3D2E4D7D57AC0681FFD51BE6C9579687B",
+        "Source/Comet/Character/Tests/CabinStairTests.cpp": "C0A6B579E8E9234B6B60BE06109B35F170A589C190BB037ABFAA5644681BBCB9",
+        "Source/Comet/Character/Tests/MovingGravityStabilityTests.cpp": "5EF06EA160D20707B513277F21F132D3E48D3543AD18F522F99B96D4AF668063",
+        "Source/Comet/Character/Tests/PlanetBasedMovementTests.cpp": "9A1A3870F0280B6532B9DCB4640F34462A90A2E1175580BEC6CC502D5B0A05F1",
+        "Source/Comet/Character/Tests/ReferenceFrameCharacterContactTests.cpp": "F10EC63078C770146F9C6622987DAB133B8D2859058B1582FEEDDC4FBCBA39E5",
+        "Source/Comet/Character/Tests/ReferenceFrameMovementTests.cpp": "E77D75F1C93EFD1C27C6A6854235237B1BA5F956DACB82CFF5AA740D2016BE47",
+        "Source/Comet/Interaction/Tests/InteractionTests.cpp": "11B7E66E10EB4C68894F806A5329B5281B20CE963DD559725431C202AC68A422",
+        "Source/Comet/Interaction/Tests/InteractionTestTypes.h": "282090F3D58628ECF247B94B124921C129E2308531A43D8993AD090F06A67FA2",
+        "Source/Comet/Planet/Tests/CheeseMoonTests.cpp": "EC7FD8AFC9EEEAF027008859E7F001D9B67F8EAE24834B4638ACDD78202D85AC",
+        "Source/Comet/Planet/Tests/GravityFieldQueriesTests.cpp": "091AAEC0402BE5F09333223E85D04F637D313DDD67DEB6D12AEE017A3E11261A",
+        "Source/Comet/Planet/Tests/PlanetFoliageTests.cpp": "7686C49166F214B1B8848D1FC31673ECC38DC5B4A2EE74D1EB027685B8543A32",
+        "Source/Comet/Planet/Tests/PlanetMountainTests.cpp": "C4AD3A90AE741AC756D88295EF7E2F8707BD6FE2DD544027C1F4E8E717E66C2D",
+        "Source/Comet/Planet/Tests/PlanetReferenceDistanceTests.cpp": "718EFBD7913B67FD7148FBE3ED4697DD50BC6DC9CD8B3784C9BA7E4846EA7A00",
+        "Source/Comet/Planet/Tests/PlanetSceneActivationTests.cpp": "460A3ADB5D6A588E6837154C9923968FBE3E3B51B30A3E77C822D80BFC2E9B0B",
+        "Source/Comet/Planet/Tests/PlanetWorkBudgetTests.cpp": "FE719C69784E18F057BF0BE71209A9A926C84B72B17264E33D0B0E7D0D9569C2",
+        "Source/Comet/Planet/Tests/VoxelLODContinuityTests.cpp": "9A352EFAA7FA4B05E1EBEC7A35A72DB98EDB91673DD73EFC9733262494F377CA",
+        "Source/Comet/Planet/Tests/VoxelMeshPipelineTests.cpp": "91B769ACC21336B875A8675E9545C5DBEAF55A3444D81C22C846B8429E6ED336",
+        "Source/Comet/Planet/Tests/VoxelScenePresenceTests.cpp": "E1407A9EDAAB76D7CDAB0E20D19771A10BF1D4E1BB92AD5E00545284EDC1C2C6",
+        "Source/Comet/Planet/Tests/VoxelWorkTestTick.h": "3411A8E7143327478277CA0C482BFA246D0391885EB38BC4210807D45AF6E998",
+        "Source/Comet/Props/Tests/PropMotionTests.cpp": "5C10D0E41E2482DEF9FDAE4A2AAEEDFBF4AAE5C38146B9197A74E72B039DDAE2",
+        "Source/Comet/Props/Tests/PropPhysicsPrerequisiteTests.cpp": "D8097A4D53D797A50A29BF5C37AFF415706AD5251E109696109E96AAD90F20F2",
+        "Source/Comet/Props/Tests/ReferenceFramePropTests.cpp": "DC63950DB6AFB8FD84C882CDD163730565ABB3664012F42F0B577B707254A2BF",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameClockTests.cpp": "A910AA3575C917733468E62DA6E944E9939BB6D5FFFB6CED4B62B48B1A83F2B3",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntegrationTests.cpp": "323E0CC691D5BD92E4387F8A22A65C378810393734AD55F1C7837B8C59CA22C1",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameInterestTests.cpp": "A4191BFF6E8226D58566F6FDA033FB9122C2D944210095C8E11988596968C16E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntervalTests.cpp": "7A91ECBDEB488C65FC5F33755D9E6DCE399B1C36C27DDD2EB2A542245821298E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMassPointTests.cpp": "016C775B519387E883CDF9F35F340A54590ACAC7C981B15AEE7954456DBCF681",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMathTests.cpp": "304B2F038FBC16AA926145E09C0C402D4F3FBB8C6E89B3EF5DCC43974F13AF8F",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePhysicsTests.cpp": "B0B4569C8343F3EE8733EA03958980F905F334FCD939513E0AB7CAAF4FE11A45",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp": "65D74CCEC790A101A70D831A7F977255122F26A15C075A8AB6B4D96422FF2826",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp": "4A315A84D679A8A9B500A171A4967FB74BDE90A98F44B252D7FFD5A332FBD552",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWaitTests.cpp": "B4B4003B27E5746517598F25AC8055745E2373FA4A4AED7CAD2E65F2269D9E89",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWeldTests.cpp": "B243319D0F94A25FFF08A120C61C01AA15A3BAE253D043196E1F759EAF720AEC",
+        "Source/Comet/SolarSystem/Tests/SolarLightingTests.cpp": "967B0901CDF4B92AE0BD79770BE001DBDDE1240D2836E5266DE0106F571EDCCD",
+        "Source/Comet/SolarSystem/Tests/StarShadowTests.cpp": "AE9D84CBD07085078D7E90BFCB62A7EBAED8EF82D7BC4FE1331CB7AC4A0E447E",
+        "Source/Comet/Tests/Run-CometTests.ps1": "E67B87198778E4FE7F74399307DD93E7BC0A9AD48D2225691A6818569A21E02F",
+        "Source/Comet/Tests/Runtime/analyze.py": "9E80555E3E9614E0164BBC62B8CF252F6C7414E98FA5A1936767330A09B80E00",
+        "Source/Comet/Tests/Runtime/course.py": "BDC90C5C0F405FDB76A1D65DF8B840CAC65F2084EED15A8C1EC6E48C75F7E64B",
+        "Source/Comet/Tests/Runtime/deferred_editor_shutdown.py": "C22F461236576127A5916FF28CEB777071B8D4F0F1773A9A0E61AD14257D0C51",
+        "Source/Comet/Tests/Runtime/flight_attitude_helper.py": "0BECC345C09CFD02126C574064189FE51974F461E4A25659C409F22D6F18D48E",
+        "Source/Comet/Tests/Runtime/metrics.py": "7344C364D976CDEF8289E0C58FEAA59F7594638F894F1D7E0375DD64C7FDF220",
+        "Source/Comet/Tests/Runtime/scenarios.json": "4272C0A251E7F9D2B8D28F6A634AE42D0DD22CF01157320384BD53B83B97B2EC",
+        "Source/Comet/Tests/Runtime/test_analyze.py": "32600D695FC99A05E8EA4774B11C32A67445090E38C16DE44199FB74FF831005",
+        "Source/Comet/Tests/Runtime/test_metrics.py": "D4C159101C165B5977949146E8D3E41B2A5F93DDD6528EBF16C4B84592A49E5D",
+        "Source/Comet/UI/HUD/Tests/MainHUDTests.cpp": "4EFB02D967B3437BE16B083B76BB4D28B7C9D6DEAC1727F499A32F7FE68CBF22",
+        "Source/Comet/UI/SolarSystem/Tests/SolarSystemMapTests.cpp": "85AEFE736B102DF1D971C1A5AC56BACCC4028E45AB39FA8B48C973E51A3E0A39",
+        "Binaries/Win64/UnrealEditor-Comet.dll": "A9BF16491BCF1DC01FF51E0B43315AAD4D2BCD55D4A8615C01C6D4CB4523C659",
+        "Content/Comet.umap": "55888A64165AA419601173BD3A61408859107DDAD9D8C824CC95B2FE6D6D4225",
+        "engine/Build.version": "F4ACFF8AF146D5D02F7618A4E988724D70F3B720C70E68D090BB90A240AE51F6"
+      },
+      "analysis_code_hashes": {
+        "analyze.py": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00",
+        "metrics.py": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+      },
+      "raw_frame_count": 238,
+      "measured_frame_time_ms": {
+        "samples": 120,
+        "mean": 16.688270833333334,
+        "p95": 20.305675,
+        "p99": 21.055623,
+        "max": 22.4629,
+        "over_50ms": 0,
+        "over_100ms": 0,
+        "over_100ms_per_1000": 0,
+        "unavailable_frames": 0
+      },
+      "walking": {
+        "status": "not_applicable_collector"
+      },
+      "low_flight": null,
+      "speed_requirement": null,
+      "transition_count": 0,
+      "physics_wait_count": 0,
+      "unavailable_metrics": [
+        "buffered_terrain_bytes (no current counter)"
+      ]
+    },
+    {
+      "run": "shared-suite-01/walking",
+      "source": "outputs/comet-tests/shared-suite-01/walking/summary.json",
+      "sha256": "74d0a5f225c804d7e31f315f2535bef6fd709ec890b399d979f5cd24898730ca",
+      "report_source": "outputs/comet-tests/shared-suite-01/walking/report.json",
+      "report_sha256": "37c90c2f13851c71f569a5df64442a07e02ce270144f53701a3e51c6662c9905",
+      "started_utc": "2026-09-09T04:27:32.0639616Z",
+      "profile": "walking",
+      "status": "passed",
+      "functional_status": "passed",
+      "checks": {
+        "test_provenance": true,
+        "process": true,
+        "functional": true,
+        "shutdown": true,
+        "collector": true,
+        "screenshot": true,
+        "target_speed": true,
+        "analysis": true
+      },
+      "process": {
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "scope": "같은 시작 위치에서 실제 이동 입력 6초, 이동 거리와 지면 지지 검사",
+      "mode": "environment",
+      "map": "/Game/Comet",
+      "requested_viewport": [
+        1280,
+        720
+      ],
+      "observed_viewport": [
+        910,
+        349
+      ],
+      "observed_tsr_dimensions": [
+        910,
+        349,
+        910,
+        349
+      ],
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "driver": "591.86",
+      "fps_cap": 60,
+      "startup_commands": "t.MaxFPS 60,r.VSync 0,r.GPUCsvStatsEnabled 1,csv.CompressionMode 0,csv.BlockOnCaptureEnd 1,Comet.ReferenceFrame.AllowExperimentalPhysics 1,Comet.ReferenceFrame.Enable 1,Comet.ReferenceFrame.EnvironmentDormancy 1",
+      "tested_source_hashes": {
+        "Source/Comet/Character/Tests/BuildingGravityTests.cpp": "22F647F4908C7BDE81EF1ECE0512E0D3D2E4D7D57AC0681FFD51BE6C9579687B",
+        "Source/Comet/Character/Tests/CabinStairTests.cpp": "C0A6B579E8E9234B6B60BE06109B35F170A589C190BB037ABFAA5644681BBCB9",
+        "Source/Comet/Character/Tests/MovingGravityStabilityTests.cpp": "5EF06EA160D20707B513277F21F132D3E48D3543AD18F522F99B96D4AF668063",
+        "Source/Comet/Character/Tests/PlanetBasedMovementTests.cpp": "9A1A3870F0280B6532B9DCB4640F34462A90A2E1175580BEC6CC502D5B0A05F1",
+        "Source/Comet/Character/Tests/ReferenceFrameCharacterContactTests.cpp": "F10EC63078C770146F9C6622987DAB133B8D2859058B1582FEEDDC4FBCBA39E5",
+        "Source/Comet/Character/Tests/ReferenceFrameMovementTests.cpp": "E77D75F1C93EFD1C27C6A6854235237B1BA5F956DACB82CFF5AA740D2016BE47",
+        "Source/Comet/Interaction/Tests/InteractionTests.cpp": "11B7E66E10EB4C68894F806A5329B5281B20CE963DD559725431C202AC68A422",
+        "Source/Comet/Interaction/Tests/InteractionTestTypes.h": "282090F3D58628ECF247B94B124921C129E2308531A43D8993AD090F06A67FA2",
+        "Source/Comet/Planet/Tests/CheeseMoonTests.cpp": "EC7FD8AFC9EEEAF027008859E7F001D9B67F8EAE24834B4638ACDD78202D85AC",
+        "Source/Comet/Planet/Tests/GravityFieldQueriesTests.cpp": "091AAEC0402BE5F09333223E85D04F637D313DDD67DEB6D12AEE017A3E11261A",
+        "Source/Comet/Planet/Tests/PlanetFoliageTests.cpp": "7686C49166F214B1B8848D1FC31673ECC38DC5B4A2EE74D1EB027685B8543A32",
+        "Source/Comet/Planet/Tests/PlanetMountainTests.cpp": "C4AD3A90AE741AC756D88295EF7E2F8707BD6FE2DD544027C1F4E8E717E66C2D",
+        "Source/Comet/Planet/Tests/PlanetReferenceDistanceTests.cpp": "718EFBD7913B67FD7148FBE3ED4697DD50BC6DC9CD8B3784C9BA7E4846EA7A00",
+        "Source/Comet/Planet/Tests/PlanetSceneActivationTests.cpp": "460A3ADB5D6A588E6837154C9923968FBE3E3B51B30A3E77C822D80BFC2E9B0B",
+        "Source/Comet/Planet/Tests/PlanetWorkBudgetTests.cpp": "FE719C69784E18F057BF0BE71209A9A926C84B72B17264E33D0B0E7D0D9569C2",
+        "Source/Comet/Planet/Tests/VoxelLODContinuityTests.cpp": "9A352EFAA7FA4B05E1EBEC7A35A72DB98EDB91673DD73EFC9733262494F377CA",
+        "Source/Comet/Planet/Tests/VoxelMeshPipelineTests.cpp": "91B769ACC21336B875A8675E9545C5DBEAF55A3444D81C22C846B8429E6ED336",
+        "Source/Comet/Planet/Tests/VoxelScenePresenceTests.cpp": "E1407A9EDAAB76D7CDAB0E20D19771A10BF1D4E1BB92AD5E00545284EDC1C2C6",
+        "Source/Comet/Planet/Tests/VoxelWorkTestTick.h": "3411A8E7143327478277CA0C482BFA246D0391885EB38BC4210807D45AF6E998",
+        "Source/Comet/Props/Tests/PropMotionTests.cpp": "5C10D0E41E2482DEF9FDAE4A2AAEEDFBF4AAE5C38146B9197A74E72B039DDAE2",
+        "Source/Comet/Props/Tests/PropPhysicsPrerequisiteTests.cpp": "D8097A4D53D797A50A29BF5C37AFF415706AD5251E109696109E96AAD90F20F2",
+        "Source/Comet/Props/Tests/ReferenceFramePropTests.cpp": "DC63950DB6AFB8FD84C882CDD163730565ABB3664012F42F0B577B707254A2BF",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameClockTests.cpp": "A910AA3575C917733468E62DA6E944E9939BB6D5FFFB6CED4B62B48B1A83F2B3",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntegrationTests.cpp": "323E0CC691D5BD92E4387F8A22A65C378810393734AD55F1C7837B8C59CA22C1",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameInterestTests.cpp": "A4191BFF6E8226D58566F6FDA033FB9122C2D944210095C8E11988596968C16E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntervalTests.cpp": "7A91ECBDEB488C65FC5F33755D9E6DCE399B1C36C27DDD2EB2A542245821298E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMassPointTests.cpp": "016C775B519387E883CDF9F35F340A54590ACAC7C981B15AEE7954456DBCF681",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMathTests.cpp": "304B2F038FBC16AA926145E09C0C402D4F3FBB8C6E89B3EF5DCC43974F13AF8F",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePhysicsTests.cpp": "B0B4569C8343F3EE8733EA03958980F905F334FCD939513E0AB7CAAF4FE11A45",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp": "65D74CCEC790A101A70D831A7F977255122F26A15C075A8AB6B4D96422FF2826",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp": "4A315A84D679A8A9B500A171A4967FB74BDE90A98F44B252D7FFD5A332FBD552",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWaitTests.cpp": "B4B4003B27E5746517598F25AC8055745E2373FA4A4AED7CAD2E65F2269D9E89",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWeldTests.cpp": "B243319D0F94A25FFF08A120C61C01AA15A3BAE253D043196E1F759EAF720AEC",
+        "Source/Comet/SolarSystem/Tests/SolarLightingTests.cpp": "967B0901CDF4B92AE0BD79770BE001DBDDE1240D2836E5266DE0106F571EDCCD",
+        "Source/Comet/SolarSystem/Tests/StarShadowTests.cpp": "AE9D84CBD07085078D7E90BFCB62A7EBAED8EF82D7BC4FE1331CB7AC4A0E447E",
+        "Source/Comet/Tests/Run-CometTests.ps1": "E67B87198778E4FE7F74399307DD93E7BC0A9AD48D2225691A6818569A21E02F",
+        "Source/Comet/Tests/Runtime/analyze.py": "44F6CA7378D418157690DDA8F4ED82ED92B9DDB26210DEBBD68E023558A070C2",
+        "Source/Comet/Tests/Runtime/course.py": "84589AD0662704873142E38014D916A879BDFFBE48AE22DCA413320E47883449",
+        "Source/Comet/Tests/Runtime/deferred_editor_shutdown.py": "C22F461236576127A5916FF28CEB777071B8D4F0F1773A9A0E61AD14257D0C51",
+        "Source/Comet/Tests/Runtime/flight_attitude_helper.py": "0BECC345C09CFD02126C574064189FE51974F461E4A25659C409F22D6F18D48E",
+        "Source/Comet/Tests/Runtime/metrics.py": "7344C364D976CDEF8289E0C58FEAA59F7594638F894F1D7E0375DD64C7FDF220",
+        "Source/Comet/Tests/Runtime/scenarios.json": "4272C0A251E7F9D2B8D28F6A634AE42D0DD22CF01157320384BD53B83B97B2EC",
+        "Source/Comet/Tests/Runtime/test_analyze.py": "F60945C9EBCC2F34F8AEE77E321CCD75921C1ADC1CAE997BDBFF9C0BF3451083",
+        "Source/Comet/Tests/Runtime/test_metrics.py": "D4C159101C165B5977949146E8D3E41B2A5F93DDD6528EBF16C4B84592A49E5D",
+        "Source/Comet/UI/HUD/Tests/MainHUDTests.cpp": "4EFB02D967B3437BE16B083B76BB4D28B7C9D6DEAC1727F499A32F7FE68CBF22",
+        "Source/Comet/UI/SolarSystem/Tests/SolarSystemMapTests.cpp": "85AEFE736B102DF1D971C1A5AC56BACCC4028E45AB39FA8B48C973E51A3E0A39",
+        "Binaries/Win64/UnrealEditor-Comet.dll": "A9BF16491BCF1DC01FF51E0B43315AAD4D2BCD55D4A8615C01C6D4CB4523C659",
+        "Content/Comet.umap": "55888A64165AA419601173BD3A61408859107DDAD9D8C824CC95B2FE6D6D4225",
+        "engine/Build.version": "F4ACFF8AF146D5D02F7618A4E988724D70F3B720C70E68D090BB90A240AE51F6"
+      },
+      "analysis_code_hashes": {
+        "analyze.py": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00",
+        "metrics.py": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+      },
+      "raw_frame_count": 1062,
+      "measured_frame_time_ms": {
+        "samples": 944,
+        "mean": 17.074369279661017,
+        "p95": 19.848105,
+        "p99": 21.702481,
+        "max": 71.7285,
+        "over_50ms": 3,
+        "over_100ms": 0,
+        "over_100ms_per_1000": 0,
+        "unavailable_frames": 0
+      },
+      "walking": {
+        "status": "passed",
+        "seconds": 6.0133033736760595,
+        "input_scale": 0.2,
+        "displacement_cm": 552.8335441337472,
+        "path_cm": 591.1717349377697,
+        "grounded_samples": 356,
+        "samples": 356,
+        "limitation": "A blocked path or a natural fall on steep terrain makes this walking-only performance segment unverified; it does not by itself establish a production defect."
+      },
+      "low_flight": null,
+      "speed_requirement": null,
+      "transition_count": 0,
+      "physics_wait_count": 0,
+      "unavailable_metrics": [
+        "buffered_terrain_bytes (no current counter)"
+      ]
+    },
+    {
+      "run": "shared-suite-01/low-flight",
+      "source": "outputs/comet-tests/shared-suite-01/low-flight/summary.json",
+      "sha256": "655dfb4d3b5e795b8b2a8b808551a6dfa7cb3a5018ba67f8384c26607554c840",
+      "report_source": "outputs/comet-tests/shared-suite-01/low-flight/report.json",
+      "report_sha256": "c272773e7d8bdceae5b3dc630d9ffd721e2d2deaac93222cd042439699730bcd",
+      "started_utc": "2026-09-09T04:29:47.0037041Z",
+      "profile": "low-flight",
+      "status": "passed",
+      "functional_status": "passed",
+      "checks": {
+        "test_provenance": true,
+        "process": true,
+        "functional": true,
+        "shutdown": true,
+        "collector": true,
+        "screenshot": true,
+        "target_speed": true,
+        "analysis": true
+      },
+      "process": {
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "scope": "선실 입구 초기 배치 후 실제 착석, 7m 상승 목표와 10m 횡이동 목표",
+      "mode": "environment",
+      "map": "/Game/Comet",
+      "requested_viewport": [
+        1280,
+        720
+      ],
+      "observed_viewport": [
+        910,
+        349
+      ],
+      "observed_tsr_dimensions": [
+        910,
+        349,
+        910,
+        349
+      ],
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "driver": "591.86",
+      "fps_cap": 60,
+      "startup_commands": "t.MaxFPS 60,r.VSync 0,r.GPUCsvStatsEnabled 1,csv.CompressionMode 0,csv.BlockOnCaptureEnd 1,Comet.ReferenceFrame.AllowExperimentalPhysics 1,Comet.ReferenceFrame.Enable 1,Comet.ReferenceFrame.EnvironmentDormancy 1",
+      "tested_source_hashes": {
+        "Source/Comet/Character/Tests/BuildingGravityTests.cpp": "22F647F4908C7BDE81EF1ECE0512E0D3D2E4D7D57AC0681FFD51BE6C9579687B",
+        "Source/Comet/Character/Tests/CabinStairTests.cpp": "C0A6B579E8E9234B6B60BE06109B35F170A589C190BB037ABFAA5644681BBCB9",
+        "Source/Comet/Character/Tests/MovingGravityStabilityTests.cpp": "5EF06EA160D20707B513277F21F132D3E48D3543AD18F522F99B96D4AF668063",
+        "Source/Comet/Character/Tests/PlanetBasedMovementTests.cpp": "9A1A3870F0280B6532B9DCB4640F34462A90A2E1175580BEC6CC502D5B0A05F1",
+        "Source/Comet/Character/Tests/ReferenceFrameCharacterContactTests.cpp": "F10EC63078C770146F9C6622987DAB133B8D2859058B1582FEEDDC4FBCBA39E5",
+        "Source/Comet/Character/Tests/ReferenceFrameMovementTests.cpp": "E77D75F1C93EFD1C27C6A6854235237B1BA5F956DACB82CFF5AA740D2016BE47",
+        "Source/Comet/Interaction/Tests/InteractionTests.cpp": "11B7E66E10EB4C68894F806A5329B5281B20CE963DD559725431C202AC68A422",
+        "Source/Comet/Interaction/Tests/InteractionTestTypes.h": "282090F3D58628ECF247B94B124921C129E2308531A43D8993AD090F06A67FA2",
+        "Source/Comet/Planet/Tests/CheeseMoonTests.cpp": "EC7FD8AFC9EEEAF027008859E7F001D9B67F8EAE24834B4638ACDD78202D85AC",
+        "Source/Comet/Planet/Tests/GravityFieldQueriesTests.cpp": "091AAEC0402BE5F09333223E85D04F637D313DDD67DEB6D12AEE017A3E11261A",
+        "Source/Comet/Planet/Tests/PlanetFoliageTests.cpp": "7686C49166F214B1B8848D1FC31673ECC38DC5B4A2EE74D1EB027685B8543A32",
+        "Source/Comet/Planet/Tests/PlanetMountainTests.cpp": "C4AD3A90AE741AC756D88295EF7E2F8707BD6FE2DD544027C1F4E8E717E66C2D",
+        "Source/Comet/Planet/Tests/PlanetReferenceDistanceTests.cpp": "718EFBD7913B67FD7148FBE3ED4697DD50BC6DC9CD8B3784C9BA7E4846EA7A00",
+        "Source/Comet/Planet/Tests/PlanetSceneActivationTests.cpp": "460A3ADB5D6A588E6837154C9923968FBE3E3B51B30A3E77C822D80BFC2E9B0B",
+        "Source/Comet/Planet/Tests/PlanetWorkBudgetTests.cpp": "FE719C69784E18F057BF0BE71209A9A926C84B72B17264E33D0B0E7D0D9569C2",
+        "Source/Comet/Planet/Tests/VoxelLODContinuityTests.cpp": "9A352EFAA7FA4B05E1EBEC7A35A72DB98EDB91673DD73EFC9733262494F377CA",
+        "Source/Comet/Planet/Tests/VoxelMeshPipelineTests.cpp": "91B769ACC21336B875A8675E9545C5DBEAF55A3444D81C22C846B8429E6ED336",
+        "Source/Comet/Planet/Tests/VoxelScenePresenceTests.cpp": "E1407A9EDAAB76D7CDAB0E20D19771A10BF1D4E1BB92AD5E00545284EDC1C2C6",
+        "Source/Comet/Planet/Tests/VoxelWorkTestTick.h": "3411A8E7143327478277CA0C482BFA246D0391885EB38BC4210807D45AF6E998",
+        "Source/Comet/Props/Tests/PropMotionTests.cpp": "5C10D0E41E2482DEF9FDAE4A2AAEEDFBF4AAE5C38146B9197A74E72B039DDAE2",
+        "Source/Comet/Props/Tests/PropPhysicsPrerequisiteTests.cpp": "D8097A4D53D797A50A29BF5C37AFF415706AD5251E109696109E96AAD90F20F2",
+        "Source/Comet/Props/Tests/ReferenceFramePropTests.cpp": "DC63950DB6AFB8FD84C882CDD163730565ABB3664012F42F0B577B707254A2BF",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameClockTests.cpp": "A910AA3575C917733468E62DA6E944E9939BB6D5FFFB6CED4B62B48B1A83F2B3",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntegrationTests.cpp": "323E0CC691D5BD92E4387F8A22A65C378810393734AD55F1C7837B8C59CA22C1",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameInterestTests.cpp": "A4191BFF6E8226D58566F6FDA033FB9122C2D944210095C8E11988596968C16E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntervalTests.cpp": "7A91ECBDEB488C65FC5F33755D9E6DCE399B1C36C27DDD2EB2A542245821298E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMassPointTests.cpp": "016C775B519387E883CDF9F35F340A54590ACAC7C981B15AEE7954456DBCF681",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMathTests.cpp": "304B2F038FBC16AA926145E09C0C402D4F3FBB8C6E89B3EF5DCC43974F13AF8F",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePhysicsTests.cpp": "B0B4569C8343F3EE8733EA03958980F905F334FCD939513E0AB7CAAF4FE11A45",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp": "65D74CCEC790A101A70D831A7F977255122F26A15C075A8AB6B4D96422FF2826",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp": "4A315A84D679A8A9B500A171A4967FB74BDE90A98F44B252D7FFD5A332FBD552",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWaitTests.cpp": "B4B4003B27E5746517598F25AC8055745E2373FA4A4AED7CAD2E65F2269D9E89",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWeldTests.cpp": "B243319D0F94A25FFF08A120C61C01AA15A3BAE253D043196E1F759EAF720AEC",
+        "Source/Comet/SolarSystem/Tests/SolarLightingTests.cpp": "967B0901CDF4B92AE0BD79770BE001DBDDE1240D2836E5266DE0106F571EDCCD",
+        "Source/Comet/SolarSystem/Tests/StarShadowTests.cpp": "AE9D84CBD07085078D7E90BFCB62A7EBAED8EF82D7BC4FE1331CB7AC4A0E447E",
+        "Source/Comet/Tests/Run-CometTests.ps1": "E67B87198778E4FE7F74399307DD93E7BC0A9AD48D2225691A6818569A21E02F",
+        "Source/Comet/Tests/Runtime/analyze.py": "44F6CA7378D418157690DDA8F4ED82ED92B9DDB26210DEBBD68E023558A070C2",
+        "Source/Comet/Tests/Runtime/course.py": "84589AD0662704873142E38014D916A879BDFFBE48AE22DCA413320E47883449",
+        "Source/Comet/Tests/Runtime/deferred_editor_shutdown.py": "C22F461236576127A5916FF28CEB777071B8D4F0F1773A9A0E61AD14257D0C51",
+        "Source/Comet/Tests/Runtime/flight_attitude_helper.py": "0BECC345C09CFD02126C574064189FE51974F461E4A25659C409F22D6F18D48E",
+        "Source/Comet/Tests/Runtime/metrics.py": "7344C364D976CDEF8289E0C58FEAA59F7594638F894F1D7E0375DD64C7FDF220",
+        "Source/Comet/Tests/Runtime/scenarios.json": "4272C0A251E7F9D2B8D28F6A634AE42D0DD22CF01157320384BD53B83B97B2EC",
+        "Source/Comet/Tests/Runtime/test_analyze.py": "F60945C9EBCC2F34F8AEE77E321CCD75921C1ADC1CAE997BDBFF9C0BF3451083",
+        "Source/Comet/Tests/Runtime/test_metrics.py": "D4C159101C165B5977949146E8D3E41B2A5F93DDD6528EBF16C4B84592A49E5D",
+        "Source/Comet/UI/HUD/Tests/MainHUDTests.cpp": "4EFB02D967B3437BE16B083B76BB4D28B7C9D6DEAC1727F499A32F7FE68CBF22",
+        "Source/Comet/UI/SolarSystem/Tests/SolarSystemMapTests.cpp": "85AEFE736B102DF1D971C1A5AC56BACCC4028E45AB39FA8B48C973E51A3E0A39",
+        "Binaries/Win64/UnrealEditor-Comet.dll": "A9BF16491BCF1DC01FF51E0B43315AAD4D2BCD55D4A8615C01C6D4CB4523C659",
+        "Content/Comet.umap": "55888A64165AA419601173BD3A61408859107DDAD9D8C824CC95B2FE6D6D4225",
+        "engine/Build.version": "F4ACFF8AF146D5D02F7618A4E988724D70F3B720C70E68D090BB90A240AE51F6"
+      },
+      "analysis_code_hashes": {
+        "analyze.py": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00",
+        "metrics.py": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+      },
+      "raw_frame_count": 1945,
+      "measured_frame_time_ms": {
+        "samples": 1795,
+        "mean": 17.42812128133705,
+        "p95": 21.23799,
+        "p99": 27.068778000000002,
+        "max": 90.8,
+        "over_50ms": 6,
+        "over_100ms": 0,
+        "over_100ms_per_1000": 0,
+        "unavailable_frames": 0
+      },
+      "walking": {
+        "status": "passed",
+        "seconds": 6.003340780749561,
+        "input_scale": 0.2,
+        "displacement_cm": 552.0102285606654,
+        "path_cm": 590.1459452475483,
+        "grounded_samples": 351,
+        "samples": 351,
+        "limitation": "A blocked path or a natural fall on steep terrain makes this walking-only performance segment unverified; it does not by itself establish a production defect."
+      },
+      "low_flight": {
+        "status": "passed",
+        "maximum_rise_cm": 726.3943495773092,
+        "lateral_target_arc_cm": 1000,
+        "actual_local_lateral_displacement_cm": 969.6253379308804
+      },
+      "speed_requirement": null,
+      "transition_count": 0,
+      "physics_wait_count": 0,
+      "unavailable_metrics": [
+        "buffered_terrain_bytes (no current counter)"
+      ]
+    },
+    {
+      "run": "shared-suite-01/roundtrip",
+      "source": "outputs/comet-tests/shared-suite-01/roundtrip/summary.json",
+      "sha256": "fd7b8a745df941c50ea3a10dabb049fa6023b33c68e56081b3ed64294ab5fada",
+      "report_source": "outputs/comet-tests/shared-suite-01/roundtrip/report.json",
+      "report_sha256": "0831a1778d13313664c771082cc96e5d430ea218f95c85b6193368ef547db976",
+      "started_utc": "2026-09-09T04:32:16.4803955Z",
+      "profile": "roundtrip",
+      "status": "passed",
+      "functional_status": "passed",
+      "checks": {
+        "test_provenance": true,
+        "process": true,
+        "functional": true,
+        "shutdown": true,
+        "collector": true,
+        "screenshot": true,
+        "target_speed": true,
+        "analysis": true
+      },
+      "process": {
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "scope": "도보, 착석, 저공, A-우주-B-우주-A, 귀환 착륙과 기립. B 표면 착륙은 포함하지 않음",
+      "mode": "environment",
+      "map": "/Game/Comet",
+      "requested_viewport": [
+        1280,
+        720
+      ],
+      "observed_viewport": [
+        910,
+        349
+      ],
+      "observed_tsr_dimensions": [
+        910,
+        349,
+        910,
+        349
+      ],
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "driver": "591.86",
+      "fps_cap": 60,
+      "startup_commands": "t.MaxFPS 60,r.VSync 0,r.GPUCsvStatsEnabled 1,csv.CompressionMode 0,csv.BlockOnCaptureEnd 1,Comet.ReferenceFrame.AllowExperimentalPhysics 1,Comet.ReferenceFrame.Enable 1,Comet.ReferenceFrame.EnvironmentDormancy 1",
+      "tested_source_hashes": {
+        "Source/Comet/Character/Tests/BuildingGravityTests.cpp": "22F647F4908C7BDE81EF1ECE0512E0D3D2E4D7D57AC0681FFD51BE6C9579687B",
+        "Source/Comet/Character/Tests/CabinStairTests.cpp": "C0A6B579E8E9234B6B60BE06109B35F170A589C190BB037ABFAA5644681BBCB9",
+        "Source/Comet/Character/Tests/MovingGravityStabilityTests.cpp": "5EF06EA160D20707B513277F21F132D3E48D3543AD18F522F99B96D4AF668063",
+        "Source/Comet/Character/Tests/PlanetBasedMovementTests.cpp": "9A1A3870F0280B6532B9DCB4640F34462A90A2E1175580BEC6CC502D5B0A05F1",
+        "Source/Comet/Character/Tests/ReferenceFrameCharacterContactTests.cpp": "F10EC63078C770146F9C6622987DAB133B8D2859058B1582FEEDDC4FBCBA39E5",
+        "Source/Comet/Character/Tests/ReferenceFrameMovementTests.cpp": "E77D75F1C93EFD1C27C6A6854235237B1BA5F956DACB82CFF5AA740D2016BE47",
+        "Source/Comet/Interaction/Tests/InteractionTests.cpp": "11B7E66E10EB4C68894F806A5329B5281B20CE963DD559725431C202AC68A422",
+        "Source/Comet/Interaction/Tests/InteractionTestTypes.h": "282090F3D58628ECF247B94B124921C129E2308531A43D8993AD090F06A67FA2",
+        "Source/Comet/Planet/Tests/CheeseMoonTests.cpp": "EC7FD8AFC9EEEAF027008859E7F001D9B67F8EAE24834B4638ACDD78202D85AC",
+        "Source/Comet/Planet/Tests/GravityFieldQueriesTests.cpp": "091AAEC0402BE5F09333223E85D04F637D313DDD67DEB6D12AEE017A3E11261A",
+        "Source/Comet/Planet/Tests/PlanetFoliageTests.cpp": "7686C49166F214B1B8848D1FC31673ECC38DC5B4A2EE74D1EB027685B8543A32",
+        "Source/Comet/Planet/Tests/PlanetMountainTests.cpp": "C4AD3A90AE741AC756D88295EF7E2F8707BD6FE2DD544027C1F4E8E717E66C2D",
+        "Source/Comet/Planet/Tests/PlanetReferenceDistanceTests.cpp": "718EFBD7913B67FD7148FBE3ED4697DD50BC6DC9CD8B3784C9BA7E4846EA7A00",
+        "Source/Comet/Planet/Tests/PlanetSceneActivationTests.cpp": "460A3ADB5D6A588E6837154C9923968FBE3E3B51B30A3E77C822D80BFC2E9B0B",
+        "Source/Comet/Planet/Tests/PlanetWorkBudgetTests.cpp": "FE719C69784E18F057BF0BE71209A9A926C84B72B17264E33D0B0E7D0D9569C2",
+        "Source/Comet/Planet/Tests/VoxelLODContinuityTests.cpp": "9A352EFAA7FA4B05E1EBEC7A35A72DB98EDB91673DD73EFC9733262494F377CA",
+        "Source/Comet/Planet/Tests/VoxelMeshPipelineTests.cpp": "91B769ACC21336B875A8675E9545C5DBEAF55A3444D81C22C846B8429E6ED336",
+        "Source/Comet/Planet/Tests/VoxelScenePresenceTests.cpp": "E1407A9EDAAB76D7CDAB0E20D19771A10BF1D4E1BB92AD5E00545284EDC1C2C6",
+        "Source/Comet/Planet/Tests/VoxelWorkTestTick.h": "3411A8E7143327478277CA0C482BFA246D0391885EB38BC4210807D45AF6E998",
+        "Source/Comet/Props/Tests/PropMotionTests.cpp": "5C10D0E41E2482DEF9FDAE4A2AAEEDFBF4AAE5C38146B9197A74E72B039DDAE2",
+        "Source/Comet/Props/Tests/PropPhysicsPrerequisiteTests.cpp": "D8097A4D53D797A50A29BF5C37AFF415706AD5251E109696109E96AAD90F20F2",
+        "Source/Comet/Props/Tests/ReferenceFramePropTests.cpp": "DC63950DB6AFB8FD84C882CDD163730565ABB3664012F42F0B577B707254A2BF",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameClockTests.cpp": "A910AA3575C917733468E62DA6E944E9939BB6D5FFFB6CED4B62B48B1A83F2B3",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntegrationTests.cpp": "323E0CC691D5BD92E4387F8A22A65C378810393734AD55F1C7837B8C59CA22C1",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameInterestTests.cpp": "A4191BFF6E8226D58566F6FDA033FB9122C2D944210095C8E11988596968C16E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntervalTests.cpp": "7A91ECBDEB488C65FC5F33755D9E6DCE399B1C36C27DDD2EB2A542245821298E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMassPointTests.cpp": "016C775B519387E883CDF9F35F340A54590ACAC7C981B15AEE7954456DBCF681",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMathTests.cpp": "304B2F038FBC16AA926145E09C0C402D4F3FBB8C6E89B3EF5DCC43974F13AF8F",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePhysicsTests.cpp": "B0B4569C8343F3EE8733EA03958980F905F334FCD939513E0AB7CAAF4FE11A45",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp": "65D74CCEC790A101A70D831A7F977255122F26A15C075A8AB6B4D96422FF2826",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp": "4A315A84D679A8A9B500A171A4967FB74BDE90A98F44B252D7FFD5A332FBD552",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWaitTests.cpp": "B4B4003B27E5746517598F25AC8055745E2373FA4A4AED7CAD2E65F2269D9E89",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWeldTests.cpp": "B243319D0F94A25FFF08A120C61C01AA15A3BAE253D043196E1F759EAF720AEC",
+        "Source/Comet/SolarSystem/Tests/SolarLightingTests.cpp": "967B0901CDF4B92AE0BD79770BE001DBDDE1240D2836E5266DE0106F571EDCCD",
+        "Source/Comet/SolarSystem/Tests/StarShadowTests.cpp": "AE9D84CBD07085078D7E90BFCB62A7EBAED8EF82D7BC4FE1331CB7AC4A0E447E",
+        "Source/Comet/Tests/Run-CometTests.ps1": "E67B87198778E4FE7F74399307DD93E7BC0A9AD48D2225691A6818569A21E02F",
+        "Source/Comet/Tests/Runtime/analyze.py": "F32D5275BF793A64064BE156F9BE9BBD536D4D11C2B5B7CC23EC0843184F93C5",
+        "Source/Comet/Tests/Runtime/course.py": "84589AD0662704873142E38014D916A879BDFFBE48AE22DCA413320E47883449",
+        "Source/Comet/Tests/Runtime/deferred_editor_shutdown.py": "C22F461236576127A5916FF28CEB777071B8D4F0F1773A9A0E61AD14257D0C51",
+        "Source/Comet/Tests/Runtime/flight_attitude_helper.py": "0BECC345C09CFD02126C574064189FE51974F461E4A25659C409F22D6F18D48E",
+        "Source/Comet/Tests/Runtime/metrics.py": "7344C364D976CDEF8289E0C58FEAA59F7594638F894F1D7E0375DD64C7FDF220",
+        "Source/Comet/Tests/Runtime/scenarios.json": "4272C0A251E7F9D2B8D28F6A634AE42D0DD22CF01157320384BD53B83B97B2EC",
+        "Source/Comet/Tests/Runtime/test_analyze.py": "2A16148F823DA8EEE517A4BA2E5D6999CEF22C3C2324A1EBF955FDE0CC06E447",
+        "Source/Comet/Tests/Runtime/test_metrics.py": "D4C159101C165B5977949146E8D3E41B2A5F93DDD6528EBF16C4B84592A49E5D",
+        "Source/Comet/UI/HUD/Tests/MainHUDTests.cpp": "4EFB02D967B3437BE16B083B76BB4D28B7C9D6DEAC1727F499A32F7FE68CBF22",
+        "Source/Comet/UI/SolarSystem/Tests/SolarSystemMapTests.cpp": "85AEFE736B102DF1D971C1A5AC56BACCC4028E45AB39FA8B48C973E51A3E0A39",
+        "Binaries/Win64/UnrealEditor-Comet.dll": "A9BF16491BCF1DC01FF51E0B43315AAD4D2BCD55D4A8615C01C6D4CB4523C659",
+        "Content/Comet.umap": "55888A64165AA419601173BD3A61408859107DDAD9D8C824CC95B2FE6D6D4225",
+        "engine/Build.version": "F4ACFF8AF146D5D02F7618A4E988724D70F3B720C70E68D090BB90A240AE51F6"
+      },
+      "analysis_code_hashes": {
+        "analyze.py": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00",
+        "metrics.py": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+      },
+      "raw_frame_count": 11435,
+      "measured_frame_time_ms": {
+        "samples": 11280,
+        "mean": 20.051502739361702,
+        "p95": 26.88211,
+        "p99": 31.238301999999933,
+        "max": 303.8548,
+        "over_50ms": 29,
+        "over_100ms": 2,
+        "over_100ms_per_1000": 0.1773049645390071,
+        "unavailable_frames": 0
+      },
+      "walking": {
+        "status": "passed",
+        "seconds": 6.009259218658926,
+        "input_scale": 0.2,
+        "displacement_cm": 552.5112940658341,
+        "path_cm": 590.5878920454732,
+        "grounded_samples": 357,
+        "samples": 357,
+        "limitation": "A blocked path or a natural fall on steep terrain makes this walking-only performance segment unverified; it does not by itself establish a production defect."
+      },
+      "low_flight": {
+        "status": "passed",
+        "maximum_rise_cm": 724.1114558867612,
+        "lateral_target_arc_cm": 1000,
+        "actual_local_lateral_displacement_cm": 969.6939341162611
+      },
+      "speed_requirement": null,
+      "transition_count": 8,
+      "physics_wait_count": 0,
+      "unavailable_metrics": [
+        "buffered_terrain_bytes (no current counter)"
+      ]
+    },
+    {
+      "run": "shared-final-high/high-speed",
+      "source": "outputs/comet-tests/shared-final-high/high-speed/summary.json",
+      "sha256": "14271f89c8c1dcad845314d38fea33eaeeed58173b50a42d2fc8f4178e6380ef",
+      "report_source": "outputs/comet-tests/shared-final-high/high-speed/report.json",
+      "report_sha256": "36558a0cc83e2071b94d96514f10312c5e3bd3dedc925f23358f22f6ddbc4a79",
+      "started_utc": "2026-09-09T04:47:43.8821813Z",
+      "profile": "high-speed",
+      "status": "failed",
+      "functional_status": "failed",
+      "checks": {
+        "test_provenance": true,
+        "process": true,
+        "functional": false,
+        "shutdown": true,
+        "collector": true,
+        "screenshot": true,
+        "target_speed": false,
+        "analysis": true
+      },
+      "process": {
+        "exit_code": 0,
+        "timed_out": false
+      },
+      "scope": "긴 출발 경로에서 실제 목표 속도 유지 후 왕복. 최대속도 지면 돌진 검사는 아님",
+      "mode": "environment",
+      "map": "/Game/Comet",
+      "requested_viewport": [
+        1280,
+        720
+      ],
+      "observed_viewport": [
+        910,
+        349
+      ],
+      "observed_tsr_dimensions": [
+        910,
+        349,
+        910,
+        349
+      ],
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "driver": "591.86",
+      "fps_cap": 60,
+      "startup_commands": "t.MaxFPS 60,r.VSync 0,r.GPUCsvStatsEnabled 1,csv.CompressionMode 0,csv.BlockOnCaptureEnd 1,Comet.ReferenceFrame.AllowExperimentalPhysics 1,Comet.ReferenceFrame.Enable 1,Comet.ReferenceFrame.EnvironmentDormancy 1",
+      "tested_source_hashes": {
+        "Source/Comet/Character/Tests/BuildingGravityTests.cpp": "22F647F4908C7BDE81EF1ECE0512E0D3D2E4D7D57AC0681FFD51BE6C9579687B",
+        "Source/Comet/Character/Tests/CabinStairTests.cpp": "C0A6B579E8E9234B6B60BE06109B35F170A589C190BB037ABFAA5644681BBCB9",
+        "Source/Comet/Character/Tests/MovingGravityStabilityTests.cpp": "5EF06EA160D20707B513277F21F132D3E48D3543AD18F522F99B96D4AF668063",
+        "Source/Comet/Character/Tests/PlanetBasedMovementTests.cpp": "9A1A3870F0280B6532B9DCB4640F34462A90A2E1175580BEC6CC502D5B0A05F1",
+        "Source/Comet/Character/Tests/ReferenceFrameCharacterContactTests.cpp": "F10EC63078C770146F9C6622987DAB133B8D2859058B1582FEEDDC4FBCBA39E5",
+        "Source/Comet/Character/Tests/ReferenceFrameMovementTests.cpp": "E77D75F1C93EFD1C27C6A6854235237B1BA5F956DACB82CFF5AA740D2016BE47",
+        "Source/Comet/Interaction/Tests/InteractionTests.cpp": "11B7E66E10EB4C68894F806A5329B5281B20CE963DD559725431C202AC68A422",
+        "Source/Comet/Interaction/Tests/InteractionTestTypes.h": "282090F3D58628ECF247B94B124921C129E2308531A43D8993AD090F06A67FA2",
+        "Source/Comet/Planet/Tests/CheeseMoonTests.cpp": "EC7FD8AFC9EEEAF027008859E7F001D9B67F8EAE24834B4638ACDD78202D85AC",
+        "Source/Comet/Planet/Tests/GravityFieldQueriesTests.cpp": "091AAEC0402BE5F09333223E85D04F637D313DDD67DEB6D12AEE017A3E11261A",
+        "Source/Comet/Planet/Tests/PlanetFoliageTests.cpp": "7686C49166F214B1B8848D1FC31673ECC38DC5B4A2EE74D1EB027685B8543A32",
+        "Source/Comet/Planet/Tests/PlanetMountainTests.cpp": "C4AD3A90AE741AC756D88295EF7E2F8707BD6FE2DD544027C1F4E8E717E66C2D",
+        "Source/Comet/Planet/Tests/PlanetReferenceDistanceTests.cpp": "718EFBD7913B67FD7148FBE3ED4697DD50BC6DC9CD8B3784C9BA7E4846EA7A00",
+        "Source/Comet/Planet/Tests/PlanetSceneActivationTests.cpp": "460A3ADB5D6A588E6837154C9923968FBE3E3B51B30A3E77C822D80BFC2E9B0B",
+        "Source/Comet/Planet/Tests/PlanetWorkBudgetTests.cpp": "FE719C69784E18F057BF0BE71209A9A926C84B72B17264E33D0B0E7D0D9569C2",
+        "Source/Comet/Planet/Tests/VoxelLODContinuityTests.cpp": "9A352EFAA7FA4B05E1EBEC7A35A72DB98EDB91673DD73EFC9733262494F377CA",
+        "Source/Comet/Planet/Tests/VoxelMeshPipelineTests.cpp": "91B769ACC21336B875A8675E9545C5DBEAF55A3444D81C22C846B8429E6ED336",
+        "Source/Comet/Planet/Tests/VoxelScenePresenceTests.cpp": "E1407A9EDAAB76D7CDAB0E20D19771A10BF1D4E1BB92AD5E00545284EDC1C2C6",
+        "Source/Comet/Planet/Tests/VoxelWorkTestTick.h": "3411A8E7143327478277CA0C482BFA246D0391885EB38BC4210807D45AF6E998",
+        "Source/Comet/Props/Tests/PropMotionTests.cpp": "5C10D0E41E2482DEF9FDAE4A2AAEEDFBF4AAE5C38146B9197A74E72B039DDAE2",
+        "Source/Comet/Props/Tests/PropPhysicsPrerequisiteTests.cpp": "D8097A4D53D797A50A29BF5C37AFF415706AD5251E109696109E96AAD90F20F2",
+        "Source/Comet/Props/Tests/ReferenceFramePropTests.cpp": "DC63950DB6AFB8FD84C882CDD163730565ABB3664012F42F0B577B707254A2BF",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameClockTests.cpp": "A910AA3575C917733468E62DA6E944E9939BB6D5FFFB6CED4B62B48B1A83F2B3",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntegrationTests.cpp": "323E0CC691D5BD92E4387F8A22A65C378810393734AD55F1C7837B8C59CA22C1",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameInterestTests.cpp": "A4191BFF6E8226D58566F6FDA033FB9122C2D944210095C8E11988596968C16E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameIntervalTests.cpp": "7A91ECBDEB488C65FC5F33755D9E6DCE399B1C36C27DDD2EB2A542245821298E",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMassPointTests.cpp": "016C775B519387E883CDF9F35F340A54590ACAC7C981B15AEE7954456DBCF681",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameMathTests.cpp": "304B2F038FBC16AA926145E09C0C402D4F3FBB8C6E89B3EF5DCC43974F13AF8F",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePhysicsTests.cpp": "B0B4569C8343F3EE8733EA03958980F905F334FCD939513E0AB7CAAF4FE11A45",
+        "Source/Comet/SolarSystem/Tests/ReferenceFramePlanetStepTests.cpp": "65D74CCEC790A101A70D831A7F977255122F26A15C075A8AB6B4D96422FF2826",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameRuntimeTests.cpp": "4A315A84D679A8A9B500A171A4967FB74BDE90A98F44B252D7FFD5A332FBD552",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWaitTests.cpp": "B4B4003B27E5746517598F25AC8055745E2373FA4A4AED7CAD2E65F2269D9E89",
+        "Source/Comet/SolarSystem/Tests/ReferenceFrameWeldTests.cpp": "B243319D0F94A25FFF08A120C61C01AA15A3BAE253D043196E1F759EAF720AEC",
+        "Source/Comet/SolarSystem/Tests/SolarLightingTests.cpp": "967B0901CDF4B92AE0BD79770BE001DBDDE1240D2836E5266DE0106F571EDCCD",
+        "Source/Comet/SolarSystem/Tests/StarShadowTests.cpp": "AE9D84CBD07085078D7E90BFCB62A7EBAED8EF82D7BC4FE1331CB7AC4A0E447E",
+        "Source/Comet/Tests/Run-CometTests.ps1": "E67B87198778E4FE7F74399307DD93E7BC0A9AD48D2225691A6818569A21E02F",
+        "Source/Comet/Tests/Runtime/analyze.py": "9E80555E3E9614E0164BBC62B8CF252F6C7414E98FA5A1936767330A09B80E00",
+        "Source/Comet/Tests/Runtime/course.py": "BDC90C5C0F405FDB76A1D65DF8B840CAC65F2084EED15A8C1EC6E48C75F7E64B",
+        "Source/Comet/Tests/Runtime/deferred_editor_shutdown.py": "C22F461236576127A5916FF28CEB777071B8D4F0F1773A9A0E61AD14257D0C51",
+        "Source/Comet/Tests/Runtime/flight_attitude_helper.py": "0BECC345C09CFD02126C574064189FE51974F461E4A25659C409F22D6F18D48E",
+        "Source/Comet/Tests/Runtime/metrics.py": "7344C364D976CDEF8289E0C58FEAA59F7594638F894F1D7E0375DD64C7FDF220",
+        "Source/Comet/Tests/Runtime/scenarios.json": "4272C0A251E7F9D2B8D28F6A634AE42D0DD22CF01157320384BD53B83B97B2EC",
+        "Source/Comet/Tests/Runtime/test_analyze.py": "32600D695FC99A05E8EA4774B11C32A67445090E38C16DE44199FB74FF831005",
+        "Source/Comet/Tests/Runtime/test_metrics.py": "D4C159101C165B5977949146E8D3E41B2A5F93DDD6528EBF16C4B84592A49E5D",
+        "Source/Comet/UI/HUD/Tests/MainHUDTests.cpp": "4EFB02D967B3437BE16B083B76BB4D28B7C9D6DEAC1727F499A32F7FE68CBF22",
+        "Source/Comet/UI/SolarSystem/Tests/SolarSystemMapTests.cpp": "85AEFE736B102DF1D971C1A5AC56BACCC4028E45AB39FA8B48C973E51A3E0A39",
+        "Binaries/Win64/UnrealEditor-Comet.dll": "A9BF16491BCF1DC01FF51E0B43315AAD4D2BCD55D4A8615C01C6D4CB4523C659",
+        "Content/Comet.umap": "55888A64165AA419601173BD3A61408859107DDAD9D8C824CC95B2FE6D6D4225",
+        "engine/Build.version": "F4ACFF8AF146D5D02F7618A4E988724D70F3B720C70E68D090BB90A240AE51F6"
+      },
+      "analysis_code_hashes": {
+        "analyze.py": "9e80555e3e9614e0164bbc62b8cf252f6c7414e98fa5a1936767330a09b80e00",
+        "metrics.py": "7344c364d976cdef8289e0c58feaa59f7594638f894f1d7e0375dd64c7fdf220"
+      },
+      "raw_frame_count": 12856,
+      "measured_frame_time_ms": {
+        "samples": 12705,
+        "mean": 19.06212207005116,
+        "p95": 25.67655999999999,
+        "p99": 29.60043999999995,
+        "max": 358.0362,
+        "over_50ms": 34,
+        "over_100ms": 2,
+        "over_100ms_per_1000": 0.15741833923652104,
+        "unavailable_frames": 0
+      },
+      "walking": {
+        "status": "passed",
+        "seconds": 6.013691543258908,
+        "input_scale": 0.2,
+        "displacement_cm": 552.9885873033145,
+        "path_cm": 591.2748497173875,
+        "grounded_samples": 350,
+        "samples": 350,
+        "limitation": "A blocked path or a natural fall on steep terrain makes this walking-only performance segment unverified; it does not by itself establish a production defect."
+      },
+      "low_flight": {
+        "status": "passed",
+        "maximum_rise_cm": 725.3373324176819,
+        "lateral_target_arc_cm": 1000,
+        "actual_local_lateral_displacement_cm": 969.6129131765554
+      },
+      "speed_requirement": {
+        "status": "target_not_sustained",
+        "target_mps": 160,
+        "threshold_mps": 156.8,
+        "maximum_observed_mps": 79.34359150906259,
+        "required_hold_seconds": 3,
+        "longest_hold_seconds": 0,
+        "samples": 10017,
+        "maximum_observation_gap_seconds": 0.25
+      },
+      "transition_count": 6,
+      "physics_wait_count": 0,
+      "unavailable_metrics": [
+        "buffered_terrain_bytes (no current counter)"
+      ]
+    }
+  ]
+}

@@ -34,7 +34,16 @@ export default function Home() {
             <div className="log-heading"><span className="eyebrow">LOG {post.number}</span><a href="#journal">목록으로 ↑</a></div>
             <h2 data-analytics-article={'journal/' + post.id} data-article-title={post.title} data-article-type="journal">{post.title}</h2>
             {post.period && <p className="log-period">{post.period} · WEEKLY DEVLOG</p>}
-            {post.sections.map(section => <section key={section.title}><h3>{section.title}</h3><p>{section.text}</p>{section.media && <div className={section.media.length > 1 ? 'log-gallery' : 'log-gallery single'}>{section.media.map(media => <figure key={media.src}><LogMedia media={media} />{media.kind === 'image' && <figcaption>{media.caption}</figcaption>}</figure>)}</div>}</section>)}
+            {post.sections.map(section => <section key={section.title}>
+              <h3>{section.title}</h3>
+              {section.text.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+              {section.table && <div className="article-table" role="region" aria-label={section.table.caption} tabIndex={0}>
+                <table><caption>{section.table.caption}</caption><thead><tr>{section.table.columns.map(column => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{section.table.rows.map((row, index) => <tr key={index}>{row.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody></table>
+              </div>}
+              {section.code && <figure className="article-code"><figcaption>{section.code.caption}</figcaption><pre tabIndex={0} aria-label={section.code.caption}><code>{section.code.value}</code></pre></figure>}
+              {section.media && <div className={section.media.length > 1 ? 'log-gallery' : 'log-gallery single'}>{section.media.map(media => <figure key={media.src}><LogMedia media={media} />{media.kind === 'image' && <figcaption>{media.caption}</figcaption>}</figure>)}</div>}
+            </section>)}
+            {post.sources && <section className="article-sources" aria-labelledby={post.id + '-sources'}><h3 id={post.id + '-sources'}>코드와 확인 자료</h3><ul>{post.sources.map(source => <li key={source.label}><strong>{source.href ? <a href={source.href}>{source.label} ↗</a> : source.label}</strong><p>{source.detail}</p></li>)}</ul></section>}
             <ArticleComments articleId={post.id} articlePath={'/#' + post.id} />
           </article>)}</div>
         </section>
