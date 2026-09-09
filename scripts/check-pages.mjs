@@ -21,7 +21,7 @@ for (const filename of ['starfield.jpg']) {
 assert.ok(!/예시 기록|예시 콘텐츠|예시 컨셉 이미지|예시 글/.test(html), 'Sample posts must not appear in the published page.');
 assert.ok(!existsSync(join(root, 'images', 'cabin.jpg')) && !existsSync(join(root, 'images', 'station.jpg')), 'Sample images must not be published.');
 assert.ok(!html.includes('localhost:'), 'Public HTML must not reference a local server.');
-const journalIds = [...html.matchAll(/data-analytics-article="journal\/([^\"]+)"/g)].map(match => match[1]);
+const journalIds = [...html.matchAll(/data-analytics-article="journal\/([^"]+)"/g)].map(match => match[1]);
 assert.ok(journalIds.includes('comet-tests-2026-09-09'), 'The shared play testing journal must be exported.');
 assert.equal([...html.matchAll(/id="comments-[^"]+"/g)].length, journalIds.length, 'Each journal article needs its own comment thread.');
 for (const id of journalIds) {
@@ -30,7 +30,7 @@ for (const id of journalIds) {
 
 const series = readFileSync(join(root, 'optimization', 'index.html'), 'utf8');
 const articlePaths = [...new Set([...series.matchAll(/href="(\/optimization\/[^"/#]+\/)"/g)].map(match => match[1]))];
-assert.equal(articlePaths.length, 9, 'The complete optimization series must expose all nine articles.');
+assert.equal(articlePaths.length, 14, 'The complete optimization series must expose all fourteen articles.');
 assert.match(html, /href="\/optimization\/"/, 'Home navigation must expose the optimization section.');
 const pages = new Map([['/', html], ['/optimization/', series], ...articlePaths.map(path => [path, readFileSync(join(root, path, 'index.html'), 'utf8')])]);
 const idsByPage = new Map();
@@ -65,5 +65,9 @@ const evidence = JSON.parse(readFileSync(join(root, 'optimization', 'evidence.js
 assert.equal(evidence.records.default_startup.exit_code, 0);
 assert.equal(evidence.records.full06.passed + evidence.records.full06.passed_with_warnings, 90);
 assert.ok(evidence.records.movement_final01.aggregate_by_mode.environment.metrics.FrameTime.average_fps < 60);
-console.log('Nine static optimization articles, navigation, unique anchors, metadata headings, and cited evidence verified.');
+const additionalEvidence = JSON.parse(readFileSync(join(root, 'optimization', 'additional-evidence-2026-09-09.json'), 'utf8'));
+assert.equal(additionalEvidence.records.local_speed160.status, 'failed', 'The original 160 m/s failure must remain explicit.');
+assert.deepEqual(additionalEvidence.records.qhd_native_tsr75.observed_viewport, [2560, 1440]);
+assert.ok(!/[A-Z]:[\\/]/i.test(JSON.stringify(additionalEvidence)), 'Additional evidence must use project-relative paths.');
+console.log('Fourteen static optimization articles, navigation, unique anchors, metadata headings, and cited evidence verified.');
 console.log('Static page, Korean content, starfield, and ' + assets.size + ' asset references verified.');

@@ -48,7 +48,7 @@ export default async function OptimizationArticle({ params }: { params: Promise<
         <p className="eyebrow">OPTIMIZATION {post.number} / {String(optimizationPosts.length).padStart(2, '0')}</p>
         <p className="chapter-topic">{post.topic}</p>
         <h1 data-analytics-article={'optimization/' + post.slug} data-article-title={post.title} data-article-type="optimization">{post.title}</h1><p className="optimization-lead">{post.summary}</p>
-        <p className="article-date">2026.09.08 작성{post.updatedDate && <> · {post.updatedDate} 보완</>} · 소스와 보관된 검증 기록 기준</p>
+        <p className="article-date">{post.date ?? '2026.09.08'} 작성{post.updatedDate && <> · {post.updatedDate} 보완</>} · 소스와 보관된 검증 기록 기준</p>
       </header>
       <div className="reader-grid">
         <aside className="article-toc" aria-label="이 글의 목차"><h2>이 글의 흐름</h2><ol>{post.sections.map(section => <li key={section.id}><a href={'#' + section.id}>{section.title}</a></li>)}</ol><a className="toc-series-link" href="/optimization/">전체 {optimizationPosts.length}편 목차 ↗</a></aside>
