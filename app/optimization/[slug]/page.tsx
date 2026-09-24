@@ -45,15 +45,15 @@ export default async function OptimizationArticle({ params }: { params: Promise<
     <main id="top" className="wrap optimization-reader">
       <a className="back-to-series" href="/optimization/"><ArrowLeft size={16} /> 최적화 기록 전체 보기</a>
       <header className="article-header">
-        <p className="eyebrow">OPTIMIZATION {post.number} / {String(optimizationPosts.length).padStart(2, '0')}</p>
+        <p className="eyebrow">최적화 메모 {post.number}</p>
         <p className="chapter-topic">{post.topic}</p>
         <h1 data-analytics-article={'optimization/' + post.slug} data-article-title={post.title} data-article-type="optimization">{post.title}</h1><p className="optimization-lead">{post.summary}</p>
-        <p className="article-date">{post.date ?? '2026.09.08'} 작성{post.updatedDate && <> · {post.updatedDate} 보완</>} · 소스와 보관된 검증 기록 기준</p>
+        <p className="article-date">{post.date ?? '2026.09.08'}{post.updatedDate && <> · {post.updatedDate} 수정</>}</p>
       </header>
       <div className="reader-grid">
-        <aside className="article-toc" aria-label="이 글의 목차"><h2>이 글의 흐름</h2><ol>{post.sections.map(section => <li key={section.id}><a href={'#' + section.id}>{section.title}</a></li>)}</ol><a className="toc-series-link" href="/optimization/">전체 {optimizationPosts.length}편 목차 ↗</a></aside>
+        <aside className="article-toc" aria-label="이 글의 목차"><h2>목차</h2><ol>{post.sections.map(section => <li key={section.id}><a href={'#' + section.id}>{section.title}</a></li>)}</ol><a className="toc-series-link" href="/optimization/">최적화 메모 {optimizationPosts.length}편</a></aside>
         <article id="article-content" className="optimization-article">
-          <div className="article-premise"><div><span>출발한 문제</span><p>{post.startingPoint}</p></div><div><span>이번 편의 변화</span><p>{post.result}</p></div></div>
+          <div className="article-premise"><div><span>문제</span><p>{post.startingPoint}</p></div><div><span>수정</span><p>{post.result}</p></div></div>
           {post.sections.map(section => <section id={section.id} key={section.id}><h2>{section.title}</h2>{section.blocks.map((block, blockIndex) => <Block block={block} key={blockIndex} />)}</section>)}
           <section className="article-sources" aria-labelledby="sources-title"><h2 id="sources-title">코드와 확인 자료</h2><p>프로젝트 파일명은 Comet 소스 모듈 기준입니다. 수치가 있는 편은 공개용 발췌 자료에서 측정 조건을 함께 확인할 수 있습니다.</p><ul>{post.sources.map(source => <li key={source.label}><strong>{source.href ? <a href={source.href}>{source.label} ↗</a> : source.label}</strong><p>{source.detail}</p></li>)}</ul></section>
           <ArticleComments articleId={post.slug} articlePath={optimizationHref(post.slug)} />

@@ -1,55 +1,44 @@
-import { ArrowDown, ArrowUpRight, Sparkles } from 'lucide-react';
+// Images are pre-sized files served directly by GitHub Pages.
+/* oxlint-disable next/no-html-link-for-pages, next/no-img-element */
 import { SiteHeader, SiteFooter } from '@/components/site-chrome';
-import { LogMedia } from '@/components/log-media';
-import { devlogs, type Devlog } from '@/lib/devlog';
-import { ArticleComments } from '@/components/article-comments';
+import { devlogs } from '@/lib/devlog';
+import { optimizationPosts, optimizationHref } from '@/lib/optimization';
 
 export const dynamic = 'force-static';
 
-function PostMeta({ post }: { post: Devlog }) {
-  return <p className="post-meta"><span>LOG {post.number}</span><span>{post.date}</span></p>;
-}
-function Tags({ post }: { post: Devlog }) {
-  return <div className="tags">{post.tags.map(tag => <span key={tag}>{tag}</span>)}</div>;
-}
 export default function Home() {
-  const [latest, ...previous] = devlogs;
-  return (
-    <div className="site-shell">
-      <a href="#journal" className="skip-link">개발일지로 바로가기</a>
-      <SiteHeader />
-      <main id="top" className="wrap">
-        <section className="intro" aria-labelledby="page-title">
-          <div><p className="eyebrow"><span className="tiny-cross">✳</span> A LITTLE LIFE IN A BIG UNIVERSE</p><h1 id="page-title">작은 우주를 만드는 기록<span>.</span></h1><p className="intro-copy">행성 위의 발걸음부터, 우주선 안의 일상까지.<br className="mobile-break" /> 한 장면씩 쌓아가는 우주 생활 시뮬레이터 개발일지.</p></div>
-          <a href="#journal" className="explore-link"><ArrowDown size={19} /><span>기록 둘러보기</span></a>
-        </section>
-        <section id="journal" className="journal" aria-labelledby="journal-title">
-          <div className="section-heading"><h2 id="journal-title">개발일지 <span>DEVELOPMENT LOG</span></h2></div>
-          {latest ? <article className="featured">
-            <div className="featured-media"><LogMedia media={latest.media} featured />{latest.media.kind === 'image' && <div className="image-caption"><span><Sparkles size={14} /> 개발 스크린샷</span><span>{latest.tags[0]}</span></div>}</div>
-            <div className="featured-copy"><PostMeta post={latest} /><Tags post={latest} /><h3>{latest.title}</h3><p>{latest.summary}</p><a className="read-link" href={'#' + latest.id}>개발일지 읽기 <ArrowUpRight size={19} /></a><div className="card-foot"><span>ORBITAL DAYS</span><span>BUILDING A PLACE TO CALL HOME</span></div></div>
-          </article> : <p className="empty-note">첫 번째 개발일지를 준비하고 있습니다.</p>}
-          {previous.length > 0 && <><div className="archive-heading"><span>이전 기록</span><span>천천히, 한 걸음씩.</span></div>{previous.map(post => <article className="archive-post" key={post.id}><div className="archive-media"><LogMedia media={post.media} /></div><div><PostMeta post={post} /><Tags post={post} /><h3><a href={'#' + post.id}>{post.title}</a></h3><p>{post.summary}</p><a className="text-link" href={'#' + post.id}>기록 읽기 <ArrowUpRight size={17} /></a></div></article>)}</>}
-          <div className="full-logs">{devlogs.map(post => <article className="log-body" id={post.id} key={post.id}>
-            <div className="log-heading"><span className="eyebrow">LOG {post.number}</span><a href="#journal">목록으로 ↑</a></div>
-            <h2 data-analytics-article={'journal/' + post.id} data-article-title={post.title} data-article-type="journal">{post.title}</h2>
-            {post.period && <p className="log-period">{post.period} · DEVLOG</p>}
-            {post.sections.map(section => <section key={section.title}>
-              <h3>{section.title}</h3>
-              {section.text.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-              {section.table && <div className="article-table" role="region" aria-label={section.table.caption} tabIndex={0}>
-                <table><caption>{section.table.caption}</caption><thead><tr>{section.table.columns.map(column => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{section.table.rows.map((row, index) => <tr key={index}>{row.map((cell, cellIndex) => cellIndex === 0 ? <th scope="row" key={cellIndex}>{cell}</th> : <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody></table>
-              </div>}
-              {section.code && <figure className="article-code"><figcaption>{section.code.caption}</figcaption><pre tabIndex={0} aria-label={section.code.caption}><code>{section.code.value}</code></pre></figure>}
-              {section.media && <div className={section.media.length > 1 ? 'log-gallery' : 'log-gallery single'}>{section.media.map(media => <figure key={media.src}><LogMedia media={media} />{media.kind === 'image' && <figcaption>{media.caption}</figcaption>}</figure>)}</div>}
-            </section>)}
-            {post.sources && <section className="article-sources" aria-labelledby={post.id + '-sources'}><h3 id={post.id + '-sources'}>코드와 확인 자료</h3><ul>{post.sources.map(source => <li key={source.label}><strong>{source.href ? <a href={source.href}>{source.label} ↗</a> : source.label}</strong><p>{source.detail}</p></li>)}</ul></section>}
-            <ArticleComments articleId={post.id} articlePath={'/#' + post.id} />
-          </article>)}</div>
-        </section>
-        <section id="about" className="about"><div><p className="eyebrow">ABOUT THE GAME</p><h2>머나먼 우주에서도,<br />우리의 하루는 계속되니까.</h2></div><div><p>우주를 무대로 살아가는 생활 시뮬레이터를 개발하고 있습니다. 이곳에는 구현한 기능과 바뀌어가는 장면들, 그리고 개발 과정에서의 작은 발견을 남깁니다.</p><span className="working-title"><i /> ORBITAL DAYS · 우주 생활 시뮬레이터</span></div></section>
-      </main>
-      <SiteFooter />
-    </div>
-  );
+  const latest = devlogs[0];
+  return <div className="site-shell">
+    <a href="#journal" className="skip-link">글 목록으로</a>
+    <SiteHeader />
+    <main id="top" className="wrap home-page">
+      <header className="home-intro">
+        <h1>개발 노트</h1>
+        <p>Unreal로 작은 행성에서 사는 게임을 만들고 있습니다.<br />최근에는 흙 채취 카트와 시작 화면을 손봤습니다.</p>
+      </header>
+      <div className="home-layout">
+        <div>
+          {latest && <article className="latest-post" id={latest.id}>
+            <a className="latest-image" href={`/devlog/${latest.id}/`} aria-label={latest.title}>
+              <img src={latest.media.kind === 'image' ? latest.media.src : latest.media.poster} alt={latest.media.alt} width={latest.media.kind === 'image' ? latest.media.width : 1600} height={latest.media.kind === 'image' ? latest.media.height : 900} fetchPriority="high" />
+            </a>
+            <p className="post-meta"><time dateTime={latest.date.replaceAll('.', '-')}>{latest.date}</time><span>최근 글</span></p>
+            <h2><a href={`/devlog/${latest.id}/`}>{latest.title}</a></h2>
+            <p className="latest-summary">{latest.summary}</p>
+          </article>}
+          <section id="journal" className="journal-index" aria-labelledby="journal-title">
+            <div className="index-heading"><h2 id="journal-title">개발일지</h2><span>{devlogs.length}편</span></div>
+            <ol className="post-list">{devlogs.map(post => <li key={post.id} id={post.id === latest?.id ? undefined : post.id}>
+              <a href={`/devlog/${post.id}/`}><time dateTime={post.date.replaceAll('.', '-')}>{post.date.slice(5)}</time><span>{post.title}</span><span className="post-list-number">{post.number}</span></a>
+            </li>)}</ol>
+          </section>
+        </div>
+        <aside className="home-sidebar">
+          <section id="about"><h2>만드는 게임</h2><p className="game-name">ORBITAL FALL</p><p>작은 행성에 집이 있고, 우주선을 타고 장을 보러 갑니다. 운석이 떨어지면 마당에서 요격하고, 파인 땅은 흙을 가져와 메웁니다.</p><p>아직 개발 중입니다. 예전 글에는 당시 작업명인 Orbital Days와 Comet이 함께 나옵니다.</p></section>
+          <section><h2><a href="/optimization/">최적화 메모 <span aria-hidden="true">→</span></a></h2><p>지형 생성, 움직이는 행성, 물리와 렌더링에서 막혔던 부분들.</p><ul>{optimizationPosts.filter(post => ['01', '05', '14'].includes(post.number)).map(post => <li key={post.slug}><a href={optimizationHref(post.slug)}>{post.title}</a></li>)}</ul><a className="plain-link" href="/optimization/">전체 {optimizationPosts.length}편</a></section>
+        </aside>
+      </div>
+    </main>
+    <SiteFooter />
+  </div>;
 }

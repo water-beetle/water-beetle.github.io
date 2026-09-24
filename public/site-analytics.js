@@ -31,8 +31,8 @@
   tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + settings.measurementId;
   document.head.appendChild(tag);
 
-  // Several journal articles share one page. Count a visible article heading
-  // separately after two seconds, without increasing the page-view total.
+  // Count a visible article heading after two seconds, separately from the
+  // page-view total. Article IDs remain stable after the journal route move.
   if (!('IntersectionObserver' in window)) return;
   const visible = new Set();
   const recorded = new Set();

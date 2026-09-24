@@ -5,14 +5,14 @@ export const terrainPosts = [
     "slug": "voxel-build-budget",
     "number": "01",
     "topic": "복셀 · 비동기 · 작업 예산",
-    "title": "행성을 만드는 일을 한 프레임에 끝낼 수는 없다",
-    "summary": "복셀 지형이 만들어지는 경로부터 읽습니다. 계산을 다른 스레드로 옮긴 뒤에도 왜 끊길 수 있는지, 작업 대기열과 최신성 검사가 각각 무엇을 해결하는지 살펴봅니다.",
+    "title": "복셀 생성 작업을 프레임별로 나누기",
+    "summary": "밀도 계산과 메시 반영을 분리했다. 대기열에 작업을 넣고, 오래된 계산 결과는 적용 전에 걸러낸다.",
     "startingPoint": "행성 생성이라는 짧은 호출 안에 밀도 계산, 삼각형 생성, 화면 반영이 모두 들어 있다.",
     "result": "계산과 반영을 분리하고, 프레임별 작업량과 오래된 결과의 적용을 제어한다.",
     "sections": [
       {
         "id": "terrain",
-        "title": "1. 먼저, 우리가 만드는 지형은 무엇인가",
+        "title": "복셀과 청크",
         "blocks": [
           {
             "kind": "paragraph",
@@ -41,7 +41,7 @@ export const terrainPosts = [
       },
       {
         "id": "time",
-        "title": "2. 전체 생성 시간과 플레이 중 끊김은 다르다",
+        "title": "전체 생성 시간과 프레임 시간",
         "blocks": [
           {
             "kind": "paragraph",
@@ -59,7 +59,7 @@ export const terrainPosts = [
       },
       {
         "id": "worker",
-        "title": "3. 계산은 워커로, 오브젝트 반영은 게임 스레드로",
+        "title": "계산과 오브젝트 반영 분리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -83,7 +83,7 @@ export const terrainPosts = [
       },
       {
         "id": "limits",
-        "title": "4. 비동기로 바꿔도 일을 무제한 시작하면 다시 밀린다",
+        "title": "동시 작업 수 제한",
         "blocks": [
           {
             "kind": "paragraph",
@@ -137,7 +137,7 @@ export const terrainPosts = [
       },
       {
         "id": "apply",
-        "title": "5. 계산이 끝난 것과 화면에 반영된 것은 다르다",
+        "title": "완료 결과 적용",
         "blocks": [
           {
             "kind": "paragraph",
@@ -162,7 +162,7 @@ export const terrainPosts = [
       },
       {
         "id": "revision",
-        "title": "6. 그런데 늦게 끝난 작업이 최신 지형을 덮어쓸 수 있다",
+        "title": "오래된 결과 걸러내기",
         "blocks": [
           {
             "kind": "paragraph",
@@ -186,7 +186,7 @@ export const terrainPosts = [
       },
       {
         "id": "complete",
-        "title": "7. 같은 청크를 두 번 만들었다고 완료 개수를 두 번 세면 안 된다",
+        "title": "완료 청크 중복 집계",
         "blocks": [
           {
             "kind": "paragraph",
@@ -204,7 +204,7 @@ export const terrainPosts = [
       },
       {
         "id": "next",
-        "title": "8. 생성 부담은 나눴지만, 만들어진 행성은 계속 움직인다",
+        "title": "생성 뒤에 남는 이동 비용",
         "blocks": [
           {
             "kind": "paragraph",
@@ -212,7 +212,7 @@ export const terrainPosts = [
           },
           {
             "kind": "paragraph",
-            "text": "다음 편에서는 이 차이 때문에 등장한 원거리 프록시를 읽습니다. 먼 행성의 상세 지형을 잠시 장면에서 내리면 이동 부담을 줄일 수 있지만, 돌아왔을 때 위치·회전·크기를 정확히 복원하는 문제가 따라옵니다."
+            "text": "생성 작업을 나눠도 만들어진 청크의 이동 비용은 남습니다. 먼 행성의 상세 지형을 프록시로 바꾸는 작업은 2편에 정리했습니다."
           }
         ]
       }
@@ -232,14 +232,14 @@ export const terrainPosts = [
     "slug": "distant-planet-proxy",
     "number": "02",
     "topic": "LOD · 원거리 프록시 · 좌표 복원",
-    "title": "멀리 있는 행성까지 상세 지형으로 움직여야 할까",
-    "summary": "상세 청크를 원거리 표시용 메시로 바꿨습니다. 하지만 돌아왔을 때 지형이 갈라질 수 있어, 분리와 재연결의 좌표·회전·충돌 준비를 함께 다뤄야 했습니다.",
+    "title": "먼 행성의 상세 지형을 프록시로 교체",
+    "summary": "먼 곳에서는 간단한 메시를 쓰고 가까워지면 상세 지형을 복구한다. 전환 중 지형이 비지 않도록 준비 상태를 나눴다.",
     "startingPoint": "화면에서 작게 보이는 먼 행성도 수백 개의 상세 청크를 데리고 움직인다.",
     "result": "원거리에서는 병합 메시를 사용하고, 근거리 복귀 때 상세 지형을 정확히 재연결한다.",
     "sections": [
       {
         "id": "problem",
-        "title": "1. 작은 점처럼 보여도 내부 구조는 작아지지 않는다",
+        "title": "원거리 상세 지형의 비용",
         "blocks": [
           {
             "kind": "paragraph",
@@ -257,7 +257,7 @@ export const terrainPosts = [
       },
       {
         "id": "lod",
-        "title": "2. 해상도를 줄이는 것과 객체 수를 줄이는 것",
+        "title": "LOD와 객체 수",
         "blocks": [
           {
             "kind": "paragraph",
@@ -287,7 +287,7 @@ export const terrainPosts = [
       },
       {
         "id": "thresholds",
-        "title": "3. 같은 거리에서 켰다 껐다 반복하지 않도록",
+        "title": "진입·이탈 거리 분리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -322,7 +322,7 @@ export const terrainPosts = [
       },
       {
         "id": "detach",
-        "title": "4. 숨기기만 해서는 이동 비용이 남는다",
+        "title": "장면에서 상세 청크 분리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -342,7 +342,7 @@ export const terrainPosts = [
       },
       {
         "id": "restore",
-        "title": "5. 그런데 위치만 복원하면 청크 경계가 갈라질 수 있다",
+        "title": "로컬 변환 복원",
         "blocks": [
           {
             "kind": "paragraph",
@@ -366,7 +366,7 @@ export const terrainPosts = [
       },
       {
         "id": "collision",
-        "title": "6. 돌아오는 순간 충돌 준비가 한꺼번에 몰릴 수 있다",
+        "title": "복귀 시 충돌 준비",
         "blocks": [
           {
             "kind": "paragraph",
@@ -389,7 +389,7 @@ export const terrainPosts = [
       },
       {
         "id": "evidence",
-        "title": "7. 구현 변화와 성능 수치를 구분하기",
+        "title": "측정 범위",
         "blocks": [
           {
             "kind": "paragraph",
@@ -421,14 +421,14 @@ export const terrainPosts = [
     "slug": "profile-moving-planet",
     "number": "03",
     "topic": "프로파일링 · 빈 청크 · 중력 이벤트",
-    "title": "느린 것은 지형 생성이 아니라 행성 이동이었다",
-    "summary": "측정 항목을 나눠 보니 복셀 Tick보다 행성 Transform 갱신이 훨씬 컸습니다. 빈 청크와 사용하지 않는 겹침 이벤트를 줄이고, 결과가 기대만큼 단순하지 않았던 이유를 읽습니다.",
+    "title": "지형 생성보다 비쌌던 행성 이동",
+    "summary": "생성 뒤에도 프레임이 길었다. 행성에 붙은 지형과 부품을 이동시키는 비용을 따로 측정했다.",
     "startingPoint": "복잡해 보이는 기능을 추측으로 줄이면 실제 병목을 놓칠 수 있다.",
     "result": "행성 이동과 프레임 끝 갱신을 주요 조사 대상으로 좁히고 불필요한 장면 참여를 줄였다.",
     "sections": [
       {
         "id": "profiling",
-        "title": "1. 기능의 복잡도 대신 실제 시간을 나눠 보기",
+        "title": "구간별 시간 측정",
         "blocks": [
           {
             "kind": "paragraph",
@@ -452,7 +452,7 @@ export const terrainPosts = [
       },
       {
         "id": "diagnosis",
-        "title": "2. 첫 진단에서 발견한 큰 차이",
+        "title": "행성 이동 비용",
         "blocks": [
           {
             "kind": "table",
@@ -523,7 +523,7 @@ export const terrainPosts = [
       },
       {
         "id": "hierarchy",
-        "title": "3. SetActorLocationAndRotation 한 줄이 하는 일",
+        "title": "하위 컴포넌트 갱신",
         "blocks": [
           {
             "kind": "paragraph",
@@ -547,7 +547,7 @@ export const terrainPosts = [
       },
       {
         "id": "empty",
-        "title": "4. 표면이 없는 청크를 활성 장면에서 빼기",
+        "title": "빈 청크 분리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -641,7 +641,7 @@ export const terrainPosts = [
       },
       {
         "id": "local",
-        "title": "5. 청크를 떼어 놓으니, 위치를 알아내는 방법도 바꿔야 했다",
+        "title": "분리한 청크의 위치 계산",
         "blocks": [
           {
             "kind": "paragraph",
@@ -699,7 +699,7 @@ export const terrainPosts = [
       },
       {
         "id": "overlaps",
-        "title": "6. 중력 계산은 계속하고, 쓰지 않는 출입 알림만 끄기",
+        "title": "사용하지 않는 overlap 알림",
         "blocks": [
           {
             "kind": "paragraph",
@@ -792,7 +792,7 @@ export const terrainPosts = [
       },
       {
         "id": "results",
-        "title": "7. 행성을 옮기는 일은 빨라졌지만, 화면 전체는 따로 확인해야 했다",
+        "title": "수정 후 측정",
         "blocks": [
           {
             "kind": "paragraph",
@@ -855,7 +855,7 @@ export const terrainPosts = [
           },
           {
             "kind": "paragraph",
-            "text": "이 단계에서는 현재 필요 없는 청크의 연결과 사용하지 않는 알림 추적을 줄였습니다. 다음으로 살펴본 대상은 풀과 나무를 화면에 그리는 부품들이었습니다. 풀의 개수를 줄이지 않아도, 여기저기 흩어진 표시용 부품을 묶으면 관리 부담을 줄일 수 있을지 확인했습니다. 다음 편은 그 문제에서 이어집니다."
+            "text": "빈 청크 연결과 사용하지 않는 알림을 줄였습니다. 다음으로는 식생 개수를 유지하면서 표시용 컴포넌트를 합치는 쪽을 확인했습니다."
           }
         ]
       }

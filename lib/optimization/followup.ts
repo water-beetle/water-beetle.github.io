@@ -5,14 +5,14 @@ export const followupPosts = [
     "slug": "dormancy-collision-and-cargo",
     "number": "07",
     "topic": "환경 휴면 · 충돌 준비 · 화물 복구",
-    "title": "잠든 행성을 깨웠더니 우주선과 화물이 기다리기 시작했다",
-    "summary": "먼 환경을 쉬게 만든 뒤 충돌 준비가 새로운 문제로 떠올랐습니다. 행성 전체를 기다리던 비행을 경로 중심으로 바꾸고, 대기 중 받침에서 벗어난 화물의 좌표와 재개 시점을 고쳤습니다.",
+    "title": "환경 휴면 후 충돌 준비와 화물 복구",
+    "summary": "행성 전체의 충돌을 기다리느라 비행이 멈췄다. 필요한 경로만 준비하도록 바꾸고, 대기 중 바닥에서 벗어나는 화물도 고쳤다.",
     "startingPoint": "원거리 환경을 쉬게 하면 가벼워지지만, 복귀 중인 장면을 안전하게 사용할 준비 상태가 필요하다.",
     "result": "국소 경로의 충돌 준비와 대기·복귀 상태를 분리하고, 화물의 행성 로컬 자세와 S 속도를 보존한다.",
     "sections": [
       {
         "id": "environment",
-        "title": "1. 지형만 단순화해도 먼 마을과 식생은 남아 있다",
+        "title": "환경 휴면 범위",
         "blocks": [
           {
             "kind": "paragraph",
@@ -30,7 +30,7 @@ export const followupPosts = [
       },
       {
         "id": "states",
-        "title": "2. “켜짐/꺼짐” 두 상태로는 부족하다",
+        "title": "준비·대기·복귀 상태",
         "blocks": [
           {
             "kind": "table",
@@ -70,7 +70,7 @@ export const followupPosts = [
       },
       {
         "id": "global-wait",
-        "title": "3. 실제 첫 문제: 행성 전체의 충돌을 기다리며 비행이 멈췄다",
+        "title": "행성 전체를 기다리던 비행",
         "blocks": [
           {
             "kind": "paragraph",
@@ -98,7 +98,7 @@ export const followupPosts = [
       },
       {
         "id": "cook",
-        "title": "4. 준비 여부는 최신 메시와 최신 충돌의 관계로 판단한다",
+        "title": "메시와 충돌 버전",
         "blocks": [
           {
             "kind": "paragraph",
@@ -116,7 +116,7 @@ export const followupPosts = [
       },
       {
         "id": "sculpt",
-        "title": "5. 잠든 동안 땅을 팠다면, 요청을 버리면 안 된다",
+        "title": "휴면 중 지형 수정",
         "blocks": [
           {
             "kind": "paragraph",
@@ -140,7 +140,7 @@ export const followupPosts = [
       },
       {
         "id": "cargo-failure",
-        "title": "6. 실제 다음 실패: 화물은 기다렸는데 바닥은 계속 이동했다",
+        "title": "대기 중 바닥을 벗어난 화물",
         "blocks": [
           {
             "kind": "paragraph",
@@ -163,7 +163,7 @@ export const followupPosts = [
       },
       {
         "id": "resume",
-        "title": "7. 바닥을 따라가게 했어도 재개 시점이 한 단계 어긋날 수 있다",
+        "title": "화물 재개 순서",
         "blocks": [
           {
             "kind": "paragraph",
@@ -198,7 +198,7 @@ export const followupPosts = [
       },
       {
         "id": "verified",
-        "title": "8. 고친 뒤 같은 받침으로 돌아오는 과정을 다시 검사했다",
+        "title": "복귀 검사",
         "blocks": [
           {
             "kind": "paragraph",
@@ -210,7 +210,7 @@ export const followupPosts = [
           },
           {
             "kind": "paragraph",
-            "text": "다음에는 화면에 남은 문제를 봅니다. 기준계가 바뀌어도 행성 지형 자체가 새로 만들어진 것은 아닌데, 미니맵을 다시 만들면 불필요한 비용이 생깁니다. 동시에 지도 캡처와 클릭 위치가 서로 다른 시각의 데이터를 쓰면 정확성이 깨집니다."
+            "text": "물리 복귀 뒤에는 미니맵 캐시와 표식 시점이 남았습니다. 기준계 전환을 지형 재생성으로 처리하던 부분은 8편에서 다룹니다."
           }
         ]
       }
@@ -231,14 +231,14 @@ export const followupPosts = [
     "slug": "map-snapshots-and-materials",
     "number": "08",
     "topic": "미니맵 · 캡처 · 재질 좌표 · 수명",
-    "title": "행성은 같은데 지도와 바람의 기준이 달라졌다",
-    "summary": "기준계 전환을 지형 재생성으로 취급하지 않도록 미니맵을 유지했습니다. 지도 그림과 표식의 시각을 맞추고, 월드 좌표에 기대던 재질과 프리뷰 자원 수명도 점검했습니다.",
+    "title": "기준계 전환 후 지도 표식과 재질 수정",
+    "summary": "미니맵 이미지와 표식의 시점을 맞췄다. 월드 좌표를 사용하던 재질과 프리뷰 자원 수명도 확인했다.",
     "startingPoint": "게임 좌표가 바뀌면 UI 캐시와 재질이 사용하는 월드 좌표도 함께 영향을 받는다.",
     "result": "미니맵 자원을 유지하고, 캡처와 표식을 같은 스냅샷으로 읽으며 좌표 의존 재질을 선별 보완한다.",
     "sections": [
       {
         "id": "cache",
-        "title": "1. 기준계가 바뀌었다고 행성 지형이 새로 생긴 것은 아니다",
+        "title": "지도 캐시 유지",
         "blocks": [
           {
             "kind": "paragraph",
@@ -262,7 +262,7 @@ export const followupPosts = [
       },
       {
         "id": "count",
-        "title": "2. “재빌드하지 않았다”를 느낌이 아니라 횟수로 확인하기",
+        "title": "재빌드 횟수 확인",
         "blocks": [
           {
             "kind": "paragraph",
@@ -317,7 +317,7 @@ export const followupPosts = [
       },
       {
         "id": "snapshot",
-        "title": "3. 지도 그림은 과거인데 표식만 최신이면 어긋난다",
+        "title": "이미지와 표식의 시점",
         "blocks": [
           {
             "kind": "paragraph",
@@ -341,7 +341,7 @@ export const followupPosts = [
       },
       {
         "id": "map-physics",
-        "title": "4. 지도를 보려고 먼 행성의 물리까지 깨우면 안 된다",
+        "title": "지도 촬영과 물리 분리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -359,7 +359,7 @@ export const followupPosts = [
       },
       {
         "id": "materials",
-        "title": "5. 위치는 맞는데 풀 색이나 바람 무늬가 달라질 수 있다",
+        "title": "재질의 좌표 기준",
         "blocks": [
           {
             "kind": "paragraph",
@@ -391,7 +391,7 @@ export const followupPosts = [
       },
       {
         "id": "cleanup",
-        "title": "6. 미리보기 객체도 닫힐 때까지 책임져야 한다",
+        "title": "프리뷰 객체 정리",
         "blocks": [
           {
             "kind": "paragraph",
@@ -409,7 +409,7 @@ export const followupPosts = [
       },
       {
         "id": "status",
-        "title": "7. 현재까지 확인한 화면과 남은 검증",
+        "title": "확인한 범위",
         "blocks": [
           {
             "kind": "paragraph",
@@ -421,7 +421,7 @@ export const followupPosts = [
           },
           {
             "kind": "paragraph",
-            "text": "마지막 편에서는 이 모든 작업이 실제 프레임 시간에 어떤 영향을 주었는지 봅니다. 정지 화면의 좋은 평균과 이동 중 여전히 남은 끊김을 나란히 놓고, 완료 판정과 다음 과제를 구분합니다."
+            "text": "정지 화면과 이동 코스의 프레임 시간은 다음 측정 기록에 따로 남겼습니다."
           }
         ]
       }
@@ -442,14 +442,14 @@ export const followupPosts = [
     "slug": "benchmarks-and-release",
     "number": "09",
     "topic": "성능 검증 · 종료 오류 · 현재 적용 상태",
-    "title": "평균 60FPS를 넘겼지만, 최적화가 끝난 것은 아니다",
-    "summary": "같은 조건의 정지·이동 비교를 각각 읽습니다. 측정 후 종료 실패를 해결한 과정과 최종 기본 적용 근거, 평균 숫자로 가릴 수 없는 긴 프레임과 남은 검증을 정리합니다.",
+    "title": "최적화 전후 측정과 남은 끊김",
+    "summary": "기준계 고정과 환경 휴면을 나눠 측정했다. 평균 FPS가 오른 뒤에도 남는 긴 프레임과 적용 확인 항목을 정리했다.",
     "startingPoint": "빠른 한 장면이나 PASS 문자열만으로 전체 게임의 성능과 안정성을 판단할 수 없다.",
     "result": "정지·이동 성능과 검증·종료 결과를 분리하고, 지원 범위의 기본 적용 및 남은 과제를 명시한다.",
     "sections": [
       {
         "id": "conditions",
-        "title": "1. 비교할 조건부터 맞추기",
+        "title": "비교 조건",
         "blocks": [
           {
             "kind": "paragraph",
@@ -468,7 +468,7 @@ export const followupPosts = [
       },
       {
         "id": "stationary",
-        "title": "2. 정지 화면에서는 무엇이 줄었나",
+        "title": "정지 화면 결과",
         "blocks": [
           {
             "kind": "paragraph",
@@ -534,7 +534,7 @@ export const followupPosts = [
       },
       {
         "id": "tails",
-        "title": "3. 평균 62.35FPS인데 왜 모든 프레임이 60FPS는 아닐까",
+        "title": "평균과 느린 프레임",
         "blocks": [
           {
             "kind": "paragraph",
@@ -579,7 +579,7 @@ export const followupPosts = [
       },
       {
         "id": "moving",
-        "title": "4. 이동 코스는 별도의 결과였다",
+        "title": "이동 코스 결과",
         "blocks": [
           {
             "kind": "paragraph",
@@ -651,7 +651,7 @@ export const followupPosts = [
       },
       {
         "id": "crash",
-        "title": "5. 그런데 측정이 끝난 뒤 프로그램이 종료 중 실패했다",
+        "title": "측정 후 종료 실패",
         "blocks": [
           {
             "kind": "paragraph",
@@ -679,7 +679,7 @@ export const followupPosts = [
       },
       {
         "id": "comparison",
-        "title": "6. 종료만 고친 측정도 무엇이 달랐는지 남긴다",
+        "title": "종료 수정 뒤 재측정",
         "blocks": [
           {
             "kind": "paragraph",
@@ -697,7 +697,7 @@ export const followupPosts = [
       },
       {
         "id": "defaults",
-        "title": "7. 후속 검사 후 실제 프로젝트 기본값에 적용하기",
+        "title": "프로젝트 기본값 적용",
         "blocks": [
           {
             "kind": "paragraph",
@@ -726,7 +726,7 @@ export const followupPosts = [
       },
       {
         "id": "map",
-        "title": "8. 지금까지의 변화는 어디에 남아 있는가",
+        "title": "변경한 파일",
         "blocks": [
           {
             "kind": "table",
@@ -787,7 +787,7 @@ export const followupPosts = [
       },
       {
         "id": "remaining",
-        "title": "9. 다음에는 평균보다 이동 중 긴 프레임을 더 봐야 한다",
+        "title": "남은 프레임 지연",
         "blocks": [
           {
             "kind": "paragraph",
@@ -799,7 +799,7 @@ export const followupPosts = [
           },
           {
             "kind": "paragraph",
-            "text": "코드를 읽을 때는 숫자 하나보다 각 편의 출발한 문제와 다음 문제를 함께 보면 좋습니다. 왜 큐가 두 개 필요한지, 왜 분리한 데이터의 로컬 좌표를 남기는지, 왜 화면과 충돌의 준비를 나누는지까지 이해하면 앞으로 기능을 고칠 때도 같은 기준을 적용할 수 있습니다."
+            "text": "다음 측정에서는 이동 중 긴 프레임을 구간별로 나눠 볼 필요가 있습니다. 현재 평균값만으로 원인을 좁히기는 어렵습니다."
           }
         ]
       }
