@@ -8,7 +8,7 @@ const html = readFileSync(join(root, 'index.html'), 'utf8');
 assert.match(html, /Orbital Days/);
 assert.match(html, /lang="ko"/);
 assert.match(html, /id="journal"/);
-assert.ok(!html.includes('--space-background'), 'The reading surface must not load the decorative starfield.');
+assert.match(html, /starfield\.jpg/, 'Preserve the space background.');
 assert.ok(existsSync(join(root, '.nojekyll')), 'GitHub Pages must preserve _next assets.');
 const assets = new Set([...html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[^"]*)"/g)].map(match => match[1]));
 for (const asset of assets) {
