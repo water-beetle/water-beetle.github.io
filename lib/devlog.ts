@@ -1,4 +1,5 @@
 import { testingDevlog } from './testing-devlog';
+import { septemberDevlogs } from './september-devlogs';
 
 export type LogMedia =
   | { kind: 'image'; src: string; alt: string; caption: string; width: number; height: number }
@@ -62,6 +63,7 @@ const warmSunLaterMedia: LogMedia = {
 
 // Newest first. Screenshots and videos live in public/media/.
 export const devlogs: Devlog[] = [
+  ...septemberDevlogs,
   testingDevlog,
   {
     id: 'solar-map-2026-09-08',

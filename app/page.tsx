@@ -33,7 +33,7 @@ export default function Home() {
           <div className="full-logs">{devlogs.map(post => <article className="log-body" id={post.id} key={post.id}>
             <div className="log-heading"><span className="eyebrow">LOG {post.number}</span><a href="#journal">목록으로 ↑</a></div>
             <h2 data-analytics-article={'journal/' + post.id} data-article-title={post.title} data-article-type="journal">{post.title}</h2>
-            {post.period && <p className="log-period">{post.period} · WEEKLY DEVLOG</p>}
+            {post.period && <p className="log-period">{post.period} · DEVLOG</p>}
             {post.sections.map(section => <section key={section.title}>
               <h3>{section.title}</h3>
               {section.text.split('\n\n').map((paragraph, index) => <p key={index}>{paragraph}</p>)}

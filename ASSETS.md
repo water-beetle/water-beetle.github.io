@@ -45,3 +45,18 @@ Prompt: Use case: stylized-concept. Asset type: standalone full-page website bac
 - `public/media/2026-09-06/hud-overview.png`: saved UMG HUD rendered by the Unreal validation helper using an actual generated planet and test inputs, from the successful auto-fit validation. It is a HUD preview rather than a direct PIE screenshot. Oxygen and money values are test data.
 - `public/media/2026-09-06/minimap-front.png` and `minimap-facing-right.png`: unaltered pixel crops of the corresponding 1600×900 HUD validation frames; crop rectangle x=1200, y=20, width=380, height=440. No labels or markers were added. The second frame turns the view by 90 degrees.
 - The original post captures were produced on 2026-09-06; the Avoria replacement was captured on 2026-09-07. No image AI was used for these assets.
+# 2026.09.25 개발일지 사진 추가
+
+LOG 008~014는 Comet에 보관된 실제 제작·검증 화면 7장을 사용합니다. `public/media/2026-09-25/`의 JPEG는 원본에서 최대 가로 1600px로 축소·압축했으며 색 보정이나 생성형 편집은 하지 않았습니다. 아래 원본 경로는 Comet 프로젝트 기준입니다.
+
+| 파일 | 원본 | 촬영 맥락 |
+| --- | --- | --- |
+| home.jpg | outputs/terrain-relief-20260912/bad-orbit-home-play-04/BO_Sofa.png | 집 마감 후 재로드·PIE, 후속 마당 변경 이전 |
+| mart.jpg | outputs/p02-mart-20260913/play/01_FridgePickup.png | 플레이 월드 별도 SceneCapture, HUD·몸 제외 |
+| radar.jpg | outputs/meteor/visual02/03-radar-passage.png | 초기 운석 연동 모니터, 최신 UI 아님 |
+| interceptor.jpg | outputs/backyard-interceptor/coupled-play02/PracticeVisible.png | 실제 PIE를 포함한 에디터 창, 연습 목표 |
+| soil.jpg | outputs/soil-realism/studio.png | Blender v02 모델 렌더, 게임 화면 아님 |
+| mule.jpg | outputs/ship-orange-20260922/ue_exterior.png | Unreal 검토 장면, 후면 보강 이전 |
+| menu.jpg | outputs/orbital-fall-menu-speeds-20260925/validation-final/menu-2560x1440.png | 설치된 메뉴 재생 검증, 별도 촬영 장면의 영상 |
+
+원본 에셋과 내부 보고서는 배포하지 않습니다. 본문은 9월 25일에 기존 기록을 회고한 글이며, 새 Unreal 실행 검증을 수행한 것으로 표시하지 않습니다.
