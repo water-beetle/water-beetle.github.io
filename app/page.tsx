@@ -22,14 +22,18 @@ export default function Home() {
             <a className="latest-image" href={`/devlog/${latest.id}/`} aria-label={latest.title}>
               <img src={latest.media.kind === 'image' ? latest.media.src : latest.media.poster} alt={latest.media.alt} width={latest.media.kind === 'image' ? latest.media.width : 1600} height={latest.media.kind === 'image' ? latest.media.height : 900} fetchPriority="high" />
             </a>
+            <div className="latest-copy">
             <p className="post-meta"><time dateTime={latest.date.replaceAll('.', '-')}>{latest.date}</time><span>최근 글</span></p>
             <h2><a href={`/devlog/${latest.id}/`}>{latest.title}</a></h2>
             <p className="latest-summary">{latest.summary}</p>
+            <a className="read-link" href={`/devlog/${latest.id}/`}>개발일지 읽기 ↗</a>
+            </div>
           </article>}
           <section id="journal" className="journal-index" aria-labelledby="journal-title">
             <div className="index-heading"><h2 id="journal-title">개발일지</h2><span>{devlogs.length}편</span></div>
             <ol className="post-list">{devlogs.map(post => <li key={post.id} id={post.id === latest?.id ? undefined : post.id}>
-              <a href={`/devlog/${post.id}/`}><time dateTime={post.date.replaceAll('.', '-')}>{post.date.slice(5)}</time><span>{post.title}</span><span className="post-list-number">{post.number}</span></a>
+              <a className="archive-image" href={`/devlog/${post.id}/`} aria-label={post.title}><img src={post.media.kind === 'image' ? post.media.src : post.media.poster} alt={post.media.alt} loading="lazy" width={post.media.kind === 'image' ? post.media.width : 1600} height={post.media.kind === 'image' ? post.media.height : 900} /></a>
+              <div className="archive-copy"><p className="post-meta"><time dateTime={post.date.replaceAll('.', '-')}>{post.date}</time><span>LOG {post.number}</span></p><h3><a href={`/devlog/${post.id}/`}>{post.title}</a></h3><p>{post.summary}</p><a className="read-link" href={`/devlog/${post.id}/`}>기록 읽기 ↗</a></div>
             </li>)}</ol>
           </section>
         </div>

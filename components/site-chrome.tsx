@@ -1,12 +1,13 @@
 // Ordinary links intentionally load GitHub Pages directory indexes without client routing.
 /* oxlint-disable next/no-html-link-for-pages */
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Orbit } from 'lucide-react';
 import { googleAnalyticsDashboard, isGoogleAnalyticsConfigured } from '@/lib/site-integrations';
 
 export function SiteHeader({ active = 'journal' }: { active?: 'journal' | 'optimization' }) {
   return (
     <header className="site-header wrap">
       <a href="/" className="brand" aria-label="Orbital Days, 처음으로">
+        <Orbit size={32} aria-hidden="true" />
         <strong>Orbital Days<span className="brand-separator"> / </span><span className="brand-note">개발 노트</span></strong>
       </a>
       <nav aria-label="주 메뉴">
