@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-05",
+  "documents": [
+    {
+      "path": "Docs/Planning/Character_Equipment_Progression.md",
+      "hash": "a22d5ce66cd9fe39f02c8c7bc3ea854f427697f05b99fc97ab45bdceaf29c9b4",
+      "sections": 17
+    },
+    {
+      "path": "Docs/Planning/Equipment_Physical_Spec.md",
+      "hash": "778ea4561cd438cf9bd6cad5b5b03c849573a0b23584aa79375bc434d6736807",
+      "sections": 13
+    },
+    {
+      "path": "Docs/Planning/Factory_Physical_Spec.md",
+      "hash": "85a0e75e563f552b5d8316d8b3762e5876e3277b6436150ee7a10bb20c16e680",
+      "sections": 14
+    },
+    {
+      "path": "Docs/Planning/Factory_Ship_Progression.md",
+      "hash": "5cf351b2591af619ac01660b778c3f12d8097a3ce75eaa9492b6c61868f23264",
+      "sections": 219
+    },
+    {
+      "path": "Docs/Planning/Field_Operation_Design.md",
+      "hash": "ffe994453da8c4173191fd586e33f65904f7808e2ed9cd266ea831ced1195fb4",
+      "sections": 16
+    },
+    {
+      "path": "Docs/Planning/Home_Progression.md",
+      "hash": "eb1795431a3d6eda93c11ed7a8e04c48de773f039352ae76d9559472fd01933f",
+      "sections": 39
+    },
+    {
+      "path": "Docs/Planning/Meteor_Automation_GDD.md",
+      "hash": "2389825a426c98f0a5968c7ff14927b36f4b56b8a84776f1d5c7455a58351b9d",
+      "sections": 23
+    },
+    {
+      "path": "Docs/Planning/Meteor_Automation_Roadmap.md",
+      "hash": "cc39e93aee8796a68d3f615f56d15a7b922a420a26529665e300f7574c838a92",
+      "sections": 20
+    },
+    {
+      "path": "Docs/Planning/Meteor_Notification_Progression.md",
+      "hash": "830c0b1ed9770d6de484d52a88c94b11f8db48d73b030e750c9a241495c80c0e",
+      "sections": 20
+    },
+    {
+      "path": "Docs/Planning/Meteor_Resource_Design.md",
+      "hash": "253dcadff50a0508207493eb553f07e610a3c62a03714cfb79d34d05bcf10d2c",
+      "sections": 27
+    },
+    {
+      "path": "Docs/Planning/Physical_Handling_Contract.md",
+      "hash": "a92623c3b0ccb95ac9c611350ce323c2f160f1101049057274b63936bfa2483b",
+      "sections": 11
+    },
+    {
+      "path": "Docs/Planning/Power_Fuel_Design.md",
+      "hash": "37fb01ee33a4e437633a3ae361b6c9c2ba81f37282fcc156ba373974df903f18",
+      "sections": 21
+    },
+    {
+      "path": "Docs/Planning/Production_Logistics_Design.md",
+      "hash": "82477fb3a98353deddf5df32d7ef15cde5514421d2b165e92093343f059f7fc7",
+      "sections": 18
+    },
+    {
+      "path": "Docs/Planning/Prop상황.md",
+      "hash": "3e0d45fe8c6cc59ed1affa18cd9121b4a70739f1f4c312df8276cbef8bdfe209",
+      "sections": 27
+    },
+    {
+      "path": "Docs/Planning/README.md",
+      "hash": "b76e5e2496f24175e012a1da78c72c0ab0f49422ac375a3eeed97e2cea28e6ce",
+      "sections": 5
+    },
+    {
+      "path": "Docs/Planning/Requirements/README.md",
+      "hash": "fbc917c0a56b0393b3f16a48decf12600f8d69d513f93c6ce83a8762862fff4a",
+      "sections": 1
+    },
+    {
+      "path": "Docs/Planning/Requirements/기반.md",
+      "hash": "694eae73a8a95ae3b7d5b951560d666ec31b11da89f17da4c67dfba14c6e4f29",
+      "sections": 17
+    },
+    {
+      "path": "Docs/Planning/Requirements/배송.md",
+      "hash": "4f30d1bf3cc6f92025ed7df5251a32b4d0a57a99df475014370ace2403ac2841",
+      "sections": 13
+    },
+    {
+      "path": "Docs/Planning/Requirements/비행.md",
+      "hash": "57080f77f4d1be40d75228063cf370b00b5c1c35ba107b782a7899607d5ee078",
+      "sections": 9
+    },
+    {
+      "path": "Docs/Planning/Requirements/생활.md",
+      "hash": "16f348743aa526bceb454dd2ad8e8897ae1c941444122b770169eed48fb0cedd",
+      "sections": 14
+    },
+    {
+      "path": "Docs/Planning/Requirements/신규.md",
+      "hash": "16cc79163bb6343cb033fec0376ec5ae8f2641d3b2f8eaacacc3c48ea4db1a34",
+      "sections": 6
+    },
+    {
+      "path": "Docs/Planning/Requirements/품질.md",
+      "hash": "a3011a9d5ca858d989922e8076eb678fd93acd81bd148b5942c89d421100d9b6",
+      "sections": 8
+    },
+    {
+      "path": "Docs/Planning/Requirements/행성.md",
+      "hash": "00b09300e33d85901a6c4efc4ae9a57a5769186d3aef287ecc3ce49f1cca30a8",
+      "sections": 10
+    },
+    {
+      "path": "Docs/Planning/Requirements/확장.md",
+      "hash": "91d9b451b83dc35cf6f25555aaec5c8a225e27a402f95ff645fb7cfd50c1a0e3",
+      "sections": 5
+    },
+    {
+      "path": "Docs/Planning/Research_Feature_Design.md",
+      "hash": "fb5bdbaafcf79a6f7f0a0f59ab543d5eafaafef8c37c885b9dbd95ff63c67f94",
+      "sections": 9
+    },
+    {
+      "path": "Docs/Planning/Ship_Equipment_Operation_Design.md",
+      "hash": "b7ad719d8821643819c083e61fd86305ccfc7d2678a17ced7020a68310cd90a3",
+      "sections": 16
+    },
+    {
+      "path": "Docs/Planning/Tutorial_Onboarding_Design.md",
+      "hash": "23f6c0d646478794be5f68ba05de6b601f02de7d39c066a72b056387b2aa4a78",
+      "sections": 48
+    },
+    {
+      "path": "Docs/Planning/UI아트디렉션.md",
+      "hash": "da1e98de7b2c2c99e5706920f683108d5e98d158a6ead1522fbb171bc81f7001",
+      "sections": 9
+    },
+    {
+      "path": "Docs/Planning/결정사항.md",
+      "hash": "184c7d7a13a2f03a3d737384690765875280df11bda9040c9d3ac267e9dffce9",
+      "sections": 29
+    },
+    {
+      "path": "Docs/Planning/작업요청.md",
+      "hash": "02aaa68292d84f1e3b07a09c0824be3c90ef2ec0dde0945c8766674a4817d0c7",
+      "sections": 25
+    },
+    {
+      "path": "Docs/Planning/저장대상.md",
+      "hash": "3cbef42a2dab31812e9b6f57107c7c1fe564996efcbb5ddde3e01a90878c8a94",
+      "sections": 26
+    },
+    {
+      "path": "Docs/Planning/저장정책.md",
+      "hash": "b784047ec68c50e2abd30d4501581ad643225dee44c72e0c2272a1b7464420ea",
+      "sections": 15
+    },
+    {
+      "path": "Docs/Development/Meteor_Notification_Implementation_Plan.md",
+      "hash": "03fdcaecbf9575b1fe0b392ab6a172fd0b5eab18457a8eff00765b7b2847fc42",
+      "sections": 16
+    },
+    {
+      "path": "Docs/Development/Research_Implementation_Roadmap.md",
+      "hash": "08f1fbfbf3bc1959e422c74491196ca8f65fcc57e652af6bbf3b3e8dbbd6cce5",
+      "sections": 27
+    },
+    {
+      "path": "Docs/Development/Research_Stage01_Plan.md",
+      "hash": "ca924ae10ebd9beb9ee9d1d7f948de5430193ec1c26e8625287140979c5ebec9",
+      "sections": 17
+    },
+    {
+      "path": "Docs/Art/UI/UI_STYLE_GUIDE.md",
+      "hash": "52ced21799123581719ee0babd8d09e8eb8a27ca7976fc5fa1522ff9669edff1",
+      "sections": 32
+    },
+    {
+      "path": "Docs/Art/UI/Screens/InGame_HUD.md",
+      "hash": "6bbabb772594b33f9d21b7a43806392dc3f7a8d5073df10fa2d082246174bc3e",
+      "sections": 51
+    },
+    {
+      "path": "Docs/Art/UI/Screens/Settings.md",
+      "hash": "89b977bfe44f002ec8765b94e92ef4821f96c2a2a806c582e4ef1d5deb068e68",
+      "sections": 1
+    },
+    {
+      "path": "Docs/Art/Planet/06_TERRAIN_PRESETS.md",
+      "hash": "9a75619175caf95538397e11683f4391d56700e3f5ff2f07521e0494a3a36f02",
+      "sections": 29
+    }
+  ],
+  "research": 119,
+  "sourceCpp": "Source/Comet/Research/ResearchPlanningCatalog.inl",
+  "economySource": "Saved/Sites/comet-research-terminal/dist"
+}
