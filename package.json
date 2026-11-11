@@ -16,9 +16,12 @@
     "test:analytics": "node --test scripts/site-analytics.test.mjs"
   },
   "dependencies": {
+    "@astryxdesign/core": "0.7.13",
+    "@astryxdesign/theme-neutral": "0.7.13",
     "@base-ui/react": "1.7.0",
     "@giscus/react": "3.1.0",
     "@shadcn/react": "0.3.0",
+    "@stylexjs/stylex": "0.19.1",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "cmdk": "1.1.1",
@@ -38,6 +41,7 @@
     "vinext": "1.0.0-beta.5"
   },
   "devDependencies": {
+    "@astryxdesign/cli": "0.7.13",
     "@cloudflare/vite-plugin": "1.37.1",
     "@cloudflare/workers-types": "4.20260515.1",
     "@openai/sites-vite-plugin": "0.2.0",

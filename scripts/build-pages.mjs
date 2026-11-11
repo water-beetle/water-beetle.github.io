@@ -19,7 +19,7 @@ if (result.status !== 0) process.exit(result.status ?? 1);
 const output = join(project, 'dist', 'client');
 if (!existsSync(join(output, 'index.html'))) throw new Error('Static export is missing dist/client/index.html.');
 // Preserve vinext's flat HTML/RSC output and provide GitHub Pages directory
-// indexes for the public /optimization/ and /optimization/slug/ URLs. Take a
+// indexes for public /features/slug/ URLs. Take a
 // snapshot first so newly copied indexes are never traversed recursively.
 const exportedHtml = readdirSync(output, { recursive: true }).filter(file =>
   typeof file === 'string' && file.endsWith('.html') && !['index.html', '404.html'].includes(file.split(/[\\/]/).at(-1)));

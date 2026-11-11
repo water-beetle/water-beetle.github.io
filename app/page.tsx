@@ -1,48 +1,13 @@
-// Images are pre-sized files served directly by GitHub Pages.
-/* oxlint-disable next/no-html-link-for-pages, next/no-img-element */
+import { ArrowDown, ArrowUpRight, ArrowRight, Layers, ImageIcon } from 'lucide-react';
 import { SiteHeader, SiteFooter } from '@/components/site-chrome';
-import { devlogs } from '@/lib/devlog';
-import { optimizationPosts, optimizationHref } from '@/lib/optimization';
-
-export const dynamic = 'force-static';
-
+import { StatusBadge } from '@/components/status-badge';
+import { features, featureHref, imageCount } from '@/lib/features';
+export const dynamic='force-static';
 export default function Home() {
-  const latest = devlogs[0];
-  return <div className="site-shell">
-    <a href="#journal" className="skip-link">글 목록으로</a>
-    <SiteHeader />
-    <main id="top" className="wrap home-page">
-      <header className="home-intro">
-        <h1>개발 노트</h1>
-        <p>Unreal로 작은 행성에서 사는 게임을 만들고 있습니다.<br />최근에는 흙 채취 카트와 시작 화면을 손봤습니다.</p>
-      </header>
-      <div className="home-layout">
-        <div>
-          {latest && <article className="latest-post" id={latest.id}>
-            <a className="latest-image" href={`/devlog/${latest.id}/`} aria-label={latest.title}>
-              <img src={latest.media.kind === 'image' ? latest.media.src : latest.media.poster} alt={latest.media.alt} width={latest.media.kind === 'image' ? latest.media.width : 1600} height={latest.media.kind === 'image' ? latest.media.height : 900} fetchPriority="high" />
-            </a>
-            <div className="latest-copy">
-            <p className="post-meta"><time dateTime={latest.date.replaceAll('.', '-')}>{latest.date}</time><span>최근 글</span></p>
-            <h2><a href={`/devlog/${latest.id}/`}>{latest.title}</a></h2>
-            <p className="latest-summary">{latest.summary}</p>
-            <a className="read-link" href={`/devlog/${latest.id}/`}>개발일지 읽기 ↗</a>
-            </div>
-          </article>}
-          <section id="journal" className="journal-index" aria-labelledby="journal-title">
-            <div className="index-heading"><h2 id="journal-title">개발일지</h2><span>{devlogs.length}편</span></div>
-            <ol className="post-list">{devlogs.map(post => <li key={post.id} id={post.id === latest?.id ? undefined : post.id}>
-              <a className="archive-image" href={`/devlog/${post.id}/`} aria-label={post.title}><img src={post.media.kind === 'image' ? post.media.src : post.media.poster} alt={post.media.alt} loading="lazy" width={post.media.kind === 'image' ? post.media.width : 1600} height={post.media.kind === 'image' ? post.media.height : 900} /></a>
-              <div className="archive-copy"><p className="post-meta"><time dateTime={post.date.replaceAll('.', '-')}>{post.date}</time><span>LOG {post.number}</span></p><h3><a href={`/devlog/${post.id}/`}>{post.title}</a></h3><p>{post.summary}</p><a className="read-link" href={`/devlog/${post.id}/`}>기록 읽기 ↗</a></div>
-            </li>)}</ol>
-          </section>
-        </div>
-        <aside className="home-sidebar">
-          <section id="about"><h2>만드는 게임</h2><p className="game-name">ORBITAL FALL</p><p>작은 행성에 집이 있고, 우주선을 타고 장을 보러 갑니다. 운석이 떨어지면 마당에서 요격하고, 파인 땅은 흙을 가져와 메웁니다.</p><p>아직 개발 중입니다. 예전 글에는 당시 작업명인 Orbital Days와 Comet이 함께 나옵니다.</p></section>
-          <section><h2><a href="/optimization/">최적화 메모 <span aria-hidden="true">→</span></a></h2><p>지형 생성, 움직이는 행성, 물리와 렌더링에서 막혔던 부분들.</p><ul>{optimizationPosts.filter(post => ['01', '05', '14'].includes(post.number)).map(post => <li key={post.slug}><a href={optimizationHref(post.slug)}>{post.title}</a></li>)}</ul><a className="plain-link" href="/optimization/">전체 {optimizationPosts.length}편</a></section>
-        </aside>
-      </div>
-    </main>
-    <SiteFooter />
-  </div>;
+ const home=features.find(feature=>feature.slug==='home')!;
+ return <div id="top" className="site-shell"><a className="skip-link" href="#main">본문으로 건너뛰기</a><SiteHeader/><main id="main">
+   <section className="hero wrap" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow"><span className="status-dot"/> UNREAL ENGINE · 개발 중</p><h1 id="hero-title">운석을 캐고,<br/><span>공장을 만듭니다.</span></h1><p className="hero-description">작은 행성에 첫 작업장을 만들고,<br className="desktop-break"/> 공장에서 키운 우주선으로 다음 행성을 개척하는 게임.</p><p className="hero-note">지금까지 구현한 기능을 실제 화면과 함께 정리했습니다.</p><div className="hero-actions"><a className="primary-link" href="#features">구현한 기능 보기 <ArrowDown size={17}/></a><a className="text-link" href={featureHref('home')}>최신 집 둘러보기 <ArrowUpRight size={17}/></a></div><div className="hero-facts"><span><Layers size={15}/> {features.length}개 구현 주제</span><span><ImageIcon size={15}/> 실제 화면 {imageCount}장</span></div></div><figure className="hero-visual"><img src={home.media[0].src} alt="우주 하늘 아래 P01의 현재 목조 시작 주택" width={home.media[0].width} height={home.media[0].height} fetchPriority="high"/><figcaption><span>P01 · 시작 주택</span><span>2026.11.10 촬영</span></figcaption><a href={featureHref('home')} className="hero-image-link" aria-label="P01 집과 운영 본부 자세히 보기"><ArrowUpRight size={22}/></a></figure></section>
+   <section id="features" className="features-section wrap" aria-labelledby="features-title"><div className="section-heading"><div><p className="eyebrow">IMPLEMENTED SYSTEMS</p><h2 id="features-title">지금까지 만든 것들</h2></div><p>설명은 짧게, 화면은 충분히.<br/>궁금한 기능을 열어 자세히 볼 수 있습니다.</p></div><div className="feature-index">{features.map(feature=>{const cover=feature.media[feature.cover];return <article className="feature-card" key={feature.slug}><a className="feature-cover" href={featureHref(feature.slug)} aria-label={feature.title+' 자세히 보기'}><img src={cover.thumbnail} alt={cover.alt} width={cover.width} height={cover.height} loading="lazy"/><span className="cover-caption">{feature.media.length}장의 구현 화면 <ArrowUpRight size={18}/></span></a><div className="feature-copy"><div className="feature-meta"><span>{feature.number} / {feature.english}</span><StatusBadge label={feature.status}/></div><h3><a href={featureHref(feature.slug)}>{feature.title}<ArrowUpRight size={22} aria-hidden="true"/></a></h3><p>{feature.summary}</p><div className="feature-card-bottom"><div className="tags">{feature.tags.map(tag=><span key={tag}>{tag}</span>)}</div><a href={featureHref(feature.slug)} aria-label={feature.title+' 구현 살펴보기'} className="detail-link">살펴보기 <ArrowRight size={16}/></a></div></div></article>;})}</div></section>
+   <section id="progress" className="progress-section wrap" aria-labelledby="progress-title"><div className="section-heading"><div><p className="eyebrow">CURRENT PROGRESS</p><h2 id="progress-title">지금 연결된 플레이</h2></div><span className="updated-label">내용 기준 2026.11.11</span></div><div className="progress-panel"><div className="play-flow"><span>집에서 시작</span><ArrowRight/><span>운석 채굴</span><ArrowRight/><span>소재 제련</span><ArrowRight/><span>전력과 회수</span><ArrowRight/><strong>첫 부품 생산</strong></div><p>현재 P01의 새 게임에서 실제 비용을 지불하며 첫 부품까지 생산하는 코스를 검증했습니다. 연구·장비·재고는 저장하고 이어갈 수 있습니다.</p><div className="progress-notes"><div><span>기반 구현</span><p>행성 중력, 지형 편집, 우주선 비행과 게임 UI를 갖추고 있습니다. 현재 새 게임에는 초기 우주선을 생성하지 않습니다.</p></div><div><span>다음 작업</span><p>구동 조립과 생산 연결을 이어갑니다. 첫 배 제작·개조와 다른 행성의 공장 운송은 후속 구현입니다.</p></div></div></div></section>
+ </main><SiteFooter/></div>;
 }

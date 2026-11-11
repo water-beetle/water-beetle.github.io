@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://water-beetle.github.io/sitemap.xml

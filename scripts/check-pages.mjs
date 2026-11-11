@@ -1,82 +1,39 @@
 import assert from 'node:assert/strict';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-const project = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const root = join(project, 'dist', 'client');
-const html = readFileSync(join(root, 'index.html'), 'utf8');
-assert.match(html, /Orbital Days/);
-assert.match(html, /lang="ko"/);
-assert.match(html, /id="journal"/);
-assert.match(html, /starfield\.jpg/, 'Preserve the space background.');
-assert.ok(existsSync(join(root, '.nojekyll')), 'GitHub Pages must preserve _next assets.');
-const assets = new Set([...html.matchAll(/(?:src|href)="(\/[^"?#]*)(?:[^"]*)"/g)].map(match => match[1]));
-for (const asset of assets) {
-  if (asset === '/') continue;
-  assert.ok(existsSync(join(root, decodeURIComponent(asset))), 'Missing public asset: ' + asset);
+import {existsSync,readFileSync,readdirSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+const root=resolve('dist/client');
+const slugs=['planets','movement','spaceship','meteors','factory','research','home','interfaces'];
+const home=readFileSync(join(root,'index.html'),'utf8');
+assert.match(home,/ORBITAL FALL/);
+assert.match(home,/id="features"/);
+const styles = readdirSync(root,{recursive:true}).filter(file=>String(file).endsWith('.css'));
+assert.ok(styles.some(file=>readFileSync(join(root,file),'utf8').includes('starfield.jpg')),'Space background must be present in exported CSS');
+assert.ok(existsSync(join(root,'.nojekyll')));
+assert.ok(existsSync(join(root,'404.html')));
+assert.ok(!existsSync(join(root,'devlog')) && !existsSync(join(root,'optimization')), 'Retired article routes must not be exported');
+const pages=new Map([['/',home],...slugs.map(slug=>[`/features/${slug}/`,readFileSync(join(root,'features',slug,'index.html'),'utf8')])]);
+const photos=new Set();
+for(const [path,html] of pages){
+ assert.match(html,/lang="ko"/);
+ assert.equal([...html.matchAll(/<h1(?:\s|>)/g)].length,1,'One main heading: '+path);
+ assert.equal([...html.matchAll(/src="\/site-analytics\.js"/g)].length,1);
+ assert.ok(!/[A-Z]:[\\/](Users|UnrealProjects)/i.test(html),'No private local paths');
+ const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+ assert.equal(new Set(ids).size,ids.length,'Unique page anchors: '+path);
+ for(const [,raw] of html.matchAll(/(?:src|href)="((?:\/|#)[^"]*)"/g)){
+  const url=new URL(raw.replaceAll('&amp;','&'),'https://water-beetle.github.io'+path);
+  let file=decodeURIComponent(url.pathname);if(file.endsWith('/'))file+='index.html';
+  assert.ok(existsSync(join(root,file)),'Missing linked file: '+path+' -> '+file);
+ }
+ if(path!=='/'){
+  assert.match(html,/data-article-type="feature"/);
+  assert.match(html,/현재 범위와 남은 작업/);
+  assert.match(html,/comments-feature-/);
+  const images=[...html.matchAll(/src="(\/media\/features\/[^"?#]+-thumb\.webp)"/g)].map(m=>m[1]);
+  assert.equal(images.length,6,'Six gallery images: '+path);
+  for(const image of images)photos.add(image);
+ }
 }
-for (const filename of ['starfield.jpg']) {
-  assert.ok(existsSync(join(root, 'images', filename)), 'Missing image: ' + filename);
-}
-assert.ok(!/예시 기록|예시 콘텐츠|예시 컨셉 이미지|예시 글/.test(html), 'Sample posts must not appear in the published page.');
-assert.ok(!existsSync(join(root, 'images', 'cabin.jpg')) && !existsSync(join(root, 'images', 'station.jpg')), 'Sample images must not be published.');
-assert.ok(!html.includes('localhost:'), 'Public HTML must not reference a local server.');
-const journalPaths = [...new Set([...html.matchAll(/href="(\/devlog\/[^"/#]+\/)"/g)].map(match => match[1]))];
-assert.equal(journalPaths.length, 14, 'All fourteen journals need independent reading pages.');
-assert.ok(journalPaths.includes('/devlog/comet-tests-2026-09-09/'));
-assert.ok(!html.includes('id="comments-'), 'The index must not load every comment widget.');
-const journalIds = journalPaths.map(path => path.split('/')[2]);
-for (const id of journalIds) assert.ok(html.includes('id="' + id + '"'), 'Preserve old hash links: ' + id);
-
-const series = readFileSync(join(root, 'optimization', 'index.html'), 'utf8');
-const articlePaths = [...new Set([...series.matchAll(/href="(\/optimization\/[^"/#]+\/)"/g)].map(match => match[1]))];
-assert.equal(articlePaths.length, 14, 'The complete optimization series must expose all fourteen articles.');
-assert.match(html, /href="\/optimization\/"/, 'Home navigation must expose the optimization section.');
-const pages = new Map([['/', html], ['/optimization/', series], ...[...articlePaths, ...journalPaths].map(path => [path, readFileSync(join(root, path, 'index.html'), 'utf8')])]);
-const idsByPage = new Map();
-for (const [path, content] of pages) {
-  const ids = [...content.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
-  assert.equal(new Set(ids).size, ids.length, 'Duplicate anchors on ' + path);
-  idsByPage.set(path, new Set(ids));
-  assert.equal([...content.matchAll(/<h1(?:\s|>)/g)].length, 1, 'Exactly one page heading on ' + path);
-  assert.match(content, /lang="ko"/);
-  assert.equal([...content.matchAll(/src="\/site-analytics\.js"/g)].length, 1, 'One analytics loader per page: ' + path);
-  assert.match(content, /data-measurement-id="G-[A-Z0-9]+"/);
-  assert.ok(!/[A-Z]:[\\/](?:Users|UnrealProjects)/i.test(content), 'Private local path in ' + path);
-  if (journalPaths.includes(path)) {
-    const id = path.split('/')[2];
-    assert.match(content, /id="article-content"/);
-    assert.ok(content.includes('data-analytics-article="journal/' + id + '"'));
-    assert.ok(content.includes('id="comments-' + id + '"'));
-    assert.equal([...content.matchAll(/id="comments-[^"]+"/g)].length, 1);
-    assert.ok(content.includes('href="' + path + '"'), 'Journal canonical URL: ' + path);
-    assert.ok(content.includes(encodeURIComponent('"/#' + id + '"')), 'Preserve the original Discussion lookup: ' + id);
-  }
-  if (articlePaths.includes(path)) {
-    assert.match(content, /id="article-content"/);
-    assert.match(content, /코드와 확인 자료/);
-    assert.equal([...content.matchAll(/id="comments-[^"]+"/g)].length, 1, 'One comment thread per optimization article.');
-    assert.match(content, /data-analytics-article="optimization\//);
-    assert.ok([...content.matchAll(/<section id="/g)].length >= 7, 'Missing detailed sections on ' + path);
-  }
-}
-for (const [path, content] of pages) {
-  for (const [, href] of content.matchAll(/(?:href|src)="((?:\/|#)[^"]*)"/g)) {
-    const url = new URL(href.replaceAll('&amp;', '&'), 'https://blog.example' + path);
-    if (url.origin !== 'https://blog.example') continue;
-    assert.ok(existsSync(join(root, decodeURIComponent(url.pathname))), 'Missing link or asset: ' + path + ' -> ' + href);
-    if (url.hash && idsByPage.has(url.pathname)) {
-      assert.ok(idsByPage.get(url.pathname).has(decodeURIComponent(url.hash.slice(1))), 'Broken anchor: ' + path + ' -> ' + href);
-    }
-  }
-}
-const evidence = JSON.parse(readFileSync(join(root, 'optimization', 'evidence.json'), 'utf8'));
-assert.equal(evidence.records.default_startup.exit_code, 0);
-assert.equal(evidence.records.full06.passed + evidence.records.full06.passed_with_warnings, 90);
-assert.ok(evidence.records.movement_final01.aggregate_by_mode.environment.metrics.FrameTime.average_fps < 60);
-const additionalEvidence = JSON.parse(readFileSync(join(root, 'optimization', 'additional-evidence-2026-09-09.json'), 'utf8'));
-assert.equal(additionalEvidence.records.local_speed160.status, 'failed', 'The original 160 m/s failure must remain explicit.');
-assert.deepEqual(additionalEvidence.records.qhd_native_tsr75.observed_viewport, [2560, 1440]);
-assert.ok(!/[A-Z]:[\\/]/i.test(JSON.stringify(additionalEvidence)), 'Additional evidence must use project-relative paths.');
-console.log('Fourteen static optimization articles, navigation, unique anchors, metadata headings, and cited evidence verified.');
-console.log('Fourteen journal pages, legacy anchors, comment identities, Korean content, and media links verified.');
+assert.equal(photos.size,48,'48 distinct screenshots');
+assert.equal(readdirSync(join(root,'media/features')).length,96,'Full and thumbnail image pairs');
+console.log(`Verified ${pages.size} pages, 48 screenshots, local links, retired routes, analytics and 404.`);

@@ -1,4 +1,4 @@
-name: Deploy Orbital Days to GitHub Pages
+name: Deploy ORBITAL FALL implementation showcase
 
 on:
   push:
