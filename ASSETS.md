@@ -62,3 +62,7 @@
 ## UI 라이브러리
 
 Astryx 0.7.13과 neutral 테마는 Meta의 MIT 라이선스 패키지를 사용합니다. 프로젝트 의존성에 원본 라이선스를 유지하며 `public/licenses/astryx.txt`에 고지를 포함합니다. https://github.com/meta/astryx
+
+## Astryx 공식 구성 적용
+
+Astryx 0.7.13 CLI에 포함된 centered-hero, product-gallery, classic-gallery 템플릿을 참고해 기존 게임 설명과 촬영본으로 구성했습니다. 라이브러리 원본은 수정하지 않았으며 Meta MIT 고지를 유지합니다. 자체 카드·버튼·모달 디자인을 제거하고 native 컴포넌트를 사용합니다.

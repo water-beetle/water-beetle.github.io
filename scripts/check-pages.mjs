@@ -12,6 +12,8 @@ assert.ok(existsSync(join(root,'.nojekyll')));
 assert.ok(existsSync(join(root,'404.html')));
 assert.ok(!existsSync(join(root,'devlog')) && !existsSync(join(root,'optimization')), 'Retired article routes must not be exported');
 const pages=new Map([['/',home],...slugs.map(slug=>[`/features/${slug}/`,readFileSync(join(root,'features',slug,'index.html'),'utf8')])]);
+assert.ok(home.includes('astryx-app-shell') && home.includes('astryx-top-nav'),'Native Astryx shell and navigation');
+assert.ok(home.includes('astryx-heading') && home.includes('astryx-card') && home.includes('astryx-grid'),'Native Astryx hero and feature gallery');
 const photos=new Set();
 for(const [path,html] of pages){
  assert.match(html,/lang="ko"/);
@@ -29,8 +31,9 @@ for(const [path,html] of pages){
   assert.match(html,/data-article-type="feature"/);
   assert.match(html,/현재 범위와 남은 작업/);
   assert.match(html,/comments-feature-/);
-  const images=[...html.matchAll(/src="(\/media\/features\/[^"?#]+-thumb\.webp)"/g)].map(m=>m[1]);
+  const images=[...html.matchAll(/<img[^>]+src="(\/media\/features\/[^"?#]+-thumb\.webp)"/g)].map(m=>m[1]);
   assert.equal(images.length,6,'Six gallery images: '+path);
+  assert.ok(html.includes('astryx-card') && html.includes('astryx-grid'),'Native Astryx content components: '+path);
   for(const image of images)photos.add(image);
  }
 }

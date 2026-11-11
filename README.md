@@ -8,7 +8,7 @@
 - 이미지는 `public/media/features/`에 전체 보기와 썸네일 WebP를 함께 둡니다.
 - `npm install` 후 `npm run dev`로 로컬 미리보기를 실행합니다.
 - `npx tsc --noEmit`, `npm run test:analytics`, `npm run build:pages`, `npm run check:pages`로 확인합니다.
-- Astryx 0.7.13의 Theme, Badge, Button, Dialog를 사용하며, 공식 API는 `npx @astryxdesign/cli component 이름`으로 확인할 수 있습니다.
+- Astryx 0.7.13 공식 centered-hero·product-gallery 구성을 적용합니다. AppShell·TopNav·Layout·Grid·Card·ClickableCard·Heading·Text·Button·Badge·Breadcrumbs·List·Collapsible·Lightbox를 실제 UI에 사용하며, 공식 API는 `npx @astryxdesign/cli component 이름`으로 확인할 수 있습니다.
 
 ## 게시
 
@@ -23,3 +23,5 @@
 ## 통계와 댓글
 
 기존 GA4 설정과 개인정보 보호 동작을 유지합니다. DNT/GPC를 존중하며 URL의 쿼리·해시·개인정보를 추가 전송하지 않습니다. 새 상세 페이지의 조회 이벤트 유형은 `feature`입니다. giscus 댓글 키는 `/features/주제/`이며 기존 Discussions는 삭제하지 않습니다. 댓글은 GitHub 계정으로 작성합니다.
+
+컴포넌트 기본 모양과 간격·타이포그래피는 Astryx neutral 테마가 담당합니다. 자체 CSS는 우주 배경·이미지 채우기·문서 스크롤 설정에 한정합니다. Lightbox의 확대·탐색·키보드·터치 동작과 모바일 내비게이션은 라이브러리를 그대로 사용하며 한국어 기본 번역을 제공합니다.
