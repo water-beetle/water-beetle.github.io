@@ -51,12 +51,20 @@ test('초안은 검토 전 공개되지 않고, 검토한 글만 공개 색인�
     );
     draft.reviewed = true;
     draft.cover = 'test';
+    draft.chapterId = 'unknown-chapter';
+    await writeFile(file, JSON.stringify(draft));
+    await assert.rejects(
+      publishDraft({ slug: 'new-note', reviewed: true, project }),
+      /chapterId/,
+    );
+    draft.chapterId = 'bench';
     await writeFile(file, JSON.stringify(draft));
     await publishDraft({ slug: 'new-note', reviewed: true, project });
     const entries = await indexPublished(project);
     assert.equal(entries.length, 1);
     assert.equal(entries[0].slug, 'new-note');
     assert.equal(entries[0].sourceFacts, undefined);
+    assert.equal(entries[0].chapterId, 'bench');
     assert.equal(entries[0].candidates, undefined);
     assert.equal(entries[0].assets, undefined);
     await assert.rejects(

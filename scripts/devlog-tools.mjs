@@ -120,6 +120,7 @@ export async function publishDraft({
       'category',
       'summary',
       'readingMinutes',
+      'chapterId',
       'cover',
       'sections',
       'comparison',
@@ -129,6 +130,13 @@ export async function publishDraft({
       .map((k) => [k, draft[k]]),
   );
   entry.status = 'published';
+  if (
+    entry.chapterId !== undefined &&
+    !['home', 'meteor', 'mining', 'bench', 'research', 'drone'].includes(
+      entry.chapterId,
+    )
+  )
+    throw Error('유효한 chapterId를 선택하세요.');
   for (const key of ['title', 'date', 'category', 'summary', 'cover', 'next'])
     if (typeof entry[key] !== 'string' || !entry[key].trim())
       throw Error(key + ' 항목을 채워 주세요.');

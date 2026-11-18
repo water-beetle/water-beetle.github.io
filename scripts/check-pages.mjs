@@ -16,16 +16,14 @@ const slugs = [
   'home',
   'interfaces',
 ];
+const chapterIds = ['home', 'meteor', 'mining', 'bench', 'research', 'drone'];
 const manifest = JSON.parse(
   readFileSync(join(root, '.vite/manifest.json'), 'utf8'),
 );
 assert.ok(
-  manifest['components/showcase.tsx'].dynamicImports.includes(
-    'components/planet-scene.tsx',
-  ),
-  '3D stays lazy-loaded',
+  !Object.keys(manifest).some((key) => key.includes('planet-scene')),
+  'No decorative 3D runtime',
 );
-assert.ok(!home.includes('planet-scene-'), 'Initial HTML does not preload 3D');
 const pages = new Map([
   ['/', home],
   ['/updates/', readFileSync(join(root, 'updates/index.html'), 'utf8')],
@@ -38,31 +36,47 @@ const pages = new Map([
     readFileSync(join(root, 'features', s, 'index.html'), 'utf8'),
   ]),
 ]);
-assert.match(home, /ORBITAL FALL/);
-assert.match(home, /id="journey"/);
-assert.match(home, /id="features"/);
-assert.match(home, /id="progress"/);
-assert.match(home, /orbital-planet\.svg/);
-assert.match(home, /5초/);
+for (const marker of [
+  'ORBITAL FALL',
+  'id="journey"',
+  'id="features"',
+  'id="progress"',
+  '/media/story/home-wide.webp',
+  '03 건설 중',
+  '04 완성',
+  '5초',
+])
+  assert.ok(home.includes(marker), 'Homepage story: ' + marker);
+for (const chapter of chapterIds)
+  assert.ok(home.includes(`id="step-${chapter}"`), 'Chapter anchor ' + chapter);
+assert.ok(
+  !home.includes('orbital-planet.svg'),
+  'Actual game imagery replaces decorative planet',
+);
+assert.ok(
+  home.includes('<noscript>') && home.includes('ground-preview.webp'),
+  'No-JS actual process images',
+);
 assert.ok(
   existsSync(join(root, '.nojekyll')) && existsSync(join(root, '404.html')),
 );
-assert.ok(
-  !existsSync(join(root, 'drafts')) &&
-    !existsSync(join(root, 'devlog')) &&
-    !existsSync(join(root, 'optimization')),
-);
+for (const retired of ['drafts', 'devlog', 'optimization'])
+  assert.ok(
+    !existsSync(join(root, retired)),
+    'No private/retired route ' + retired,
+  );
 for (const [path, html] of pages) {
+  if(path!=='/'){assert.match(html, /class="experience is-reading"/);assert.match(html, /<section class="reader-panel/);assert.match(html, /<aside[^>]*inert=""/)}
   assert.match(html, /lang="ko"/);
   assert.equal(
     [...html.matchAll(/<h1(?:\s|>)/g)].length,
     1,
-    'One main heading: ' + path,
+    'One heading: ' + path,
   );
   assert.equal([...html.matchAll(/src="\/site-analytics\.js"/g)].length, 1);
   assert.ok(
     !/[A-Z]:[\\/](Users|UnrealProjects)/i.test(html),
-    'No local paths: ' + path,
+    'No private paths: ' + path,
   );
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
   assert.equal(new Set(ids).size, ids.length, 'Unique anchors: ' + path);
@@ -96,18 +110,24 @@ const media = JSON.parse(readFileSync('lib/journal-media.json', 'utf8'));
 for (const item of Object.values(media))
   for (const key of ['src', 'thumbnail'])
     assert.ok(existsSync(join(root, item[key])), 'Missing image ' + item[key]);
-const contentFiles = readdirSync('content/published').filter(
-  (f) => f.endsWith('.json') && f !== 'index.json',
-);
+const source = JSON.parse(readFileSync('content/published/index.json', 'utf8'));
+for (const entry of source) {
+  assert.ok(entry.status === 'published');
+  assert.ok(!entry.chapterId || chapterIds.includes(entry.chapterId));
+  assert.deepEqual(
+    entry,
+    JSON.parse(
+      readFileSync('content/published/' + entry.slug + '.json', 'utf8'),
+    ),
+    'Index matches article ' + entry.slug,
+  );
+}
 assert.equal(
-  contentFiles.length,
+  readdirSync('content/published').filter(
+    (f) => f.endsWith('.json') && f !== 'index.json',
+  ).length,
   entries.length,
-  'Published index stays synchronized',
-);
-assert.ok(
-  entries.every((p) => p.status === 'published'),
-  'Only reviewed publication data',
 );
 console.log(
-  `Verified ${pages.size} pages, current journey, ${entries.length} posts, media, links, legacy routes, analytics and draft exclusion.`,
+  `Verified ${pages.size} pages, six chapters, real construction frames, ${Object.keys(media).length} image pairs, legacy URLs, analytics, comments and private-draft exclusion.`,
 );

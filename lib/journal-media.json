@@ -94,5 +94,109 @@
     "caption": "2026.11.17 조립 검증 촬영본. 화면의 제작대 명칭은 현재 간이 제작대로 바뀌었으며, 연구·원료 4개·10초 조립·단일 수령 규칙은 유지됩니다.",
     "width": 1280,
     "height": 722
+  },
+  "home-wide": {
+    "src": "/media/story/home-wide.webp",
+    "thumbnail": "/media/story/home-wide-thumb.webp",
+    "alt": "작은 행성 위의 집과 첫 운석",
+    "caption": "2026.11.18 실제 PIE 전경. 구형 지면의 집·숲·첫 운석을 촬영용 높은 시점에서 담았습니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "home-start": {
+    "src": "/media/story/home-start.webp",
+    "thumbnail": "/media/story/home-start-thumb.webp",
+    "alt": "집 현관에서 시작하는 실제 화면",
+    "caption": "2026.11.18 새 게임의 집 현관. 문을 처음 열면 첫 운석의 낙하 대기가 시작됩니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "meteor-wide": {
+    "src": "/media/story/meteor-wide.webp",
+    "thumbnail": "/media/story/meteor-wide-thumb.webp",
+    "alt": "집 앞에 떨어진 첫 운석의 전경",
+    "caption": "2026.11.18 실제 PIE 전경. 첫 운석과 집의 위치를 촬영용 높은 시점에서 담았습니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "ground-preview": {
+    "src": "/media/story/ground-preview.webp",
+    "thumbnail": "/media/story/ground-preview-thumb.webp",
+    "alt": "간이 제작대를 놓을 지면 선택",
+    "caption": "2026.11.18 실제 화면. 설치 가능한 지면을 보고 LMB로 위치를 확정합니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "bench-building": {
+    "src": "/media/story/bench-building.webp",
+    "thumbnail": "/media/story/bench-building-thumb.webp",
+    "alt": "5초 현장 건설이 진행 중인 제작대",
+    "caption": "2026.11.18 실제 화면. 건설은 한 번 누르면 진행되며, 원료는 완성 순간에 소비됩니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "bench-complete": {
+    "src": "/media/story/bench-complete.webp",
+    "thumbnail": "/media/story/bench-complete-thumb.webp",
+    "alt": "직접 완성한 첫 간이 제작대",
+    "caption": "2026.11.18 실제 화면. 원료 4개로 완성한 제작대 앞에서 E로 조립 화면을 엽니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "research-ready": {
+    "src": "/media/story/research-ready.webp",
+    "thumbnail": "/media/story/research-ready-thumb.webp",
+    "alt": "집 컴퓨터의 첫 채굴 드론 연구 준비",
+    "caption": "2026.11.18 실제 연구 화면. 첫 연구에는 개인 원료 2개와 10초가 필요합니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "research-running": {
+    "src": "/media/story/research-running.webp",
+    "thumbnail": "/media/story/research-running-thumb.webp",
+    "alt": "개인 원료를 지불하고 진행 중인 첫 연구",
+    "caption": "2026.11.18 실제 연구 화면. 채굴한 원료 2개를 지불하고 연구를 진행했습니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "research-current": {
+    "src": "/media/story/research-current.webp",
+    "thumbnail": "/media/story/research-current-thumb.webp",
+    "alt": "첫 채굴 드론의 제작법을 발견한 화면",
+    "caption": "2026.11.18 실제 연구 완료 화면. 제작법 해금 뒤 제작대에서 기체를 조립합니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "drone-current-ready": {
+    "src": "/media/story/drone-current-ready.webp",
+    "thumbnail": "/media/story/drone-current-ready-thumb.webp",
+    "alt": "현행 간이 제작대에서 채굴 드론 조립 준비",
+    "caption": "2026.11.18 실제 간이 제작대 화면. 연구 완료 뒤 개인 원료 4개로 조립을 시작합니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "drone-current-building": {
+    "src": "/media/story/drone-current-building.webp",
+    "thumbnail": "/media/story/drone-current-building-thumb.webp",
+    "alt": "간이 제작대에서 조립 중인 채굴 드론",
+    "caption": "2026.11.18 실제 조립 화면. 10초 조립이며 화면을 닫으면 일시정지합니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "drone-current-complete": {
+    "src": "/media/story/drone-current-complete.webp",
+    "thumbnail": "/media/story/drone-current-complete-thumb.webp",
+    "alt": "조립이 끝나 수령을 기다리는 첫 채굴 드론",
+    "caption": "2026.11.18 실제 조립 완료 화면. 완성품은 한 번 수령합니다.",
+    "width": 1600,
+    "height": 902
+  },
+  "drone-current-inventory": {
+    "src": "/media/story/drone-current-inventory.webp",
+    "thumbnail": "/media/story/drone-current-inventory-thumb.webp",
+    "alt": "첫 채굴 드론을 수령한 개인 인벤토리",
+    "caption": "2026.11.18 실제 수령 결과. 채굴한 원료 10개를 제작대 4개·연구 2개·조립 4개로 사용했습니다.",
+    "width": 1600,
+    "height": 902
   }
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { StoryExperience } from '@/components/story-experience';
 import { Providers } from '@/components/providers';
 import {
   googleAnalyticsMeasurementId,
@@ -21,9 +22,7 @@ export const metadata: Metadata = {
     description,
     locale: 'ko_KR',
     type: 'website',
-    images: [
-      { url: '/media/journal/pickaxe-wide.webp', width: 1280, height: 722 },
-    ],
+    images: [{ url: '/media/story/home-wide.webp', width: 1600, height: 902 }],
   },
 };
 export default function RootLayout({
@@ -32,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="ko" data-theme="dark" data-astryx-theme="orbital">
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <StoryExperience>{children}</StoryExperience>
+        </Providers>
         {isGoogleAnalyticsConfigured() && (
           <script
             defer

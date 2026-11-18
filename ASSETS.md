@@ -86,3 +86,24 @@ Astryx 0.7.13 CLI에 포함된 centered-hero, product-gallery, classic-gallery �
 | bench-screen.webp | raw-basic-bench-20261118/bench-research-required.png | e8cda04c2238a8ad9752cda5e17f3d47ec960880dc24d9627dabfce6235e1386 |
 | research.webp | personal-research-20261117/first-research-complete-720.png | a893cc2496b43e88af604c8d09df94d598c85af9de152240ba98eeb605b3efba |
 | drone.webp | manualcraft-menu-20261117/assembly-ready.png | 4ebcb1a9ef24423749765a4b2a3ec6be6e0757d8c34995fd6d87a66123709dc7 |
+
+
+## 2026-11-18 실제 플레이 시퀀스
+
+게임 원본 PNG의 색·구도·HUD를 보존한 WebP 변환입니다. 전경 2장은 실제 PIE 세계를 촬영용 높은 시점에서 촬영했습니다. 게임 모델·집·운석 배치는 변경하지 않았습니다. 연구·조립·수령은 실제 원료 10개를 채굴해 진행했고 저장 호출은 하지 않았습니다.
+
+| 이미지 | Comet outputs 원본 | SHA256 |
+| --- | --- | --- |
+| home-wide.webp | blog-story-20261118/captures/views/home-wide-2.png | e4ec239891eaa4a17c019bd828d903bcaa027fe1a57dddb455bd1868da1eedc6 |
+| home-start.webp | blog-story-20261118/captures/home-start.png | 4f9dcd21a11e6e453580a6c6421a430418b542fbd29152c4f919fd2ba7371bcf |
+| meteor-wide.webp | blog-story-20261118/captures/views/meteor-wide-0.png | 4851b3208e1a16e823db41138220bffbbd11e9ba8df9033b338e261a89f3db2c |
+| ground-preview.webp | bench-process-images-20261118/07-ground-preview.png | 2c9e4f83e4731ea2019b1bb4085a22c06effe40cd1f1ea747ceba64830bca30e |
+| bench-building.webp | bench-process-images-20261118/08-five-second-construction.png | 296c291860a1d3af32dcaa93039c363f8d60c326a57cf922234fb965b23c3153 |
+| bench-complete.webp | bench-process-images-20261118/09-completed-bench.png | 050c1eee1129c60a69c83a34d5bac81338bd7f5b6cb5cc4a7bb8cb41402b389e |
+| research-ready.webp | blog-story-20261118/captures/research-ready.png | 240134b610bedde4e2a02b13bd25c2607f9640f8ae46a2104c36f53e93e054d2 |
+| research-running.webp | blog-story-20261118/captures/research-running.png | 194557648d0dbbbf0d5fd2adf2e5aec2d289fd7eac1f3e5320ddbb7c6a2cb97b |
+| research-current.webp | blog-story-20261118/captures/research-complete.png | b92d943c5d096ad907d12f9cab4c797125cf20eb16085f6c59bd7e64df096c52 |
+| drone-current-ready.webp | blog-story-20261118/captures/drone-ready.png | 84bc035392420d422e93726a4d9d07753e732677dd72f5f290ab0fa70c210252 |
+| drone-current-building.webp | blog-story-20261118/captures/drone-assembling.png | dcaaf3ab48117567aa46c77d7c7529f56ec4cccfddbe617c2e4c30ee016742f2 |
+| drone-current-complete.webp | blog-story-20261118/captures/drone-complete.png | 25d2fea2e200d2c0ea524cf05ce0d7498436a24b413b5a58a994036f36fc44eb |
+| drone-current-inventory.webp | blog-story-20261118/captures/drone-inventory.png | c2984855a10efc4cf2810f6ad3892fde8c2d3d7a80bbc4d8559a9f62f3fbe231 |

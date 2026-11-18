@@ -1,134 +1,156 @@
 'use client';
-import { ArrowDown, ArrowRight, ArrowUpRight, MoveUpRight } from 'lucide-react';
-import { Button } from '@astryxdesign/core/Button';
-import { SiteShell } from '@/components/site-chrome';
-import { PlanetHero } from '@/components/planet-hero';
-import { Journey } from '@/components/journey';
-import { Reveal } from '@/components/reveal';
-import { DevlogCards } from '@/components/devlog-cards';
-import { devlogs, updateHref, formatDate } from '@/lib/devlogs';
+import { useEffect } from 'react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { chapters } from '@/lib/story';
+import { media, devlogs, formatDate, updateHref } from '@/lib/devlogs';
 import { features, featureHref } from '@/lib/features';
+import { useStory, StoryLink } from './story-context';
+import { MobileChapter } from './story-stage';
+import { SiteFooter } from './site-chrome';
 export function Showcase() {
-  const latest = devlogs[0];
+  const story = useStory();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const entry = visible[0];
+        if (entry) {
+          const chapter = chapters.find(
+            (c) => 'step-' + c.id === entry.target.id,
+          );
+          if (chapter) story.setChapter(chapter.id);
+        }
+      },
+      { rootMargin: '-35% 0px -45% 0px', threshold: 0 },
+    );
+    document
+      .querySelectorAll('[data-story-chapter]')
+      .forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
   return (
-    <SiteShell>
-      <section className="hero section">
-        <div className="hero-copy">
-          <Reveal>
-            <p className="eyebrow">
-              <span className="line-mark" />
-              SMALL PLANET. INFINITE POSSIBILITIES.
-            </p>
-            <h1>
-              운석 하나로
-              <br />
-              시작하는 <em>이야기.</em>
-            </h1>
-            <p className="hero-description">
-              집에서 도구를 들고, 운석을 캐고,
-              <br />첫 작업장을 세우기까지.
-              <br />
-              작은 행성의 공장 게임을 만들어 가는 기록입니다.
-            </p>
-            <div className="hero-actions">
-              <Button
-                label="처음부터 둘러보기"
-                href="#journey"
-                variant="primary"
-                size="lg"
-                endContent={<ArrowDown size={17} />}
-              />
-              <a className="text-link" href="/updates/">
-                개발 기록 읽기 <ArrowUpRight size={17} />
-              </a>
+    <>
+      <h1 className="sr-only">
+        ORBITAL FALL — 실제 게임 화면으로 따라가는 첫 제작대와 채굴 드론
+      </h1>
+      <div id="journey" className="story-track">
+        {chapters.map((chapter) => (
+          <section
+            key={chapter.id}
+            id={'step-' + chapter.id}
+            className="chapter-trigger"
+            data-story-chapter
+            aria-labelledby={'heading-' + chapter.id}
+          >
+            <MobileChapter chapter={chapter} />
+            <div className="chapter-document">
+              <span>{chapter.number} / 06</span>
+              <h2 id={'heading-' + chapter.id}>
+                {chapter.title.replace('\n', ' ')}
+              </h2>
+              <p>{chapter.description}</p>
+              <p>{chapter.fact}</p>
+              <noscript>
+                {chapter.frames.map((frame) => (
+                  <figure key={frame.id}>
+                    <img
+                      src={media[frame.media].src}
+                      alt={media[frame.media].alt}
+                      width={media[frame.media].width}
+                      height={media[frame.media].height}
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      {frame.label} — {frame.note} {media[frame.media].caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </noscript>
+              <noscript>
+                <a href={updateHref(chapter.article)}>
+                  이 장면의 개발 기록 읽기
+                </a>
+              </noscript>
             </div>
-            <div className="hero-footnote">
-              <span className="status-light" />
-              Unreal Engine · 하나씩 만들어 가는 중
-            </div>
-          </Reveal>
-        </div>
-        <PlanetHero />
-        <div className="hero-transmission">
-          <span className="eyebrow">LATEST TRANSMISSION</span>
-          <time dateTime={latest.date}>{formatDate(latest.date)}</time>
-          <a href={updateHref(latest.slug)}>
-            {latest.title} <ArrowUpRight size={16} />
-          </a>
-        </div>
-      </section>
-      <Journey />
-      <section className="section latest-section" id="updates">
-        <Reveal className="section-heading heading-row">
-          <div>
-            <p className="eyebrow">
-              <span className="line-mark" />
-              DEVELOPMENT LOG
-            </p>
-            <h2>조금씩, 달라지는 세계.</h2>
-            <p>플레이를 연결하고, 손에 익는 경험을 다듬습니다.</p>
-          </div>
-          <a className="text-link" href="/updates/">
-            모든 기록 <ArrowUpRight size={17} />
-          </a>
-        </Reveal>
-        <DevlogCards entries={devlogs.slice(0, 3)} />
-      </section>
-      <section id="features" className="section world-section">
-        <Reveal className="section-heading">
-          <p className="eyebrow">
-            <span className="line-mark" />A WORLD IN THE MAKING
+          </section>
+        ))}
+      </div>
+      <section className="story-outro" id="updates">
+        <div className="outro-intro">
+          <span className="overline">THE STORY CONTINUES</span>
+          <h2>조금씩, 다음 장면으로.</h2>
+          <p>
+            플레이를 연결하고, 손에 익는 경험을 다듬습니다.
+            <br />
+            지금의 게임이 만들어지는 과정을 기록합니다.
           </p>
-          <h2>작은 세계를 이루는 것들.</h2>
-          <p>지금의 플레이와, 그 뒤에서 다듬어 온 구현 이야기.</p>
-        </Reveal>
-        <div className="world-grid">
-          {features.map((feature) => (
-            <a
-              className="world-row"
-              key={feature.slug}
-              href={featureHref(feature.slug)}
+          <StoryLink className="story-link" href="/updates/">
+            개발 기록실 열기 <ArrowUpRight size={17} />
+          </StoryLink>
+        </div>
+        <div className="latest-log">
+          {devlogs.slice(0, 3).map((entry, i) => (
+            <StoryLink
+              href={updateHref(entry.slug)}
+              className="latest-row"
+              key={entry.slug}
             >
-              <span className="world-number">{feature.number}</span>
+              <span className="log-index">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <img
+                src={media[entry.cover].thumbnail}
+                alt={media[entry.cover].alt}
+                width={160}
+                height={90}
+                loading="lazy"
+              />
               <div>
-                <h3>{feature.title}</h3>
-                <p>{feature.status}</p>
+                <span>
+                  {formatDate(entry.date)} / {entry.category}
+                </span>
+                <h3>{entry.title}</h3>
+                <p>{entry.summary}</p>
               </div>
-              <MoveUpRight size={19} />
-            </a>
+              <ArrowUpRight size={22} />
+            </StoryLink>
           ))}
         </div>
-      </section>
-      <section id="progress" className="section progress-section">
-        <Reveal>
-          <p className="eyebrow">
-            <span className="line-mark" />
-            WHERE WE ARE HEADING
-          </p>
-          <h2>이제, 첫 공장을 향해.</h2>
-          <div className="progress-columns">
-            <div>
-              <span className="progress-label">지금 이어지는 플레이</span>
-              <p>
-                곡괭이 채굴에서 간이 제작대 건설,
-                <br />첫 연구와 드론 조립·수령까지.
-              </p>
-            </div>
-            <ArrowRight className="progress-arrow" size={24} />
-            <div>
-              <span className="progress-label">다음에 만들어 갈 것</span>
-              <p>
-                드론 전개와 동력, 자동 채굴.
-                <br />
-                공장 생산에서 우주선 성장으로.
-              </p>
-            </div>
+        <section className="implemented-section" id="features">
+          <div>
+            <p className="overline">BEHIND THE SCENES</p>
+            <h2>이 세계를 이루는 것들.</h2>
+            <p>현재의 시작 흐름과, 그 뒤에서 다듬어 온 구현 기록.</p>
           </div>
-          <a className="text-link" href="/updates/first-mining-drone/">
-            현재 진행 더 알아보기 <ArrowUpRight size={16} />
-          </a>
-        </Reveal>
+          <div className="feature-list">
+            {features.map((feature) => (
+              <StoryLink key={feature.slug} href={featureHref(feature.slug)}>
+                <span>{feature.number}</span>
+                <div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.status}</p>
+                </div>
+                <ArrowUpRight size={17} />
+              </StoryLink>
+            ))}
+          </div>
+        </section>
+        <section id="progress" className="progress-note">
+          <p className="overline">WHAT COMES NEXT</p>
+          <h2>첫 기체 다음에는, 첫 공장.</h2>
+          <p>
+            지금은 간이 제작대 건설과 첫 연구, 드론 조립·수령까지 이어집니다.
+            <br />
+            드론 전개·동력·자동 채굴에서 공장 생산과 우주선 성장으로 나아갑니다.
+          </p>
+          <StoryLink href="/updates/first-mining-drone/" className="story-link">
+            현재 진행과 남은 작업 <ArrowRight size={17} />
+          </StoryLink>
+        </section>
+        <SiteFooter />
       </section>
-    </SiteShell>
+    </>
   );
 }
