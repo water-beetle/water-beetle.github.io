@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <StoryLink
-        href="/#step-home"
+        href="/#scene=clearing&shot=arrival"
         className="brand"
         aria-label="ORBITAL FALL 첫 장면"
       >
@@ -22,10 +22,10 @@ export function SiteHeader() {
       </StoryLink>
       <nav aria-label="주 메뉴">
         <StoryLink
-          href="/#step-home"
+          href="/#scene=clearing&shot=arrival"
           aria-current={path === '/' ? 'page' : undefined}
         >
-          플레이 과정
+          작은 세계로
         </StoryLink>
         <StoryLink
           href="/updates/"
@@ -36,13 +36,10 @@ export function SiteHeader() {
             {String(devlogs.length).padStart(2, '0')}
           </span>
         </StoryLink>
-        <StoryLink href="/#features">
-          만들어 온 것들 <ArrowUpRight size={13} />
-        </StoryLink>
       </nav>
       <span className="header-status">
         <i />
-        개발 중
+        개발 중인 게임
       </span>
     </header>
   );
@@ -77,7 +74,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const story = useStory();
   const chapter =
     devlogs.find((p) => path.includes('/updates/' + p.slug))?.chapterId ||
-    featureChapters[path.split('/')[2]];
+    featureChapters[path.split('/')[2]] ||
+    (/^\/updates\/?$/.test(path) ? 'research' : undefined);
   const archive = /^\/updates\/?$/.test(path);
   useEffect(() => {
     if (path === '/') return;

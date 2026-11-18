@@ -7,6 +7,7 @@ import {
   siteOrigin,
 } from '@/lib/site-integrations';
 import './globals.css';
+import './explorer.css';
 const description =
   '작은 행성에서 운석 하나로 시작하는 이야기. 곡괭이, 첫 제작대와 채굴 드론까지 — ORBITAL FALL의 실제 플레이 과정과 개발 기록.';
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     description,
     locale: 'ko_KR',
     type: 'website',
-    images: [{ url: '/media/story/home-wide.webp', width: 1600, height: 902 }],
+    images: [{ url: '/media/world/clearing.webp', width: 1920, height: 1082 }],
   },
 };
 export default function RootLayout({

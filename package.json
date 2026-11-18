@@ -18,7 +18,7 @@
     "devlog:publish": "node scripts/publish-devlog.mjs",
     "test:devlog": "node --test scripts/devlog-workflow.test.mjs",
     "preview:pages": "node scripts/preview-pages.mjs",
-    "test:story": "node --test scripts/story-navigation.test.mjs"
+    "test:story": "node --test scripts/story-navigation.test.mjs scripts/world-navigation.test.mjs"
   },
   "dependencies": {
     "@astryxdesign/core": "0.7.13",

@@ -1,3 +1,4 @@
+import { sceneFromHash } from '../lib/world-navigation.mjs';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
@@ -38,20 +39,21 @@ const pages = new Map([
 ]);
 for (const marker of [
   'ORBITAL FALL',
-  'id="journey"',
-  'id="features"',
-  'id="progress"',
-  '/media/story/home-wide.webp',
+  'data-world-scene="clearing"',
+  '/media/world/clearing.webp',
+  '작은 집',
+  '떨어진 운석',
+  '나의 첫 제작대',
   '03 건설 중',
   '04 완성',
   '5초',
 ])
-  assert.ok(home.includes(marker), 'Homepage story: ' + marker);
-for (const chapter of chapterIds)
-  assert.ok(home.includes(`id="step-${chapter}"`), 'Chapter anchor ' + chapter);
+  assert.ok(home.includes(marker), 'Scene homepage: ' + marker);
 assert.ok(
-  !home.includes('orbital-planet.svg'),
-  'Actual game imagery replaces decorative planet',
+  !home.includes('class="latest-log"') &&
+    !home.includes('class="feature-list"') &&
+    !home.includes('class="story-track"'),
+  'No main-page board or scroll slideshow',
 );
 assert.ok(
   home.includes('<noscript>') && home.includes('ground-preview.webp'),
@@ -66,7 +68,11 @@ for (const retired of ['drafts', 'devlog', 'optimization'])
     'No private/retired route ' + retired,
   );
 for (const [path, html] of pages) {
-  if(path!=='/'){assert.match(html, /class="experience is-reading"/);assert.match(html, /<section class="reader-panel/);assert.match(html, /<aside[^>]*inert=""/)}
+  if (path !== '/') {
+    assert.match(html, /class="experience is-reading"/);
+    assert.match(html, /<section class="reader-panel/);
+    assert.match(html, /<aside[^>]*inert=""/);
+  }
   assert.match(html, /lang="ko"/);
   assert.equal(
     [...html.matchAll(/<h1(?:\s|>)/g)].length,
@@ -91,7 +97,17 @@ for (const [path, html] of pages) {
       existsSync(join(root, file)),
       'Missing link: ' + path + ' -> ' + file,
     );
-    if (url.hash && url.pathname === path)
+    if (
+      url.hash &&
+      (url.hash.startsWith('#scene=') || url.hash.startsWith('#step-'))
+    )
+      assert.ok(sceneFromHash(url.hash), 'Valid scene address: ' + url.hash);
+    if (
+      url.hash &&
+      url.pathname === path &&
+      !url.hash.startsWith('#scene=') &&
+      !url.hash.startsWith('#step-')
+    )
       assert.ok(
         ids.includes(decodeURIComponent(url.hash.slice(1))),
         'Missing anchor: ' + url.hash,
@@ -129,5 +145,5 @@ assert.equal(
   entries.length,
 );
 console.log(
-  `Verified ${pages.size} pages, six chapters, real construction frames, ${Object.keys(media).length} image pairs, legacy URLs, analytics, comments and private-draft exclusion.`,
+  `Verified ${pages.size} pages, six explorable places, real construction frames, ${Object.keys(media).length} image pairs, legacy URLs, analytics, comments and private-draft exclusion.`,
 );

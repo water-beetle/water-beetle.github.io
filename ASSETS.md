@@ -107,3 +107,19 @@ Astryx 0.7.13 CLI에 포함된 centered-hero, product-gallery, classic-gallery �
 | drone-current-building.webp | blog-story-20261118/captures/drone-assembling.png | dcaaf3ab48117567aa46c77d7c7529f56ec4cccfddbe617c2e4c30ee016742f2 |
 | drone-current-complete.webp | blog-story-20261118/captures/drone-complete.png | 25d2fea2e200d2c0ea524cf05ce0d7498436a24b413b5a58a994036f36fc44eb |
 | drone-current-inventory.webp | blog-story-20261118/captures/drone-inventory.png | c2984855a10efc4cf2810f6ad3892fde8c2d3d7a80bbc4d8559a9f62f3fbe231 |
+
+## 2026-11-18 · 실제 장소 탐색 촬영
+
+새 게임의 원료 네 개를 직접 채굴해 간이 제작대를 건설한 미저장 PIE에서 촬영했습니다. 카메라와 일시적인 HUD 표시만 조정했으며 월드 에셋·게임 코드·세이브는 바꾸지 않았습니다. 원본 화면의 색과 내용을 유지한 WebP 품질85 변환입니다. 기존 과정 촬영본은 계속 사용합니다.
+
+| 공개 사진 | 원본 | 크기 | 원본 SHA256 |
+| --- | --- | --- | --- |
+| `/media/world/clearing.webp` | `outputs/blog-world-20261118/captures/extra/hub.png` | 1920×1082 | `6d3afd89a2afd24b73519653a20278d72e4aab600cf195315defd06e329a9dee` |
+| `/media/world/clearing-portrait.webp` | `outputs/blog-world-20261118/captures/extra/hub-portrait.png` | 1080×1602 | `cf1f86fb6bea108a41d5d476c0ecf06a36ce26987a182694178f2ffbe3a7502f` |
+| `/media/world/entry.webp` | `outputs/blog-world-20261118/captures/entry.png` | 1920×1082 | `f8a00cdc866e6e3ab0149667f7a3b28490accf036b7c4e5249f703a00245d189` |
+| `/media/world/meteor.webp` | `outputs/blog-world-20261118/captures/meteor.png` | 1920×1082 | `aec0b9e3c2f7ad5bc36f1f46d33e5b9fee0423f987f93e82397d23333465a584` |
+| `/media/world/meteor-portrait.webp` | `outputs/blog-world-20261118/captures/meteor-portrait.png` | 1080×1442 | `b7b1384c00905c482d2dc8dcba9f6e049f96c720dc7ecba22c00746f3fef00a9` |
+| `/media/world/bench.webp` | `outputs/blog-world-20261118/captures/bench-0.png` | 1920×1082 | `8581ba2cfc7709458bd8d6c6b6b6e05fee8fcf836d7a6eb1348c57c9a9ac421c` |
+| `/media/world/bench-portrait.webp` | `outputs/blog-world-20261118/captures/bench-0-portrait.png` | 1080×1442 | `da2c0e6b238a003a20f536bcc2547cad49da9984b6fc18d95223dabfbc6a5a15` |
+| `/media/world/computer.webp` | `outputs/blog-world-20261118/captures/computer.png` | 1920×1082 | `cde92afb7105ffeab73cd2800b38cc6496a4248e41b00d9c9cca268f7e4f1a08` |
+| `/media/world/computer-portrait.webp` | `outputs/blog-world-20261118/captures/computer-portrait.png` | 1080×1442 | `39d554e2ab30bc3660777a37a8067909c8706b53ba1058909acac5cf4917cb48` |

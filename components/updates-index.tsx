@@ -1,125 +1,106 @@
 'use client';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@astryxdesign/core/Button';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import { devlogs, media, formatDate, updateHref } from '@/lib/devlogs';
+import { features, featureHref } from '@/lib/features';
 import { SceneImage } from './story-stage';
 import { SiteShell } from './site-chrome';
 import { StoryLink, useStory } from './story-context';
 export function UpdatesIndex() {
   const story = useStory();
-  const { filter, order, selected } = story.archive;
-  const options = ['전체', ...new Set(devlogs.map((e) => e.category))];
-  const entries = devlogs
-    .filter((e) => filter === '전체' || e.category === filter)
-    .sort((a, b) =>
-      order === 'oldest'
-        ? a.date.localeCompare(b.date)
-        : b.date.localeCompare(a.date),
-    );
-  const active = entries.find((e) => e.slug === selected) || entries[0];
+  const index = Math.max(
+    0,
+    devlogs.findIndex((e) => e.slug === story.archive.selected),
+  );
+  const active = devlogs[index];
   return (
     <SiteShell>
-      <header className="archive-heading">
-        <p className="overline">FIELD NOTES / ORBITAL FALL</p>
-        <h1>
-          만들고, 플레이하고,
-          <br />
-          <em>다시 다듬는 기록.</em>
-        </h1>
-        <p>큰 변화도, 작은 디테일도. 실제 게임 화면과 함께 남깁니다.</p>
-      </header>
-      <div className="filter-bar" aria-label="개발 기록 필터">
-        {options.map((option) => (
-          <Button
-            key={option}
-            label={option}
-            size="sm"
-            variant={filter === option ? 'primary' : 'ghost'}
-            aria-pressed={filter === option}
-            onClick={() => story.setArchive({ filter: option })}
-          />
-        ))}
-        <label>
-          날짜순
+      <div className="journal-terminal">
+        <header className="terminal-heading">
+          <p className="overline">HOME COMPUTER / DEVELOPMENT JOURNAL</p>
+          <h1>작은 세계의 작업 기록.</h1>
+          <p>만들고, 플레이하고, 다시 다듬은 이야기.</p>
+        </header>
+        <div className="terminal-controls">
+          <span className="terminal-led" />
+          <label htmlFor="record-date">기록 선택</label>
           <select
-            value={order}
-            onChange={(event) =>
-              story.setArchive({
-                order: event.target.value as 'oldest' | 'newest',
-              })
-            }
+            id="record-date"
+            value={active.slug}
+            onChange={(e) => story.setArchive({ selected: e.target.value })}
           >
-            <option value="newest">최신순</option>
-            <option value="oldest">오래된 순</option>
+            {devlogs.map((entry) => (
+              <option key={entry.slug} value={entry.slug}>
+                {formatDate(entry.date)} · {entry.title}
+              </option>
+            ))}
           </select>
-        </label>
-      </div>
-      <div className="archive-layout">
-        {active && (
-          <aside className="archive-preview" aria-label="선택한 기록 미리보기">
-            <div className="archive-photo">
-              <SceneImage mediaKey={active.cover} />
-            </div>
-            <p className="overline">{active.eyebrow}</p>
+          <span className="terminal-page" aria-live="polite">
+            {String(index + 1).padStart(2, '0')} /{' '}
+            {String(devlogs.length).padStart(2, '0')}
+          </span>
+        </div>
+        <article className="journal-page" key={active.slug}>
+          <div className="journal-image">
+            <SceneImage mediaKey={active.cover} />
+            <small>{media[active.cover].caption}</small>
+          </div>
+          <div className="journal-text">
+            <p className="overline">
+              {active.category} /{' '}
+              <time dateTime={active.date}>{formatDate(active.date)}</time>
+            </p>
             <h2>{active.title}</h2>
             <p>{active.summary}</p>
-            <small>{media[active.cover].caption}</small>
-            <StoryLink className="solid-link" href={updateHref(active.slug)}>
-              이 기록 읽기 <ArrowUpRight size={16} />
+            <StoryLink className="journal-open" href={updateHref(active.slug)}>
+              기록 펼치기
+              <ArrowUpRight size={18} />
             </StoryLink>
-          </aside>
-        )}
-        <section className="archive-timeline" aria-label="날짜별 개발 기록">
-          <p className="result-count" aria-live="polite">
-            {entries.length}개의 기록
-          </p>
-          {entries.map((entry) => (
-            <article
-              key={entry.slug}
-              className={
-                entry.slug === active?.slug
-                  ? 'timeline-entry selected'
-                  : 'timeline-entry'
-              }
-            >
-              <div className="timeline-date">
-                <i />
-                <time dateTime={entry.date}>{formatDate(entry.date)}</time>
-                <span>{entry.category}</span>
-              </div>
-              <button
-                className="preview-action"
-                onClick={() => story.setArchive({ selected: entry.slug })}
-                aria-pressed={entry.slug === active?.slug}
-                aria-label={entry.title + ' 장면 미리보기'}
-              >
-                <img
-                  src={media[entry.cover].thumbnail}
-                  alt=""
-                  width={112}
-                  height={63}
-                  loading="lazy"
-                />
-                <span>장면 미리보기</span>
-              </button>
-              <h2>
-                <StoryLink href={updateHref(entry.slug)}>
-                  {entry.title}
-                  <ArrowUpRight size={17} />
-                </StoryLink>
-              </h2>
-              <p>{entry.summary}</p>
-              <StoryLink className="story-link" href={updateHref(entry.slug)}>
-                기록 읽기 <ArrowUpRight size={14} />
+          </div>
+        </article>
+        <nav className="journal-pagination" aria-label="개발 기록 넘기기">
+          <button
+            disabled={index === 0}
+            onClick={() =>
+              story.setArchive({ selected: devlogs[index - 1].slug })
+            }
+          >
+            <ArrowLeft size={16} /> 앞 기록
+          </button>
+          <span>한 장면씩, 조금 더 나은 게임으로.</span>
+          <button
+            disabled={index === devlogs.length - 1}
+            onClick={() =>
+              story.setArchive({ selected: devlogs[index + 1].slug })
+            }
+          >
+            다음 기록 <ArrowRight size={16} />
+          </button>
+        </nav>
+        <details className="journal-subjects">
+          <summary>
+            이 세계를 이루는 것들 <span>주제별 기록 찾기 ＋</span>
+          </summary>
+          <nav aria-label="주제별 구현 기록">
+            {features.map((feature) => (
+              <StoryLink key={feature.slug} href={featureHref(feature.slug)}>
+                {feature.title}
+                <ArrowUpRight size={14} />
               </StoryLink>
-            </article>
-          ))}
-          {!entries.length && (
-            <p className="empty-state">
-              이 주제의 기록은 아직 없습니다. 다른 주제를 선택해 보세요.
-            </p>
-          )}
-        </section>
+            ))}
+          </nav>
+        </details>
+        <noscript>
+          <style>
+            {'.terminal-controls,.journal-pagination{display:none!important}'}
+          </style>
+          <nav aria-label="모든 개발 기록">
+            {devlogs.map((entry) => (
+              <p key={entry.slug}>
+                <a href={updateHref(entry.slug)}>{entry.title} ↗</a>
+              </p>
+            ))}
+          </nav>
+        </noscript>
       </div>
     </SiteShell>
   );

@@ -11,6 +11,12 @@ import { usePathname } from 'next/navigation';
 import { chapterFromHash, chapters, getChapter } from '@/lib/story';
 import { isChapterId, type ChapterId } from '@/lib/story-types';
 import {
+  sceneFromHash,
+  sceneHref,
+  validScene,
+  type SceneSelection,
+} from '@/lib/world-navigation.mjs';
+import {
   isReaderPath,
   isArchivePath,
   normalizePath,
@@ -27,8 +33,12 @@ type ReturnPoint = {
   focusHref?: string;
   focusLabel?: string;
   scopeId?: string;
+  focusId?: string;
 };
 type StoryState = {
+  scene: SceneSelection;
+  visit: (value: SceneSelection) => void;
+  restoreFocus: () => void;
   chapter: ChapterId;
   frames: Frames;
   archive: Archive;
@@ -36,11 +46,11 @@ type StoryState = {
   setChapter: (id: ChapterId) => void;
   setFrame: (id: ChapterId, frame: string) => void;
   setArchive: (value: Partial<Archive>) => void;
-  captureReturn: (target: string) => void;
+  captureReturn: (target: string, source?: HTMLAnchorElement) => void;
   closeRecord: (fallback?: ChapterId) => void;
   ready: boolean;
 };
-const KEY = 'orbital-play-story-v3';
+const KEY = 'orbital-scene-journal-v4';
 const Context = createContext<StoryState | null>(null);
 export const useStory = () => {
   const value = useContext(Context);
@@ -48,7 +58,19 @@ export const useStory = () => {
   return value;
 };
 function returnFocus(point: ReturnPoint) {
-  if (!point.focusHref) return;
+  if (point.focusId) {
+    const el = document.getElementById(point.focusId);
+    if (
+      el &&
+      !el.closest('[inert]') &&
+      getComputedStyle(el).visibility !== 'hidden' &&
+      el.getBoundingClientRect().width > 2
+    ) {
+      el.focus({ preventScroll: true });
+      if (document.activeElement === el) return true;
+    }
+  }
+  if (!point.focusHref) return false;
   const scope = point.scopeId
     ? document.getElementById(point.scopeId)
     : document;
@@ -59,13 +81,15 @@ function returnFocus(point: ReturnPoint) {
       link.getAttribute('href') === point.focusHref &&
       link.textContent?.trim() === point.focusLabel &&
       !link.closest('[inert]') &&
+      getComputedStyle(link).visibility !== 'hidden' &&
       link.getBoundingClientRect().width > 2 &&
       link.getBoundingClientRect().height > 2,
   );
   link?.focus({ preventScroll: true });
+  return !!link && document.activeElement === link;
 }
-function currentPoint(path: string): ReturnPoint {
-  const active = document.activeElement;
+function currentPoint(path: string, source?: HTMLAnchorElement): ReturnPoint {
+  const active = source || document.activeElement;
   return {
     path,
     y: window.scrollY,
@@ -74,6 +98,7 @@ function currentPoint(path: string): ReturnPoint {
           focusHref: active.getAttribute('href') || undefined,
           focusLabel: active.textContent?.trim(),
           scopeId: active.closest('[id]')?.id,
+          focusId: active.id || undefined,
         }
       : {}),
   };
@@ -81,6 +106,11 @@ function currentPoint(path: string): ReturnPoint {
 export function StoryProvider({ children }: { children: ReactNode }) {
   const path = usePathname() || '/';
   const [chapter, setChapter] = useState<ChapterId>('home');
+  const [scene, setScene] = useState<SceneSelection>({
+    scene: 'clearing',
+    shot: 'arrival',
+  });
+  const focusPoint = useRef<ReturnPoint | null>(null);
   const [frames, setFrames] = useState<Frames>({});
   const [archive, setArchiveState] = useState<Archive>({
     filter: '전체',
@@ -100,6 +130,12 @@ export function StoryProvider({ children }: { children: ReactNode }) {
       data = JSON.parse(sessionStorage.getItem(KEY) || '{}') || {};
     } catch {}
     if (isChapterId(data.chapter)) setChapter(data.chapter);
+    const selected =
+      sceneFromHash(location.hash) ||
+      (validScene(data.scene)
+        ? data.scene
+        : { scene: 'clearing', shot: 'arrival' });
+    setScene(selected);
     if (data.frames && typeof data.frames === 'object') {
       const valid: Frames = {};
       for (const c of chapters)
@@ -130,6 +166,7 @@ export function StoryProvider({ children }: { children: ReactNode }) {
     const hash = chapterFromHash(location.hash);
     if (hash) setChapter(hash);
     const point = resumePoint(data, path, location.hash) as ReturnPoint | null;
+    focusPoint.current = point;
     delete data.resume;
     try {
       sessionStorage.setItem(KEY, JSON.stringify(data));
@@ -150,6 +187,7 @@ export function StoryProvider({ children }: { children: ReactNode }) {
         KEY,
         JSON.stringify({
           chapter,
+          scene,
           frames,
           archive,
           homePoint: homePoint.current,
@@ -161,8 +199,30 @@ export function StoryProvider({ children }: { children: ReactNode }) {
   };
   useEffect(() => {
     if (ready) persist();
-  }, [chapter, frames, archive, ready]);
-  const captureReturn = (target: string) => {
+  }, [chapter, frames, archive, scene, ready]);
+  useEffect(() => {
+    if (!ready || path !== '/') return;
+    if (!location.hash || !sceneFromHash(location.hash))
+      history.replaceState(null, '', sceneHref(scene));
+    const follow = () => {
+      setScene(
+        sceneFromHash(location.hash) || { scene: 'clearing', shot: 'arrival' },
+      );
+      focusPoint.current = null;
+      requestAnimationFrame(() =>
+        document
+          .getElementById('place-heading')
+          ?.focus({ preventScroll: true }),
+      );
+    };
+    window.addEventListener('hashchange', follow);
+    window.addEventListener('popstate', follow);
+    return () => {
+      window.removeEventListener('hashchange', follow);
+      window.removeEventListener('popstate', follow);
+    };
+  }, [ready, path]);
+  const captureReturn = (target: string, source?: HTMLAnchorElement) => {
     if (target.startsWith('/#')) {
       resume.current = null;
       persist();
@@ -170,9 +230,9 @@ export function StoryProvider({ children }: { children: ReactNode }) {
     }
     let point = returnPoint;
     if (path === '/') {
-      point = currentPoint('/');
+      point = currentPoint('/', source);
       homePoint.current = point;
-    } else if (isArchivePath(path)) point = currentPoint(path);
+    } else if (isArchivePath(path)) point = currentPoint(path, source);
     if (point && isReaderPath(target))
       origins.current[normalizePath(target)] = point;
     persist();
@@ -186,6 +246,24 @@ export function StoryProvider({ children }: { children: ReactNode }) {
     );
   };
   const state: StoryState = {
+    scene,
+    visit: (value) => {
+      if (!validScene(value)) return;
+      if (scene.scene === value.scene && scene.shot === value.shot) return;
+      history.pushState(null, '', sceneHref(value));
+      setScene(value);
+      focusPoint.current = null;
+      requestAnimationFrame(() =>
+        document
+          .getElementById('place-heading')
+          ?.focus({ preventScroll: true }),
+      );
+    },
+    restoreFocus: () => {
+      if (focusPoint.current && returnFocus(focusPoint.current)) {
+        focusPoint.current = null;
+      }
+    },
     chapter,
     frames,
     archive,
@@ -226,7 +304,7 @@ export function StoryLink({
           !event.shiftKey &&
           (isReaderPath(href) || isArchivePath(href) || href.startsWith('/#'))
         )
-          story.captureReturn(href);
+          story.captureReturn(href, event.currentTarget);
       }}
       {...props}
     >
