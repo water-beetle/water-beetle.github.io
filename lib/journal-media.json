@@ -1,0 +1,98 @@
+{
+  "door": {
+    "src": "/media/journal/door.webp",
+    "thumbnail": "/media/journal/door-thumb.webp",
+    "alt": "현관문 앞에서 시작",
+    "caption": "집 현관문을 처음 열면 첫 운석의 낙하 대기가 시작됩니다. 2026.11.18 실제 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "meteor": {
+    "src": "/media/journal/meteor.webp",
+    "thumbnail": "/media/journal/meteor-thumb.webp",
+    "alt": "첫 운석 표면에 다가간 시점",
+    "caption": "곡괭이를 들고 첫 운석의 표면 가까이 다가간 모습. 2026.11.18 실제 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "pickaxe": {
+    "src": "/media/journal/pickaxe.webp",
+    "thumbnail": "/media/journal/pickaxe-thumb.webp",
+    "alt": "집 안에 기대어 둔 곡괭이",
+    "caption": "현관 쪽 수납장 옆에서 E로 곡괭이를 줍습니다. 2026.11.18 최종 보정 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "pickaxe-wide": {
+    "src": "/media/journal/pickaxe-wide.webp",
+    "thumbnail": "/media/journal/pickaxe-wide-thumb.webp",
+    "alt": "도구가 제자리를 찾은 집",
+    "caption": "사선으로 둔 곡괭이가 벽과 바닥에 닿도록 보정한 모습. 2026.11.18 실제 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "pickaxe-before": {
+    "src": "/media/journal/pickaxe-before.webp",
+    "thumbnail": "/media/journal/pickaxe-before-thumb.webp",
+    "alt": "보정 전 곡괭이 위치",
+    "caption": "2026.11.18 이전 배치. 현재 최종 적용본과 구분한 비교용 촬영본이며 시점은 완전히 같지 않습니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "mining": {
+    "src": "/media/journal/mining.webp",
+    "thumbnail": "/media/journal/mining-thumb.webp",
+    "alt": "운석을 직접 채굴하는 순간",
+    "caption": "LMB를 꾹 누르면 곡괭이로 연속 채굴합니다. 2026.11.18 실제 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "ore": {
+    "src": "/media/journal/ore.webp",
+    "thumbnail": "/media/journal/ore-thumb.webp",
+    "alt": "개인 인벤토리의 원료 네 개",
+    "caption": "채굴한 운석 원료 4개를 확인합니다. 손 가공 없이 바로 건설에 사용합니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "build-menu": {
+    "src": "/media/journal/build-menu.webp",
+    "thumbnail": "/media/journal/build-menu-thumb.webp",
+    "alt": "간이 제작대 건설 메뉴",
+    "caption": "B에서 간이 제작대를 선택합니다. 개인 운석 원료 4개와 현장 건설 5초가 필요합니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "bench": {
+    "src": "/media/journal/bench.webp",
+    "thumbnail": "/media/journal/bench-thumb.webp",
+    "alt": "직접 세운 첫 간이 제작대",
+    "caption": "위치를 정하고 LMB 한 번으로 건설을 시작하면 5초 뒤 완성됩니다. 2026.11.18 실제 화면.",
+    "width": 1280,
+    "height": 722
+  },
+  "bench-screen": {
+    "src": "/media/journal/bench-screen.webp",
+    "thumbnail": "/media/journal/bench-screen-thumb.webp",
+    "alt": "제작대에서 확인하는 드론 조립 조건",
+    "caption": "제작대 앞 E로 여는 현재 조립 화면. 연구와 원료를 갖추기 전에는 조립을 시작할 수 없습니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "research": {
+    "src": "/media/journal/research.webp",
+    "thumbnail": "/media/journal/research-thumb.webp",
+    "alt": "집 컴퓨터에서 완료한 첫 연구",
+    "caption": "2026.11.17 개인 원료 연구 검증 화면. 첫 연구의 원료 2개·10초 규칙은 현재도 유지됩니다.",
+    "width": 1280,
+    "height": 722
+  },
+  "drone": {
+    "src": "/media/journal/drone.webp",
+    "thumbnail": "/media/journal/drone-thumb.webp",
+    "alt": "조립을 마치고 수령을 기다리는 드론",
+    "caption": "2026.11.17 조립 검증 촬영본. 화면의 제작대 명칭은 현재 간이 제작대로 바뀌었으며, 연구·원료 4개·10초 조립·단일 수령 규칙은 유지됩니다.",
+    "width": 1280,
+    "height": 722
+  }
+}

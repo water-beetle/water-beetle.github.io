@@ -1,27 +1,49 @@
-# ORBITAL FALL 개발 기록
+# ORBITAL FALL · Development Journal
 
-실제 게임 구현을 8개 주제와 48장의 촬영본으로 소개하는 GitHub Pages 사이트입니다.
+운석 하나에서 시작하는 게임의 플레이 과정과 실제 개발 기록을 소개합니다. 공개 주소는 **https://water-beetle.github.io/**이며 기존 GitHub Pages 워크플로를 유지합니다.
 
-## 수정과 실행
+## 실행과 확인
 
-- 기능 설명과 이미지 목록은 `lib/features.ts`에서 관리합니다.
-- 이미지는 `public/media/features/`에 전체 보기와 썸네일 WebP를 함께 둡니다.
-- `npm install` 후 `npm run dev`로 로컬 미리보기를 실행합니다.
-- `npx tsc --noEmit`, `npm run test:analytics`, `npm run build:pages`, `npm run check:pages`로 확인합니다.
-- Astryx 0.7.13 공식 centered-hero·product-gallery 구성을 적용합니다. AppShell·TopNav·Layout·Grid·Card·ClickableCard·Heading·Text·Button·Badge·Breadcrumbs·List·Collapsible·Lightbox를 실제 UI에 사용하며, 공식 API는 `npx @astryxdesign/cli component 이름`으로 확인할 수 있습니다.
+```powershell
+npm ci
+npm run dev
+npx tsc --noEmit
+npm run test:analytics
+npm run test:devlog
+npm run build:pages
+npm run check:pages
+npm run preview:pages
+```
 
-## 게시
+`dist/client`가 정적 산출물입니다. `main`에 push하면 기존 Pages 워크플로가 검사와 배포를 수행합니다. 이번 개편은 로컬 검토를 먼저 거칩니다. 초안 도구는 Git push나 배포를 실행하지 않습니다.
 
-저장소는 `water-beetle/water-beetle.github.io`, 공개 주소는 https://water-beetle.github.io/ 입니다. `main` push 후 기존 GitHub Actions가 타입·통계 검사와 정적 빌드를 거쳐 배포합니다. 출력은 `dist/client/`이며 직접 편집하지 않습니다. 기존 Sites 미리보기는 이번 개편의 배포 대상이 아닙니다.
+## 화면과 기술
 
-기존 공개 기획 아틀라스와 로컬 개발일지·최적화 글의 공개 라우트는 구현 소개로 교체했습니다. 기존 Git 이력과 미커밋 최적화 원문은 보존했으며, 과거 원문 데이터 모듈은 새 페이지에서 가져오지 않습니다. 이전 주소는 404 화면에서 새 메인으로 안내합니다.
+- Vinext / React 19 / TypeScript, Meta Astryx의 컴포넌트·토큰에 프로젝트 고유 `orbital` 테마 적용.
+- Three.js + React Three Fiber의 별도 지연 로드 3D 행성. 장식물이며 게임의 실제 행성 지형을 재현한 화면은 아닙니다. 드래그 회전, 화면 밖·탭 숨김 시 정지. 모바일은 정적 SVG로 시작하고 3D를 직접 켭니다. 모션 감소 설정·WebGL 미지원·로드 오류에는 정적 화면을 제공합니다.
+- Motion은 스크롤의 작은 위치 변화에 사용합니다. 본문은 JavaScript 없이도 읽히며, 모든 주요 탐색은 링크와 버튼을 사용합니다.
+- 6단계 플레이 과정, `/updates/` 필터와 개별 글, 실제 이미지 확대, 버튼으로 전환하는 배치 비교. 기존 `/features/[slug]/` 8개 주소를 보존합니다.
+- Google Analytics의 DNT/GPC·로컬 미수집 정책과 기존 giscus Discussions 연결을 유지합니다.
 
-## 내용과 이미지 기준
+## 실제 기록에서 글 만들기
 
-현재 적용본과 이전 검증 장면을 캡션으로 구분합니다. 연구 카탈로그의 표시·실행 지원은 모든 장비 효과의 완성을 뜻하지 않습니다. 기존 MULE 기반 구현은 보존되지만 2026-11-05부터 현재 새 게임의 초기 우주선 생성은 꺼져 있습니다. 이미지 출처와 촬영 맥락은 `ASSETS.md`를 따릅니다.
+`Comet/outputs/<검증폴더>/README.md`와 해당 폴더의 이미지에서 **비공개 로컬 초안**을 만듭니다.
 
-## 통계와 댓글
+```powershell
+npm run devlog:draft -- --source G:/UnrealProjects/Comet/outputs/선택한-검증폴더 --slug new-field-note --title "새로운 개발 기록"
+```
 
-기존 GA4 설정과 개인정보 보호 동작을 유지합니다. DNT/GPC를 존중하며 URL의 쿼리·해시·개인정보를 추가 전송하지 않습니다. 새 상세 페이지의 조회 이벤트 유형은 `feature`입니다. giscus 댓글 키는 `/features/주제/`이며 기존 Discussions는 삭제하지 않습니다. 댓글은 GitHub 계정으로 작성합니다.
+1. Git에서 제외한 `drafts/<slug>/article.json`과 `REVIEW.md`가 생깁니다. 원본 경로와 발췌는 이 폴더에만 보관합니다. 초안을 만든 것만으로 공개 색인이나 페이지가 추가되지 않습니다.
+2. 글을 플레이어가 읽기 쉬운 문장으로 다듬고 현재 구현·과거 촬영·후속 계획을 구분합니다. `sourceFacts`는 참고자료이고 공개되지 않습니다.
+3. `candidates`에서 사용할 이미지를 골라 `assets`에 `{ "source": "원본 절대 경로", "id": "고유-image-id", "alt": "설명", "caption": "촬영 날짜와 맥락" }`를 추가합니다. `cover`와 본문의 `media`, 비교의 `before`/`after`에는 이미지 id를 씁니다. 기존 `lib/journal-media.json`의 키를 재사용할 수도 있습니다. 새 이미지 키는 기존 키와 중복할 수 없습니다.
+4. 검토 후 `reviewed: true`로 바꾸고 아래 명령을 실행합니다.
 
-컴포넌트 기본 모양과 간격·타이포그래피는 Astryx neutral 테마가 담당합니다. 자체 CSS는 우주 배경·이미지 채우기·문서 스크롤 설정에 한정합니다. Lightbox의 확대·탐색·키보드·터치 동작과 모바일 내비게이션은 라이브러리를 그대로 사용하며 한국어 기본 번역을 제공합니다.
+```powershell
+npm run devlog:publish -- --slug new-field-note --reviewed
+```
+
+명시적으로 검토한 글의 공개 필드만 `content/published/<slug>.json`과 `index.json`에 반영하고, 선택한 이미지만 WebP 원본·썸네일로 변환합니다. `sourceFacts`·`candidates`·원본 로컬 경로는 공개 데이터에서 제외합니다. 기존 글 수정은 `--replace`를 추가합니다. 이후 타입 검사·빌드·정적 검사를 거쳐 로컬 미리보기와 글을 검토하고 기존 Pages로 게시합니다.
+
+`lib/journal-media.json`은 새 글의 사진, `lib/features.ts`는 기존 8개 구현 페이지의 사진을 관리합니다. 촬영본의 출처와 변환 규칙은 `ASSETS.md`를 따릅니다. 원본은 Comet 프로젝트에서 보존합니다.
+
+현재 새 게임에서 연결된 범위는 **첫 제작대 건설·연구·첫 드론 조립과 수령**까지입니다. 드론 전개·동력·자동 채굴, 공장과 우주선 성장 연결은 후속입니다. 과거 기능 사진에는 당시 검증 맥락을 표시합니다.

@@ -66,3 +66,23 @@ Astryx 0.7.13과 neutral 테마는 Meta의 MIT 라이선스 패키지를 사용�
 ## Astryx 공식 구성 적용
 
 Astryx 0.7.13 CLI에 포함된 centered-hero, product-gallery, classic-gallery 템플릿을 참고해 기존 게임 설명과 촬영본으로 구성했습니다. 라이브러리 원본은 수정하지 않았으며 Meta MIT 고지를 유지합니다. 자체 카드·버튼·모달 디자인을 제거하고 native 컴포넌트를 사용합니다.
+
+
+## 2026-11-18 플레이 기록 개편
+
+장식용 3D 행성과 정적 SVG는 코드로 만든 추상 시각물입니다. 실제 게임 촬영본과 구분합니다. 아래 웹 사본은 원본의 구도와 색을 유지한 WebP 변환입니다.
+
+| 이미지 | Comet outputs 원본 | SHA256 |
+| --- | --- | --- |
+| door.webp | bench-process-images-20261118/01-start-in-house.png | 2a55bb144f9dd20231181f2962b91afaa66410f2fc2ccf57f1785e6bb621cd8a |
+| meteor.webp | bench-process-images-20261118/03-meteor-ready.png | 2a272632d3adfcaccdefd2e38f090eba61ae33621bd2a1637296a8340b5acbb8 |
+| pickaxe.webp | pickaxe-wall-contact-20261118/pickaxe-on-floor-E.png | f853b4da21f251b74b60b930fe98a1d58de0c9170aead0563c2cca363f3f0670 |
+| pickaxe-wide.webp | pickaxe-wall-contact-20261118/entry-wall-overview.png | e5d5b307e52032420642455aecf7f53822e53b1c209806579ac6ea67d6dadeaa |
+| pickaxe-before.webp | pickaxe-home-placement-20261118/entry-wall-overview.png | 622127dd9c1092d157f5456987f2f7f21a6d78f38d866cc51f3441e3753cb044 |
+| mining.webp | bench-process-images-20261118/04-mining-held-LMB.png | 2d16060acb92b86c717973777ebb951fec5d7446a960646a9df2b48312e3728b |
+| ore.webp | bench-process-images-20261118/05-four-raw-ore.png | c9aaadc8455e21e99d23a1d638b56057e83cd90241531fc408fe889e1f8efc10 |
+| build-menu.webp | bench-process-images-20261118/06-construction-menu.png | 2bbcc79cda8bbd8be2389db85475fa36042f20e8dc2012ace6b1bc9eeae8cf66 |
+| bench.webp | raw-basic-bench-20261118/completed-bench.png | c2d048e8f88babe7318951c124981bd9dcd165e33a6e374507c0a411ab3147ae |
+| bench-screen.webp | raw-basic-bench-20261118/bench-research-required.png | e8cda04c2238a8ad9752cda5e17f3d47ec960880dc24d9627dabfce6235e1386 |
+| research.webp | personal-research-20261117/first-research-complete-720.png | a893cc2496b43e88af604c8d09df94d598c85af9de152240ba98eeb605b3efba |
+| drone.webp | manualcraft-menu-20261117/assembly-ready.png | 4ebcb1a9ef24423749765a4b2a3ec6be6e0757d8c34995fd6d87a66123709dc7 |

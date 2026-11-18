@@ -1,4 +1,4 @@
-name: Deploy ORBITAL FALL implementation showcase
+name: Deploy ORBITAL FALL development journal
 
 on:
   push:
@@ -32,6 +32,8 @@ jobs:
         run: npx tsc --noEmit
       - name: Verify analytics behavior
         run: npm run test:analytics
+      - name: Verify draft workflow
+        run: npm run test:devlog
       - name: Build static blog
         run: npm run build:pages
       - name: Verify public page and assets

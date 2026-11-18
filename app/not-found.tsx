@@ -1,7 +1,21 @@
-'use client';
 import { SiteShell } from '@/components/site-chrome';
-import { VStack } from '@astryxdesign/core/Layout';
-import { Heading, Text } from '@astryxdesign/core/Text';
-import { Badge } from '@astryxdesign/core/Badge';
-import { Button } from '@astryxdesign/core/Button';
-export default function NotFound(){return <SiteShell><VStack gap={6} paddingBlock={10} hAlign="start"><Badge label="404"/><Heading level={1}>새로운 개발 기록으로 옮겨왔습니다.</Heading><Text as="p" type="large" color="secondary">이전 개발일지와 최적화 글을 정리하고, 기능별 구현 소개와 이미지로 새로 구성했습니다.</Text><Button label="구현 소개 보러 가기" href="/" variant="primary"/></VStack></SiteShell>;}
+export default function NotFound() {
+  return (
+    <SiteShell>
+      <section className="section updates-page">
+        <p className="eyebrow">SIGNAL NOT FOUND · 404</p>
+        <h1>잠시 궤도를 벗어났네요.</h1>
+        <p className="page-description">
+          이 주소에는 기록이 없습니다.
+          <br />
+          새로운 플레이 과정과 개발 기록에서 이야기를 이어보세요.
+        </p>
+        <p style={{ marginTop: 32 }}>
+          <a className="text-link" href="/">
+            처음으로 돌아가기 ↗
+          </a>
+        </p>
+      </section>
+    </SiteShell>
+  );
+}
