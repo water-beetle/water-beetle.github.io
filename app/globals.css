@@ -2,7 +2,19 @@
 @import '@astryxdesign/core/reset.css';
 @import '@astryxdesign/core/astryx.css';
 @import '@astryxdesign/theme-neutral/theme.css';
+@view-transition {
+  navigation: auto;
+}
 @layer app {
+  .site-header {
+    view-transition-name: site-header;
+  }
+  #scene-viewer {
+    view-transition-name: play-scene;
+  }
+  ::view-transition-group(*) {
+    animation-duration: 180ms;
+  }
   :root {
     --ink: #111315;
     --surface: #1a1c1d;
@@ -2016,6 +2028,11 @@
     min-width: 44px;
   }
   @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation-duration: 0.01ms !important;
+    }
     html {
       scroll-behavior: auto;
     }

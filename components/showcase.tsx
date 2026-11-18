@@ -10,6 +10,7 @@ import { SiteFooter } from './site-chrome';
 export function Showcase() {
   const story = useStory();
   useEffect(() => {
+    if (!story.ready) return;
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -29,7 +30,7 @@ export function Showcase() {
       .querySelectorAll('[data-story-chapter]')
       .forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [story.ready]);
   return (
     <>
       <h1 className="sr-only">

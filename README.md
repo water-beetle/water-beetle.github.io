@@ -10,6 +10,7 @@ npm run dev
 npx tsc --noEmit
 npm run test:analytics
 npm run test:devlog
+npm run test:story
 npm run build:pages
 npm run check:pages
 npm run preview:pages
@@ -25,6 +26,8 @@ npm run preview:pages
 - 기록을 열고 닫을 때 보던 장면·선택 사진·스크롤과 목록 필터를 복원합니다. 직접 링크는 독립적으로 읽을 수 있습니다.
 - JavaScript가 없어도 각 챕터의 모든 과정 사진·설명과 글을 읽을 수 있습니다. 모션 감소 설정을 존중하고, 이미지 로드 실패에는 재시도·원본 링크를 제공합니다.
 - 기존8개 기능 URL·giscus·통계의 DNT/GPC·로컬 미수집 정책을 유지합니다.
+
+GitHub Pages는 RSC 탐색 요청에 HTML을 반환하므로 내부 이동은 기본 문서 링크와 세션 상태 복원으로 처리합니다. 지원 브라우저에서는 동일 출처 문서 전환(View Transitions)으로 연결하고, 미지원 환경에서는 기본 탐색을 사용합니다. 새로고침·직접 링크·뒤로가기는 서버 API 없이 동작합니다.
 
 Three.js 장식용 첫 화면을 실제 게임 사진의 연속된 장면으로 교체했습니다. Motion은 장면 전환, Astryx는 버튼·필터·이미지 확대에 사용하며 별도의 서버·계정·유료 API는 없습니다.
 
